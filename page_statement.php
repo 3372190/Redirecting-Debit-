@@ -30,7 +30,7 @@
         -process upload with userid as identifier
         -upload file
         -process with algorithm
-        -return jason response to next page
+        -return jason response display on next page.
         
         
         */
