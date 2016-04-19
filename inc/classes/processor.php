@@ -51,9 +51,11 @@ class Processor{
         foreach($this->serviceList as $service){
              //echo json_encode($service->getTitle());
             echo $service->getTitle()."\n";
-        }
-        
-        
+        }  
+    }
+    
+    public function getServiceList(){
+        return $this->serviceList;
     }
     
     
