@@ -18,6 +18,52 @@
         window.location = "page_login.php"
     }
     </script>
+    
+    <script>
+    //upload ajax function will post user id and csv file to processupload.php
+        
+    $(document).ready(function{
+                      
+        $("#uploadButton").click(function(){
+        /*
+        -error check form
+        -process upload with userid as identifier
+        -upload file
+        -process with algorithm
+        -return jason response to next page
+        
+        
+        */
+        
+        
+        
+        });
+        
+        $("#cancelButton").click(function(){
+           //cancel and go back to main profile page. 
+            
+            
+        });
+        $("#nextButton").click(function(){
+            
+        //find what ever tab is selected and continue in the count
+            
+            
+            
+            
+        });
+                      
+                      
+                      
+    });
+        
+    //next button will continue 
+        
+    
+    
+    
+    
+    </script>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -82,15 +128,39 @@
 								<li><a data-toggle="tab" href="#payment">Add Service Providers</a></li>
 								<li><a data-toggle="tab" href="#settings">Review and Save</a></li>
 							</ul>
+                            
+                            
 							<div class="tab-content">
 								<div id="profile" class="profile-edit tab-pane fade in active">
-									<h2 class="heading-md">Use This Page To Upload Statements to be Processed By Us.</h2>
+                                    
+                                    <form class="sky-form" id="sky-form" action="#">
+										<!--Checkout-Form-->
+										<section>
+                                        <h2 class="heading-md">Use This Page To Upload Statements to be Processed By Us.</h2>
 									<p>Statements can be in Csv format only</p>
-                                    <button type="button" class="btn-u btn-u-default">Upload Statement</button>
-									<br>
-                                    <hr>
-									<button type="button" class="btn-u">Cancel</button>
-									<button type="button" class="btn-u">Next</button>
+										</section>
+
+										<section>
+                                            <button type="button" id="upload" class="btn-u btn-u-default">Upload Statement</button>
+										</section>
+
+										<div class="row">
+											<label class="label col col-4">Bank Provider</label>
+											<section class="col col-5">
+												<label class="select">
+													<select name="month">
+														<option disabled="" selected="" value="0">Select Bank</option>
+														<option value="1">Westpac Australia</option>
+														<option value="1">Commonwealth Bank</option>
+													</select>
+													<i></i>
+												</label>
+											</section>
+										</div>
+										<button type="button" class="btn-u btn-u-default">Cancel</button>
+										<button class="btn-u" >Next</button>
+										<!--End Checkout-Form-->
+									</form>
 								</div>
 
 								<div id="passwordTab" class="profile-edit tab-pane fade">
