@@ -13,10 +13,26 @@ class upload{
     }
     
     
-    function checkFileType(){}
+    function checkFileType(){
+        $fileType = pathinfo($this->fileToUpload,PATHINFO_EXTENSION);
+        //check the type and if it exists
+        if (file_exists($this->fileToUpload)) {
+            return false;
+        }
+        if($imageFileType != "csv"  ) {
+            return false;
+        }
+        return true;    
+    }
     
     
-    function uploadFile(){}
+    function uploadFile(){
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     function getFilePath(){}
     
