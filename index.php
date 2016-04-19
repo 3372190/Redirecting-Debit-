@@ -87,7 +87,7 @@
 					<div class="headline"><h2>Welcome To Redirect Debit</h2></div>
 					<div class="row">
 						<div class="col-sm-4">
-							<img class="img-responsive margin-bottom-20" src="assets/img/main/redirectdebit.jpg" alt="">
+							<a href = "assets/img/main/redirectdebit.jpg"><img class="img-responsive margin-bottom-20" src="assets/img/main/redirectdebit.jpg" alt=""></a>
 						</div>
 						<div class="col-sm-8">
 							<p>Redirect Debit is an app and a website which allow credit cardholders to have their existing direct debit arrangements automatically updated to reflect their new credit card’s details. With a click of a button on the app, a notification will be sent to the credit cardholder’s service providers via “Redirect Debit Portal” about the change of details. Redirect Debit analyses all customers’ extracted direct debit transactions from their credit card account, then identifies and communicates with all affected service providers.</p>
