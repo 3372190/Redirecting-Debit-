@@ -24,6 +24,8 @@
         
     $(document).ready(function{
                       
+                      
+                      
         $("#uploadButton").click(function(){
         /*
         -error check form
@@ -133,7 +135,7 @@
 							<div class="tab-content">
 								<div id="profile" class="profile-edit tab-pane fade in active">
                                     
-                                    <form class="sky-form" id="sky-form" action="#">
+                                    <form class="sky-form" action="upload.php" method="post" enctype="multipart/form-data">
 										<!--Checkout-Form-->
 										<section>
                                         <h2 class="heading-md">Use This Page To Upload Statements to be Processed By Us.</h2>
@@ -141,7 +143,8 @@
 										</section>
 
 										<section>
-                                            <button type="button" id="upload" class="btn-u btn-u-default">Upload Statement</button>
+                                            <h3>Upload Statement</h3>
+                                            <input type="file" name="fileToUpload" id="fileToUpload" />
 										</section>
 
 										<div class="row">
