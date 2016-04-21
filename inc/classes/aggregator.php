@@ -9,8 +9,8 @@
 	$founddate = [];
 	$k = 1;
 	$j = 1;
-	$a = 0;
-	
+	$n = 0;
+
 	if (($handle = fopen("sampleStatement.csv", 'r')) !== FALSE)
 	{
 		while (($data = fgetcsv($handle)) !== FALSE)
@@ -47,21 +47,58 @@
 	
 			if (strcmp($desc1[$i], $desc2[$k]) == 0) //Got a potential match
 			{
-				for ($a = 0; $a < count($founddesc) + 1; $a++)			//Have we already detected it?
+				$founddesc[$n] = $desc1[$i];		//Put all matches into founddesc
+				$n++;
+			}	
+		}	
+	}
+	var_dump($founddesc);
+	
+	$i = 0;
+	$j = 0;
+	
+	for ($i = 0; $i < count($founddesc); $i++)
+	{
+		for ($j = $i+1; $j <= count($founddesc); $j++);
+		{
+			echo $founddesc[i];
+			echo $founddesc[i];
+			if (empty($founddesc[$j]))
+			{
+				$i = count($founddesc);				
+				var_dump($i);
+				var_dump($j);
+				var_dump($founddesc);
+				echo "break.";
+				break;
+			}
+			if (strcmp($founddesc[$i], $founddesc[$j]) == 0)	//<---- Never enters this IF statement :s
+			{			
+				echo "Delete duplicate";
+				unset($founddesc[$j]);
+			}
+		}
+	}
+		var_dump($founddesc);
+	
+				
+				//OLD CODE
+
+				/*for ($a = 0; $a < count($founddesc) + 1; $a++)			//Have we already detected it?
 				{
 					var_dump($desc2[$k]);
-					
-					if (empty($founddesc[$a])) 			//First item being checked 
+					var_dump($k);
+					if (empty($founddesc[$n])) 			//First item being checked 
 					{
-						$founddesc[$a] = $desc1[$i];
-						$founddate[$a] = $date1[$i];
+						$founddesc[$n] = $desc1[$i];
+						$founddate[$n] = $date1[$i];
 						break;
 					}
 					else if (strcmp($desc1[$i], $founddesc[$a]) != 0) //No, add to found array.
 					{
-						echo "Found_Description ";
-						$founddesc[$a] = $desc1[$i];
-						$founddate[$a] = $date1[$i];
+						//echo "Found_Description ";
+						$founddesc[$n] = $desc1[$i];
+						$founddate[$n] = $date1[$i];
 						break;
 					}
 					else								//Yes, ignore
@@ -69,12 +106,7 @@
 						//Already found, ignore.
 						break;
 					}
-				}
-			}
-			
-		}
-		
-	}
+				}*/
 
-	var_dump($founddesc);
+
 ?>
