@@ -2,8 +2,8 @@
 
 class rdaspa{
     
-    private foundList = [];
-    private initialList =[];
+    private $foundList = [];
+    private $initialList =[];
     
     
     // this will take in the list from processor
