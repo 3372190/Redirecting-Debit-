@@ -33,16 +33,58 @@
 					<form class="reg-page"> <!--action="assets/php/demo-registration-process.php" method="post" -->
 						<div class="reg-header">
 							<h2>Register a new account</h2>
-							<p>Already have an account? Click <a href="page_login.html" class="color-green">here</a> to login.</p>
+							<p>Already have an account? Click <a href="page_login.php" class="color-green">here</a> to login.</p>
 						</div>
 
-						<label>First Name</label>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>First name <span class="color-red">*</span></label>
+				                <input type="text" class="form-control margin-bottom-20">
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Last name<span class="color-red">*</span></label>
+                                <input type="password" class="form-control margin-bottom-20">
+                            </div>
+                        </div>
+                        
+						<label>Address</label>
 						<input type="text" class="form-control margin-bottom-20" name="uname">
+                        
+                        
+                        <div class="row">
+                            <div class="col-sm-6">
+                                
+                                <label>State</label><br>
+                                <select name="bankNumber" id="bankNumber">
+                                    <option disabled="" selected="" value="0" >Select State</option>
+                                    <option value="1">VIC</option>
+                                    <option value="2">NSW</option>
+                                    <option value="3">TAS</option>
+                                    <option value="4">ACT</option>
+                                    <option value="5">WA</option>
+                                    <option value="6">SA</option>
+                                    <option value="7">NT</option>
+                                    <option value="8">QLD</option>
+                                </select>
+                                
+                            </div>
+                            <div class="col-sm-6">
+                                
+                                <label>Postcode<span class="color-red">*</span></label>
+				                <input type="text" class="form-control margin-bottom-20">
+                            
+                            </div>
+                        
+                        </div>
+                        
+                                <label>Country<span class="color-red">*</span></label>
+                                <input type="password" class="form-control margin-bottom-20">
 
-						<label>Last Name</label>
-						<input type="text" class="form-control margin-bottom-20">
 
 						<label>Email Address <span class="color-red">*</span></label>
+						<input type="text" class="form-control margin-bottom-20">
+                        
+                        <label>Confirm Email <span class="color-red">*</span></label>
 						<input type="text" class="form-control margin-bottom-20">
 
 						<div class="row">
