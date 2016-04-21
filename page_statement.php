@@ -38,7 +38,7 @@
         */
         });
         
-        $("form#data").submit(function() { 
+        /*$("form#data").submit(function() { 
 		//get input field values
 		var fileToUpload    = $('#fileToUpload').val(); 
 		var bankNumber    	= $('#bankNumber option:selected').val()
@@ -46,7 +46,7 @@
         console.log(bankNumber);
         console.log(fileToUpload);
 		/********validate all our form fields***********/
-		/* Name field validation */ 
+		/* Name field validation  
         if(bankNumber == 0){ 
             $('#bankNumber').css('border-color','red'); 
             flag = false;
@@ -56,7 +56,7 @@
             flag = false;
         }
 		/********Validation end here ****/
-		/* If all are ok then we send ajax request to email_send.php *******/
+		/* If all are ok then we send ajax request to email_send.php *******
 		if(flag) {
             var formData = new FormData($(this)[0]);
 			$.ajax({
@@ -79,7 +79,7 @@
 						output = '<div class="error">'+data.text+'</div>';
                         console.log(data.text);
 					}else{
-                        console.log(data.text);
+                        console.log(JSON.parse(data.text));
 						output = '<div class="success">'+data.text+'</div>';
 						$('input[type=text]').val(''); 
 						$('#contactform textarea').val(''); 
@@ -90,7 +90,7 @@
 			 });
 		  }
         return false;
-	   });
+	   });*/
         
         $("#cancel").click(function(){
            //cancel and go back to main profile page. 
@@ -176,7 +176,7 @@
 							<div class="tab-content">
 								<div id="profile" class="profile-edit tab-pane fade in active">
                                     
-                                    <form class="sky-form" method="post" id="data" enctype="multipart/form-data">
+                                    <form class="sky-form" method="post" id="data" action="inc/formprocess.php" enctype="multipart/form-data">
 										<!--Checkout-Form-->
 										<section>
                                         <h2 class="heading-md">Use This Page To Upload Statements to be Processed By Us.</h2>
