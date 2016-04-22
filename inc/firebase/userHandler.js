@@ -64,13 +64,18 @@ $( document ).ready(function() {
         }
         
         if(address.length < 1) {
-            
+            message = "Address must be entered";
+            flag = false;
         }
         if(postcode.length < 1 ){
             $('#postcode').css('border-color', 'red');
+            message = "Postcode must be entered";
+            flag = false;
         }else if(postcode.length > 4){
-            
+            $('#postcode').css('border-color', 'red');
+            message = "Postcode must be less than 4 numbers";
         }
+        
 
         
 
