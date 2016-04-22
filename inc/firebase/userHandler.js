@@ -19,30 +19,7 @@ $( document ).ready(function() {
     
         if(email.length >0 && p.length > 0){
 
-            firebaseRef.authWithPassword({
-            email    : email,
-            password : p
-            }, function(error, authData) {
-                 if (error) {
-                    switch (error.code) {
-                      case "INVALID_EMAIL":
-                        console.log("The specified user account email is invalid.");
-                        break;
-                      case "INVALID_PASSWORD":
-                        console.log("The specified user account password is incorrect.");
-                        break;
-                      case "INVALID_USER":
-                        console.log("The specified user account does not exist.");
-                        break;
-                      default:
-                        console.log("Error logging user in:", error);
-                    }
-                  } else {
-                    console.log("Authenticated successfully with payload:", authData);
-                      window.location = "page_profile.php";
-                    return true;
-                  }
-            });
+            userLogin(email, p);
 
         }else{
             console.log("TextFields Empty")
@@ -69,7 +46,21 @@ $( document ).ready(function() {
         var confirmEmail = $('#confirmEmail').val();
         var password = $('#password').val();
         var confirmPassword = $('#confirmPassword').val();
+        
+        
+        if(firstName.length || lastName.length <1 ){
+            if(firstName.length < 1){
+                $('#firstName').css('border-color','red');
+                flag = false;
+            }
+       
+            if(lastName.length < 1){
+                $('#lastnName').css('border-color','red');
+                flag = false;
+            }
+        }
 
+        
 
         if(flag){
         
@@ -78,7 +69,7 @@ $( document ).ready(function() {
 
         }
         
-        
+        return false; 
         
     });
     
@@ -99,6 +90,34 @@ function userLogin(){
     
 
 }
+
+function userLogin(e,p){
+    
+        firebaseRef.authWithPassword({
+            email    : e,
+            password : p
+            }, function(error, authData) {
+                 if (error) {
+                    switch (error.code) {
+                      case "INVALID_EMAIL":
+                        console.log("The specified user account email is invalid.");
+                        break;
+                      case "INVALID_PASSWORD":
+                        console.log("The specified user account password is incorrect.");
+                        break;
+                      case "INVALID_USER":
+                        console.log("The specified user account does not exist.");
+                        break;
+                      default:
+                        console.log("Error logging user in:", error);
+                    }
+                  } else {
+                    console.log("Authenticated successfully with payload:", authData);
+                      window.location = "page_profile.php";
+                    return true;
+                  }
+            });
+}
 function userLogout(){
     
     if (isUserLoggedIn){
@@ -107,7 +126,11 @@ function userLogout(){
    }
     
 }
-function userRegister(){}
+function userRegister(){
+    
+    
+    
+}
 
 function isUserLoggedIn(){
     
