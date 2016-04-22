@@ -101,8 +101,8 @@
 					</div>
 
 					<blockquote class="hero-unify">
-						<p></p>
-						<small>CEO, Jack Bour</small>
+						<p>Redirect Debit will be initially partnered with Australia's 4 most largest banks, Commonwealth Bank of Australia, Westpac, National Australia Bank and ANZ Bank before moving on to other financial insitutions in Australia such as Citibank, HSBC, Virgin and GE Money. In future Redirect Debit intends to cater to international banks which issue credit cards.</p>
+						<small>Chris Yong, Founder</small>
 					</blockquote>
 				</div><!--/col-md-8-->
 
@@ -151,13 +151,13 @@
 					<div class="thumbnails thumbnail-style thumbnail-kenburn">
 						<div class="thumbnail-img">
 							<div class="overflow-hidden">
-								<img class="img-responsive" src="assets/img/main/img1.jpg" alt="">
+								<img class="img-responsive" src="assets/img/main/solutionpic1.jpg" alt="">
 							</div>
-							<a class="btn-more hover-effect" href="#">read more +</a>
+							<a class="btn-more hover-effect" href="assets/img/main/solutionpic1.jpg">read more +</a>
 						</div>
 						<div class="caption">
 							<h3><a class="hover-effect" href="#">Project One</a></h3>
-							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+							<p>A web and mobile application to allow consumers to update their credit card details with their service providers with the click of a button, avoiding the cost and time of the current manual process.</p>
 						</div>
 					</div>
 				</div>
@@ -171,7 +171,7 @@
 						</div>
 						<div class="caption">
 							<h3><a class="hover-effect" href="#">Project Two</a></h3>
-							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+							<p>The website and mobile application will have a user registration where consumers can sign up for an account that will provide the updating message services. </p>
 						</div>
 					</div>
 				</div>
@@ -185,7 +185,7 @@
 						</div>
 						<div class="caption">
 							<h3><a class="hover-effect" href="#">Project Three</a></h3>
-							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+							<p>After registration users can then upload their credit card details or CSV details where a Redirect Debit Account Service Provider Analyzer (RDASPA) will automatically detect any linked services to determine which service providers are required and credit card update message.</p>
 						</div>
 					</div>
 				</div>
@@ -199,7 +199,7 @@
 						</div>
 						<div class="caption">
 							<h3><a class="hover-effect" href="#">Project Four</a></h3>
-							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+							<p>Once the user decides which service providers to update, a message regarding the credit card details will be sent through a secure Redirect Debit Portal which is then sent to the chosen services providers. </p>
 						</div>
 					</div>
 				</div>
@@ -212,31 +212,31 @@
 			<div class="headline"><h2>Compatible Companies</h2></div>
 			<div class="owl-clients-v1">
 				<div class="item">
-					<img src="assets/img/clients4/1.png" alt="">
+					<img src="assets/img/serviceproviders/telstra_logo.png" alt="">
 				</div>
 				<div class="item">
-					<img src="assets/img/clients4/2.png" alt="">
+					<img src="assets/img/serviceproviders/optus_logo.png" alt="">
 				</div>
 				<div class="item">
-					<img src="assets/img/clients4/3.png" alt="">
+					<img src="assets/img/serviceproviders/vodafone_logo.png" alt="">
 				</div>
 				<div class="item">
-					<img src="assets/img/clients4/4.png" alt="">
+					<img src="assets/img/serviceproviders/tpg_logo.png" alt="">
 				</div>
 				<div class="item">
-					<img src="assets/img/clients4/5.png" alt="">
+					<img src="assets/img/serviceproviders/simply-energy_logo.png" alt="">
 				</div>
 				<div class="item">
-					<img src="assets/img/clients4/6.png" alt="">
+					<img src="assets/img/serviceproviders/fitness-first_logo.png" alt="">
 				</div>
 				<div class="item">
-					<img src="assets/img/clients4/7.png" alt="">
+					<img src="assets/img/serviceproviders/jenny-craig_logo.png" alt="">
 				</div>
 				<div class="item">
-					<img src="assets/img/clients4/8.png" alt="">
+					<img src="assets/img/serviceproviders/energy-australia_logo.png" alt="">
 				</div>
 				<div class="item">
-					<img src="assets/img/clients4/9.png" alt="">
+					<img src="assets/img/serviceproviders/agl_logo.png" alt="">
 				</div>
 			</div>
 			<!-- End Owl Clients v1 -->
