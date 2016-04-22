@@ -4,6 +4,19 @@
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
 	<title>Registration | Redirect Debit</title>
+    	<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    
+    
+    <!-- Firebase -->
+    <script type="text/javascript" src="inc/firebase/firebase.js"></script>
+    <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
+    <script type="text/javascript">
+    if(isUserLoggedIn()){
+        window.location = "page_profile.php"
+    }
+    </script>
 <?php include 'inc/head.php'?>
 </head>
 
@@ -33,26 +46,60 @@
 					<form class="reg-page"> <!--action="assets/php/demo-registration-process.php" method="post" -->
 						<div class="reg-header">
 							<h2>Register a new account</h2>
-							<p>Already have an account? Click <a href="page_login.html" class="color-green">here</a> to login.</p>
+							<p>Already have an account? Click <a href="page_login.php" class="color-green">here</a> to login.</p>
 						</div>
 
-						<label>First Name</label>
-						<input type="text" class="form-control margin-bottom-20" name="uname">
+                        <div class="row">
+                            <div class="col-sm-6">
+				                <input type="text" name="firstName" id="firstName" placeholder="First name" class="form-control margin-bottom-20">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="password" placeholder="Last name" name="lastName" id="lastName" class="form-control margin-bottom-20">
+                            </div>
+                        </div>
+                        <hr>
+                    
+						<input type="text" name="address" id="address" placeholder="Address" class="form-control margin-bottom-20" name="uname">
+                        
+                        
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <select name="state" id="state">
+                                    <option disabled="" selected="" value="0" >Select State</option>
+                                    <option value="1">VIC</option>
+                                    <option value="2">NSW</option>
+                                    <option value="3">TAS</option>
+                                    <option value="4">ACT</option>
+                                    <option value="5">WA</option>
+                                    <option value="6">SA</option>
+                                    <option value="7">NT</option>
+                                    <option value="8">QLD</option>
+                                </select>
+                                
+                            </div>
+                            <div class="col-sm-6">
+                                
+				                <input type="text" placeholder="Postcode" name="postCode" id="postCode" class="form-control margin-bottom-20">
+                            
+                            </div>
+                        
+                        </div>
+                        
+                        <input type="text" placeholder="Country" name="country" id="country" class="form-control margin-bottom-20">
+                        <hr>
 
-						<label>Last Name</label>
-						<input type="text" class="form-control margin-bottom-20">
 
-						<label>Email Address <span class="color-red">*</span></label>
-						<input type="text" class="form-control margin-bottom-20">
+						<input type="text" placeholder="Email Address" name="emailAddress" id="emailAddress" class="form-control margin-bottom-20">
+                        
+						<input type="text" placeholder="Confirm Email" id="confirmEmail" name="confirmEmail" class="form-control margin-bottom-20">
+                        <hr>
 
 						<div class="row">
 							<div class="col-sm-6">
-								<label>Password <span class="color-red">*</span></label>
-								<input type="password" class="form-control margin-bottom-20">
+								<input type="password" placeholder="Password" name="password" id="password" class="form-control margin-bottom-20">
 							</div>
 							<div class="col-sm-6">
-								<label>Confirm Password <span class="color-red">*</span></label>
-								<input type="password" class="form-control margin-bottom-20">
+								<input type="password" placeholder="Confirm Password" name="confirmPassword" id="confirmPassword" class="form-control margin-bottom-20">
 							</div>
 						</div>
 
@@ -62,11 +109,11 @@
 							<div class="col-lg-6 checkbox">
 								<label>
 									<input type="checkbox">
-									I have read the <a href="page_terms.html" class="color-green">Terms and Conditions</a>
+									I have read the <a href="page_terms.php" class="color-green">Terms and Conditions</a>
 								</label>
 							</div>
 							<div class="col-lg-6 text-right">
-								<button class="btn-u" type="submit">Register</button>
+								<button class="btn-u" type="submit" name="registerButton" id="registerButton">Register</button>
 							</div>
 						</div>
 					</form>
@@ -80,10 +127,6 @@
 		<!--=== End Footer Version 1 ===-->
 	</div>
 
-	<!-- JS Global Compulsory -->
-	<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
-	<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<!-- JS Implementing Plugins -->
 	<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
 	<script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>

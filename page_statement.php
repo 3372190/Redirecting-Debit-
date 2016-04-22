@@ -22,7 +22,7 @@
     <script>
     //upload ajax function will post user id and csv file to processupload.php
         
-    $(document).ready(function{
+    $(document).ready(function(){
                       
                       
                       
@@ -36,26 +36,67 @@
         
         
         */
-        
-        
-        
         });
         
-        $("#cancelButton").click(function(){
+        /*$("form#data").submit(function() { 
+		//get input field values
+		var fileToUpload    = $('#fileToUpload').val(); 
+		var bankNumber    	= $('#bankNumber option:selected').val()
+		var flag = true;
+        console.log(bankNumber);
+        console.log(fileToUpload);
+		/********validate all our form fields***********/
+		/* Name field validation  
+        if(bankNumber == 0){ 
+            $('#bankNumber').css('border-color','red'); 
+            flag = false;
+        }
+        if(fileToUpload == null){
+            $('#fileToUpload').css('border-color', 'red');
+            flag = false;
+        }
+		/********Validation end here ****/
+		/* If all are ok then we send ajax request to email_send.php *******
+		if(flag) {
+            var formData = new FormData($(this)[0]);
+			$.ajax({
+				type: 'post',
+				url: "inc/formprocess.php",
+                processData: false,
+				data: formData,
+				beforeSend: function() {
+					$('#submit').attr('disabled', true);
+					$('#submit').after('<span class="wait">&nbsp;<img width="150px" height="150px" src="assets/img/loading.gif" alt="" /></span>');
+				},
+				complete: function() {
+					$('#submit').attr('disabled', false);
+					$('.wait').remove();
+				},	
+				success: function(data)
+				{
+					if(data.type == 'error')
+					{
+						output = '<div class="error">'+data.text+'</div>';
+                        console.log(data.text);
+					}else{
+                        console.log(JSON.parse(data.text));
+						output = '<div class="success">'+data.text+'</div>';
+						$('input[type=text]').val(''); 
+						$('#contactform textarea').val(''); 
+					}
+					
+					$("#result").hide().html(output).slideDown();			
+				}
+			 });
+		  }
+        return false;
+	   });*/
+        
+        $("#cancel").click(function(){
            //cancel and go back to main profile page. 
+            window.location = "page_profile.php"
             
-            
-        });
-        $("#nextButton").click(function(){
-            
-        //find what ever tab is selected and continue in the count
-            
-            
-            
-            
-        });
-                      
-                      
+        });       
                       
     });
         
@@ -135,7 +176,7 @@
 							<div class="tab-content">
 								<div id="profile" class="profile-edit tab-pane fade in active">
                                     
-                                    <form class="sky-form" action="upload.php" method="post" enctype="multipart/form-data">
+                                    <form class="sky-form" method="post" id="data" action="inc/formprocess.php" enctype="multipart/form-data">
 										<!--Checkout-Form-->
 										<section>
                                         <h2 class="heading-md">Use This Page To Upload Statements to be Processed By Us.</h2>
@@ -150,18 +191,18 @@
 										<div class="row">
 											<label class="label col col-4">Bank Provider</label>
 											<section class="col col-5">
-												<label class="select">
-													<select name="month">
-														<option disabled="" selected="" value="0">Select Bank</option>
+												<label class="select" >
+													<select name="bankNumber" id="bankNumber">
+														<option disabled="" selected="" value="0" >Select Bank</option>
 														<option value="1">Westpac Australia</option>
-														<option value="1">Commonwealth Bank</option>
+														<option value="2">Commonwealth Bank</option>
 													</select>
 													<i></i>
 												</label>
 											</section>
 										</div>
-										<button type="button" class="btn-u btn-u-default">Cancel</button>
-										<button class="btn-u" >Next</button>
+										<button type="button" id="cancel" class="btn-u btn-u-default">Cancel</button>
+										<button class="btn-u" type="submit" id="submit" name="submit">Next</button>
 										<!--End Checkout-Form-->
 									</form>
 								</div>

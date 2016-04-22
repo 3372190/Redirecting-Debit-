@@ -61,8 +61,11 @@
 	{
 		for ($j = $i+1; $j <= count($founddesc); $j++);
 		{
+<<<<<<< HEAD
 			echo $founddesc[i];
 			echo $founddesc[i];
+=======
+>>>>>>> 0909fffc8abf48b6af112e6b4a55486fa65c154b
 			if (empty($founddesc[$j]))
 			{
 				$i = count($founddesc);				
