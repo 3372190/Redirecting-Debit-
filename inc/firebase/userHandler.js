@@ -34,6 +34,7 @@ $( document ).ready(function() {
 
         // if flag is false the form will not submit
         var flag = true;
+        var message;
 
         // collect varibles from the form data.  
         var firstName = $('#firstName').val();
@@ -51,22 +52,34 @@ $( document ).ready(function() {
         if(firstName.length || lastName.length <1 ){
             if(firstName.length < 1){
                 $('#firstName').css('border-color','red');
+                message = "First name must be greater than 1 character"
                 flag = false;
             }
        
             if(lastName.length < 1){
-                $('#lastnName').css('border-color','red');
+                $('#lastName').css('border-color','red');
+                message = "last name must be greater than 1";
                 flag = false;
             }
+        }
+        
+        if(address.length < 1) {
+            
+        }
+        if(postcode.length < 1 ){
+            $('#postcode').css('border-color', 'red');
+        }else if(postcode.length > 4){
+            
         }
 
         
 
         if(flag){
-        
+        //process registration and login
 
 
-
+        }else if(!flag){
+            //Display error message
         }
         
         return false; 
@@ -79,16 +92,9 @@ $( document ).ready(function() {
 });
 
 
-
-
-
-function processLoginForm(){}
-function processRegisterForm(){}
-function userLogin(){
+function processRegisterForm(){
+    // add user information to database here
     
-    
-    
-
 }
 
 function userLogin(e,p){
@@ -128,7 +134,25 @@ function userLogout(){
 }
 function userRegister(){
     
-    
+    firebaseRef.createUser({
+      email: "bobtony@firebase.com",
+      password: "correcthorsebatterystaple"
+    }, function(error, userData) {
+      if (error) {
+        switch (error.code) {
+          case "EMAIL_TAKEN":
+            console.log("The new user account cannot be created because the email is already in use.");
+            break;
+          case "INVALID_EMAIL":
+            console.log("The specified email is not a valid email.");
+            break;
+          default:
+            console.log("Error creating user:", error);
+        }
+      } else {
+        console.log("Successfully created user account with uid:", userData.uid);
+      }
+    });
     
 }
 
@@ -143,6 +167,10 @@ function isUserLoggedIn(){
         console.log("User is logged out");
         return false;
     }
+}
+
+function addUserDataToFirebase(){
+    
 }
 
 $("#loginFunction").click(function(){

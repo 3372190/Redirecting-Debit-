@@ -10,7 +10,7 @@ class rdaspa{
     function __construct($iList){
         
         $this->initialList = $iList;
-        
+        /*
         $iList_initial  = $ilist;
         $iList_copy     = $ilist;
         
@@ -36,6 +36,7 @@ class rdaspa{
         description :   Subway Purchase
             
         $copy_node ++
+        */
             
     }
     
