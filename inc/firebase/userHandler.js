@@ -54,9 +54,29 @@ $( document ).ready(function() {
     
     
     $('#registerButton').click(function(){
-    /*check to see if registration fields exist and are populated*/   
+
+        // if flag is false the form will not submit
+        var flag = true;
+
+        // collect varibles from the form data.  
+        var firstName = $('#firstName').val();
+        var lastName = $('#lastName').val();
+        var address = $('#address').val();
+        var postcode = $('#postcode').val();
+        var state = $('#state').val();
+        var country = $('#country').val();
+        var emailAddress = $('#emailAddress').val();
+        var confirmEmail = $('#confirmEmail').val();
+        var password = $('#password').val();
+        var confirmPassword = $('#confirmPassword').val();
+
+
+        if(flag){
         
 
+
+
+        }
         
         
         
