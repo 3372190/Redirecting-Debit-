@@ -107,7 +107,7 @@
 					<div class="thumbnail-style">
 						<img class="img-responsive" src="assets/img/team/jacky.png" alt="" />
 						<h3><a>Wei Yew Tang</a> <small>Developer  / Researcher</small></h3>
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem...</p>
+						<p>An RMIT Bachelor of Information Technology student, that specialises in languages such as .NET, JAVA and PHP. Also proficient in technology design and management. </p>
 						<ul class="list-unstyled list-inline team-socail">
 							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
