@@ -79,7 +79,7 @@
                             </div>
                             <div class="col-sm-6">
                                 
-				                <input type="text" placeholder="Postcode" name="postCode" id="postCode" class="form-control margin-bottom-20">
+				                <input type="text" placeholder="Postcode" name="postcode" id="postcode" class="form-control margin-bottom-20">
                             
                             </div>
                         

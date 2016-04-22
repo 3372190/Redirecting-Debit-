@@ -30,7 +30,7 @@ $( document ).ready(function() {
     
     
     
-    $('#registerButton').click(function(){
+    $('#registerButton').submit(function(){
 
         // if flag is false the form will not submit
         var flag = true;
@@ -64,6 +64,8 @@ $( document ).ready(function() {
         }
         
         if(address.length < 1) {
+            
+            $('#address').css('border-color', 'red');
             message = "Address must be entered";
             flag = false;
         }
@@ -76,11 +78,17 @@ $( document ).ready(function() {
             message = "Postcode must be less than 4 numbers";
         }
         
+        //validate email and password   
+        
 
         
 
         if(flag){
-        //process registration and login
+            if (userRegister(emailAddress,password)){
+                if(addUserDataToFirebase()){
+                    userLogin(emailAddress,password);
+                }
+            }
 
 
         }else if(!flag){
@@ -95,12 +103,6 @@ $( document ).ready(function() {
     
     
 });
-
-
-function processRegisterForm(){
-    // add user information to database here
-    
-}
 
 function userLogin(e,p){
     
@@ -137,28 +139,29 @@ function userLogout(){
    }
     
 }
-function userRegister(){
+function userRegister(email, pword){
     
     firebaseRef.createUser({
-      email: "bobtony@firebase.com",
-      password: "correcthorsebatterystaple"
+      email: email,
+      password: pword
     }, function(error, userData) {
       if (error) {
         switch (error.code) {
           case "EMAIL_TAKEN":
-            console.log("The new user account cannot be created because the email is already in use.");
+            alert("The new user account cannot be created because the email is already in use.");
             break;
           case "INVALID_EMAIL":
-            console.log("The specified email is not a valid email.");
+            alert("The specified email is not a valid email.");
             break;
           default:
-            console.log("Error creating user:", error);
+            alert("Error creating user:", error);
         }
       } else {
         console.log("Successfully created user account with uid:", userData.uid);
+        return true;
       }
     });
-    
+    return false;
 }
 
 function isUserLoggedIn(){
@@ -173,8 +176,29 @@ function isUserLoggedIn(){
         return false;
     }
 }
+    
+function validateEmail(email){
+    filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (filter.test(email.value)) {
+        // Yay! valid
+        return true;
+    }else{
+        return false;
+    }
+}
 
 function addUserDataToFirebase(){
+    
+    ref.onAuth(function(authData) {
+      if (authData) {
+        // save the user's profile into the database so we can list users,
+        // use them in Security and Firebase Rules, and show profiles
+        ref.child("users").child(authData.uid).set({
+          provider: authData.provider,
+          name: getName(authData)
+        });
+      }
+    });
     
 }
 
