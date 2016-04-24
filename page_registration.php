@@ -43,7 +43,7 @@
 		<div class="container content">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-					<form class="reg-page"> <!--action="assets/php/demo-registration-process.php" method="post" -->
+					<form class="reg-page" method="post"> 
 						<div class="reg-header">
 							<h2>Register a new account</h2>
 							<p>Already have an account? Click <a href="page_login.php" class="color-green">here</a> to login.</p>

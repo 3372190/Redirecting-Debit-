@@ -6,10 +6,9 @@ TODO: add password recovery function
 
 var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 
+var userInfo;
+
 $(document).ready(function() {
-    
-    
-    
     
     $("#loginButton").click(function() {
     
@@ -35,6 +34,7 @@ $(document).ready(function() {
         // if flag is false the form will not submit
         var flag = true;
         var message;
+        var e, p;
 
         //  grab and Loop through all available elements in the list
         var elements = document.getElementsByTagName("input");
@@ -44,60 +44,66 @@ $(document).ready(function() {
             
             //Grab Current Node
             listElement = elements[i];
+            var formInputName = listElement.getAttribute("name");
             
                 
-                if((listElement.getAttribute("name") != "postcode") || (listElement.getAttribute("name") != "emailAddress")){
-                    if(!checkFieldLength(listElement)) {
-                        listElement.style.borderColor = 'red';
-                        message = listElement.getAttribute("name") + " Must not be blank";  
-                        flag = false;
-                        break;
-                    }          
-                }else if(listElement.getAttribute("name") == "postcode"){
+                         
+                if(formInputName.localeCompare("postcode") == 0){
                     
-                    if(listElement.nodeValue.length < 1){
+                    if(listElement.value.length < 1){
                         listElement.style.borderColor = 'red';
-                        message = listElement.getAttribute("name") + " needs to be longer than one character";
+                        message = formInputName + " needs to be longer than one character";
                         flag = false;
                         break;
                         
                         
-                    }else if(listElement.nodeValue.length > 4){
+                    }else if(listElement.value.length > 4){
                         listElement.style.borderColor = 'red';
-                        message = listElement.getAttribute("name") + " Must be less than 4 digits";
+                        message = formInputName + " Must be less than 4 digits";
                         flag = false;
                         break;
                     }
                         
-                }else if ((listElement.getAttribute("name") == "emailAddress")||(listElement.getAttribute("name") == "password")){
+                }else if ((formInputName == "emailAddress") ||(formInputName == "password") || formInputName == "confirmEmail" || formInputName == "confirmPassword"){
                     // create element
                      var checkElement;
                     
-                
-                    if(listElement.getAttribute("name") == "emailAddress"){
+                    console.log(listElement.nodeValue + i);
+                    if(formInputName == "emailAddress"){
                         checkElement = searchForElement(elements, "confirmEmail");
-                    }else if(listElement.getAttribute("name") == "password"){
+                        e = checkElement.value;
+                    }else if(formInputName == "password"){
                         checkElement = searchForElement(elements, "confirmPassword");
+                        p = checkElement.value;
                     }
                     
                     if(checkFieldLength(listElement) && checkFieldLength(checkElement)){
                         if(!checkFieldsMatch(listElement, checkElement)){
                             listElement.style.borderColor = 'red';
                             checkElement.style.borderColor = 'red';
-                            message = listElement.getAttribute("name") + checkElement.getAttribute("name") + " Fields Must Match";
+                            message = formInputName + checkElement.getAttribute("name") + " Fields Must Match";
                             flag = false;
                             break;
                         }
                     }
+                }else{
+                    if(!checkFieldLength(listElement)) {
+                        listElement.style.borderColor = 'red';
+                        message = formInputName + " Must not be blank";  
+                        flag = false;
+                        break;
+                    } 
                 }
         }
         
         if(flag){
-            if (userRegister(emailAddress,password)){
+            userInfo = elements;
+                //login and redirect
+            if (userRegister(e,p)){
                 console.log("Creating user");
                 if(addUserDataToFirebase(elements)){
                     console.log("adding  user information to data base");
-                    userLogin(emailAddress,password);
+                    userLogin(e,p);
                 }
             }
 
@@ -164,6 +170,7 @@ function userRegister(email, pword){
         }
       } else {
         console.log("Successfully created user account with uid:", userData.uid);
+          addUserDataToFirebase(userData)
         return true;
       }
     });
@@ -195,16 +202,25 @@ function validateEmail(email){
 
 function addUserDataToFirebase(elements){
     
-    ref.onAuth(function(authData) {
-      if (authData) {
-        // save the user's profile into the database so we can list users,
-        // use them in Security and Firebase Rules, and show profiles
-        ref.child("users").child(authData.uid).set({
-          provider: authData.provider,
-          name: getName(authData)
-        });
-      }
-    });
+    //this function can be made universal.
+    if(isUserLoggedIn()){
+        authData = firebaseRef.getAuth;
+    
+        
+        
+        
+        firebaseRef.child("users").child(authData.uid).set({
+            firstName: dylan, 
+        }, onComplete);
+            
+        var onComplete = function(error) {
+            if (error) {
+                return false;
+            }else {
+                return true;
+            }
+        };
+    }
     
 }
 
@@ -225,10 +241,10 @@ function checkFieldsMatch(field1, field2){
     return true;
 }
 function searchForElement(nodeList, name){
-    checkElement;
+     var checkElement;
     for(var j = 0; nodeList.length; j++){
-        checkElement = elements[j];
-        if(checkElement.nodeName == name){
+        checkElement = nodeList[j];
+        if(checkElement.getAttribute("name") == name){
             break;
         }
     }
