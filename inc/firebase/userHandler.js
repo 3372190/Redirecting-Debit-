@@ -6,7 +6,7 @@ TODO: add password recovery function
 
 var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 
-$( document ).ready(function() {
+$(document).ready(function() {
     
     
     
@@ -30,78 +30,93 @@ $( document ).ready(function() {
     
     
     
-    $('#registerButton').submit(function(){
+    $('#registerButton').click(function(){
 
         // if flag is false the form will not submit
         var flag = true;
         var message;
 
-        // collect varibles from the form data.  
-        var firstName = $('#firstName').val();
-        var lastName = $('#lastName').val();
-        var address = $('#address').val();
-        var postcode = $('#postcode').val();
-        var state = $('#state').val();
-        var country = $('#country').val();
-        var emailAddress = $('#emailAddress').val();
-        var confirmEmail = $('#confirmEmail').val();
-        var password = $('#password').val();
-        var confirmPassword = $('#confirmPassword').val();
+        //  grab and Loop through all available elements in the list
+        var elements = document.getElementsByTagName("input");
         
         
-        if(firstName.length || lastName.length <1 ){
-            if(firstName.length < 1){
-                $('#firstName').css('border-color','red');
-                message = "First name must be greater than 1 character"
-                flag = false;
-            }
-       
-            if(lastName.length < 1){
-                $('#lastName').css('border-color','red');
-                message = "last name must be greater than 1";
-                flag = false;
-            }
-        }
-        
-        if(address.length < 1) {
+        for (var i = 0; i < elements.length; i++) {
             
-            $('#address').css('border-color', 'red');
-            message = "Address must be entered";
-            flag = false;
-        }
-        if(postcode.length < 1 ){
-            $('#postcode').css('border-color', 'red');
-            message = "Postcode must be entered";
-            flag = false;
-        }else if(postcode.length > 4){
-            $('#postcode').css('border-color', 'red');
-            message = "Postcode must be less than 4 numbers";
-        }
-        
-        //validate email and password   
-        
+            //Grab Current Node
+            listElement = elements[i];
+            
+                
+                if((listElement.getAttribute("name") != "postcode") || (listElement.getAttribute("name") != "emailAddress")){
+                    if(!checkFieldLength(listElement)) {
+                        listElement.style.borderColor = 'red';
+                        message = listElement.getAttribute("name") + " Must not be blank";  
+                        flag = false;
+                        break;
+                    }          
+                }else if(listElement.getAttribute("name") == "postcode"){
+                    
+                    if(listElement.nodeValue.length < 1){
+                        listElement.style.borderColor = 'red';
+                        message = listElement.getAttribute("name") + " needs to be longer than one character";
+                        flag = false;
+                        break;
+                        
+                        
+                    }else if(listElement.nodeValue.length > 4){
+                        listElement.style.borderColor = 'red';
+                        message = listElement.getAttribute("name") + " Must be less than 4 digits";
+                        flag = false;
+                        break;
+                    }
+                        
+                }else if (listElement.getAttribute("name") == "emailAddress"){
 
-        
+                    //return the element from the function
+                    checkElement = searchForElement(elements, "confirmEmail");
+                    
+                    if(checkFieldLength(listElement) && checkFieldLength(checkElement)){
+                        if(!checkFieldsMatch(listElement, checkElement)){
+                            listElement.style.borderColor = 'red';
+                            checkElement.style.borderColor = 'red';
+                            message = listElement.getAttribute("name") + checkElement.getAttribute("name") + " Fields Must Match";
+                            flag = false;
+                            break;
+                        }
+                    }
+                    
+                    //check if the fields match
 
+                }else if(listElement.getAttribute("name") == "password"){
+                    
+                    checkElement = searchForElement(elements, "confirmPassword");
+                    if(checkFieldLength(listElement) && checkFieldLength(checkElement)){
+                        if(!checkFieldsMatch(listElement, checkElement)){
+                            listElement.style.borderColor = 'red';
+                            checkElement.style.borderColor = 'red';
+                            message = listElement.getAttribute("name") + checkElement.getAttribute("name") + " Fields Must Match";
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+        }
+        
         if(flag){
             if (userRegister(emailAddress,password)){
-                if(addUserDataToFirebase()){
+                console.log("Creating user");
+                if(addUserDataToFirebase(elements)){
+                    console.log("adding  user information to data base");
                     userLogin(emailAddress,password);
                 }
             }
 
 
         }else if(!flag){
-            //Display error message
+            document.getElementById("message").innerHTML = message;
         }
-        
         return false; 
         
-    });
-    
-    
-    
-    
+    }); 
 });
 
 function userLogin(e,p){
@@ -187,7 +202,7 @@ function validateEmail(email){
     }
 }
 
-function addUserDataToFirebase(){
+function addUserDataToFirebase(elements){
     
     ref.onAuth(function(authData) {
       if (authData) {
@@ -200,6 +215,33 @@ function addUserDataToFirebase(){
       }
     });
     
+}
+
+function checkFieldLength(field){
+    if(field.value.length < 1){
+        return false;
+    }
+    return true;
+}
+
+function checkFieldsMatch(field1, field2){
+    Element1 = field1;
+    Element2 = field2;
+    
+    if(Element1.value != Element2.value){
+        return false;
+    }
+    return true;
+}
+function searchForElement(nodeList, name){
+    checkElement;
+    for(var j = 0; nodeList.length; j++){
+        checkElement = elements[j];
+        if(checkElement.nodeName == name){
+            break;
+        }
+    }
+    return checkElement;
 }
 
 $("#loginFunction").click(function(){

@@ -50,11 +50,14 @@
 						</div>
 
                         <div class="row">
+                            <div class="row">
+                                <p id="message" name="message" style=" text-color: red; "></p>
+                            </div>
                             <div class="col-sm-6">
 				                <input type="text" name="firstName" id="firstName" placeholder="First name" class="form-control margin-bottom-20">
                             </div>
                             <div class="col-sm-6">
-                                <input type="password" placeholder="Last name" name="lastName" id="lastName" class="form-control margin-bottom-20">
+                                <input type="text" placeholder="Last name" name="lastName" id="lastName" class="form-control margin-bottom-20">
                             </div>
                         </div>
                         <hr>
@@ -96,7 +99,7 @@
 
 						<div class="row">
 							<div class="col-sm-6">
-								<input type="password" placeholder="Password" name="password" id="password" class="form-control margin-bottom-20">
+								<input type="password" placeholder="Password" name="password" id="password" class="form-control margin-bottom-20"/>
 							</div>
 							<div class="col-sm-6">
 								<input type="password" placeholder="Confirm Password" name="confirmPassword" id="confirmPassword" class="form-control margin-bottom-20">
@@ -108,8 +111,8 @@
 						<div class="row">
 							<div class="col-lg-6 checkbox">
 								<label>
-									<input type="checkbox">
-									I have read the <a href="page_terms.php" class="color-green">Terms and Conditions</a>
+									<input type="checkbox" name="termBox" id="termBox">
+									I have read the <a href="page_terms.php"  class="color-green">Terms and Conditions</a>
 								</label>
 							</div>
 							<div class="col-lg-6 text-right">
