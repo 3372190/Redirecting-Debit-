@@ -69,26 +69,17 @@ $(document).ready(function() {
                         break;
                     }
                         
-                }else if (listElement.getAttribute("name") == "emailAddress"){
-
-                    //return the element from the function
-                    checkElement = searchForElement(elements, "confirmEmail");
+                }else if ((listElement.getAttribute("name") == "emailAddress")||(listElement.getAttribute("name") == "password")){
+                    // create element
+                     var checkElement;
                     
-                    if(checkFieldLength(listElement) && checkFieldLength(checkElement)){
-                        if(!checkFieldsMatch(listElement, checkElement)){
-                            listElement.style.borderColor = 'red';
-                            checkElement.style.borderColor = 'red';
-                            message = listElement.getAttribute("name") + checkElement.getAttribute("name") + " Fields Must Match";
-                            flag = false;
-                            break;
-                        }
+                
+                    if(listElement.getAttribute("name") == "emailAddress"){
+                        checkElement = searchForElement(elements, "confirmEmail");
+                    }else if(listElement.getAttribute("name") == "password"){
+                        checkElement = searchForElement(elements, "confirmPassword");
                     }
                     
-                    //check if the fields match
-
-                }else if(listElement.getAttribute("name") == "password"){
-                    
-                    checkElement = searchForElement(elements, "confirmPassword");
                     if(checkFieldLength(listElement) && checkFieldLength(checkElement)){
                         if(!checkFieldsMatch(listElement, checkElement)){
                             listElement.style.borderColor = 'red';
