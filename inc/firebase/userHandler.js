@@ -15,19 +15,48 @@ $(document).ready(function() {
     $("#loader").hide(100);
     
     $("#loginButton").click(function() {
-    
-    var email = $("#email").val();
-    var p = $("#pword").val();
-    
-    
-        if(email.length >0 && p.length > 0){
+        var flag = true;
+        var e, p;
+        
+        var elements = document.getElementsByTagName("input");
+        
+        for(var i = 0; i < elements.length -1; i++ ){
+            listElement = elements[i];
+            var formInputName = listElement.getAttribute("name");
 
-            userLogin(email, p);
+            if(formInputName == "emailAddress"){  
+                if(checkFieldLength(listElement) && validateEmail(listElement.value)){
+                    e = listElement.value;
+                }else{
+                    flag = false;
+                    message = "Email is not valid, or email field is blank";
+                    break;
+                }
 
-        }else{
-            console.log("TextFields Empty")
-            return false;
+            }else if(formInputName == "password"){
+                if(checkFieldLength(listElement)){
+                    p = listElement.value;
+                }else{
+                    flag = false;
+                    message = "Password cannot be blank";
+                    break;
+                }
+            }else{
+                if(!checkFieldLength(listElement)) {
+                    listElement.style.borderColor = 'red';
+                    message = formInputName + " Must not be blank";  
+                    flag = false;
+                    break;
+                } 
+            }
         }
+        
+            if(flag){
+                document.getElementById("loginButton").innerHTML = "Logging in";
+                userLogin(e, p);
+            }else{
+                document.getElementById("message").innerHTML = message;
+            }
         return false;
     });
     
@@ -51,7 +80,7 @@ $(document).ready(function() {
             
                 
                          
-                if(formInputName.localeCompare("postcode") == 0){
+                if(formInputName == "postcode"){
                     
                     if(listElement.value.length < 1){
                         listElement.style.borderColor = 'red';
@@ -142,7 +171,7 @@ function userLogin(e,p){
                         message = "Error logging user in:", error;
                     }
                   } else {
-                    console.log("Authenticated successfully with payload:", authData);
+                    //console.log("Authenticated successfully with payload:", authData);
                       window.location = "page_profile.php";
                     return true;
                   }
@@ -251,7 +280,6 @@ function addUserDataToFirebase(elements){
             postcode:elements[4].value,
             country:elements[5].value,
         }, function(error){
-            console.log(error);
             if (error) {
                 document.getElementById("message").innerHTML = error + "failed";
             }else {

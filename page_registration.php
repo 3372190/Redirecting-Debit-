@@ -50,8 +50,9 @@
 						</div>
 
                         <div class="row">
-                            <div class="row">
-                                <p id="message" name="message" style=" text-color: red; "></p>
+                            <div class="row"><center>
+                                <h5 id="message" name="message" class="message"></h5>
+                                </center>
                             </div>
                             <div class="col-sm-6">
 				                <input type="text" name="firstName" id="firstName" placeholder="First name" class="form-control margin-bottom-20">
