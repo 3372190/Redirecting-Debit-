@@ -297,6 +297,21 @@ function checkFieldLength(field){
     return true;
 }
 
+function loadUserDetails(){
+    var authData = firebaseRef.getAuth();
+    var usersRef = firebaseRef.child("users").child(authData.uid);
+    
+    usersRef.once("value", function(snap){
+        var userDetails = snap.val();
+        $("#name").replaceWith(userDetails.firstname + " " + userDetails.lastname);
+        $("#emailAddress").replaceWith(userDetails.emailaddress);
+        $("#address").replaceWith(userDetails.address);
+        $("#state").replaceWith(userDetails.state);
+        $("#postcode").replaceWith(userDetails.postcode);
+        $("#country").replaceWith(userDetails.country);
+    });
+}
+
 function checkFieldsMatch(field1, field2){
     Element1 = field1;
     Element2 = field2;
