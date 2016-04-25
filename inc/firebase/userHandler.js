@@ -12,6 +12,20 @@ var userInfo;
 var message;
 
 $(document).ready(function() {
+    var loggedIn = isUserLoggedIn();
+    if(loggedIn){
+        
+        var a = firebaseRef.getAuth();
+        
+        firebaseRef.child("users").child(a.uid).once('value', function(snap){
+            var id  = snap.val();
+            $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " +id.firstname +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
+        })
+        
+    }else{
+        $("#loginFunction").html("<a href='page_login.php'>Login</a>");
+    }
+
     $("#loader").hide(100);
     
     $("#loginButton").click(function() {
@@ -181,7 +195,7 @@ function userLogout(){
     
     if (isUserLoggedIn){
         firebaseRef.unauth();
-       window.location = "index.php"
+       window.location = "index.php";
    }
     
 }
@@ -247,10 +261,10 @@ function isUserLoggedIn(){
     authData = firebaseRef.getAuth();
     
     if (authData) {
-        //console.log("User " + authData.uid + " is logged in with " + authData.provider);
+        console.log("User " + authData.uid + " is logged in with " + authData.provider);
         return true;
     } else {
-        //console.log("User is logged out");
+        console.log("User is logged out");
         return false;
     }
 }
@@ -301,6 +315,7 @@ function loadUserDetails(){
     var authData = firebaseRef.getAuth();
     var usersRef = firebaseRef.child("users").child(authData.uid);
     
+    // TODO this can be condensed with a forloop
     usersRef.once("value", function(snap){
         var userDetails = snap.val();
         $("#name").replaceWith(userDetails.firstname + " " + userDetails.lastname);
@@ -331,11 +346,3 @@ function searchForElement(nodeList, name){
     }
     return checkElement;
 }
-
-$("#loginFunction").click(function(){
-   if (isUserLoggedIn){
-       window.location = "page_profile.php"
-   }else{
-       window.location = "page_login.php"
-   }
-});

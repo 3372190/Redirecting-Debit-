@@ -9,9 +9,9 @@
 				<!-- Topbar -->
 				<div class="topbar">
 					<ul id="topbar" class="loginbar pull-right">
-						<li><a href="page_faq.html">Help</a></li>
+						<li><a href="page_faq.php">Help</a></li>
 						<li class="topbar-devider"></li>
-						<li><a id="loginFunction" href="page_login.php">Login</a></li>
+						<li id="loginFunction" name="loginFunction">&nbsp;</li>
 					</ul>
 				</div>
 				<!-- End Topbar -->
