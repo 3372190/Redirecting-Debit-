@@ -67,25 +67,11 @@
                         
                         <div class="row">
                             <div class="col-sm-6">
-                                <select name="state" id="state">
-                                    <option disabled="" selected="" value="0" >Select State</option>
-                                    <option value="1">VIC</option>
-                                    <option value="2">NSW</option>
-                                    <option value="3">TAS</option>
-                                    <option value="4">ACT</option>
-                                    <option value="5">WA</option>
-                                    <option value="6">SA</option>
-                                    <option value="7">NT</option>
-                                    <option value="8">QLD</option>
-                                </select>
-                                
+				               <input type="text" placeholder="State" name="state" id="state" class="form-control margin-bottom-20">
                             </div>
                             <div class="col-sm-6">
-                                
 				                <input type="text" placeholder="Postcode" name="postcode" id="postcode" class="form-control margin-bottom-20">
-                            
                             </div>
-                        
                         </div>
                         
                         <input type="text" placeholder="Country" name="country" id="country" class="form-control margin-bottom-20">
@@ -116,7 +102,9 @@
 								</label>
 							</div>
 							<div class="col-lg-6 text-right">
+                                <img width="50px" height="50px" id="loader" name="loader" src="./assets/img/loading.gif"/>
 								<button class="btn-u" type="submit" name="registerButton" id="registerButton">Register</button>
+                                
 							</div>
 						</div>
 					</form>

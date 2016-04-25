@@ -4,11 +4,15 @@ TODO: add password recovery function
 @param firebaseRef is the reference to the firebase users
 */
 
+
+
 var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 
 var userInfo;
+var message;
 
 $(document).ready(function() {
+    $("#loader").hide(100);
     
     $("#loginButton").click(function() {
     
@@ -33,7 +37,6 @@ $(document).ready(function() {
 
         // if flag is false the form will not submit
         var flag = true;
-        var message;
         var e, p;
 
         //  grab and Loop through all available elements in the list
@@ -67,11 +70,17 @@ $(document).ready(function() {
                 }else if ((formInputName == "emailAddress") ||(formInputName == "password") || formInputName == "confirmEmail" || formInputName == "confirmPassword"){
                     // create element
                      var checkElement;
-                    
-                    console.log(listElement.nodeValue + i);
                     if(formInputName == "emailAddress"){
                         checkElement = searchForElement(elements, "confirmEmail");
-                        e = checkElement.value;
+                        
+                        if(validateEmail(listElement.value) && validateEmail(checkElement.value)){
+                            e = checkElement.value;
+                        }else{
+                            flag = false;
+                            message = "Email fields are not valid emails";
+                            break;
+                        }
+                        
                     }else if(formInputName == "password"){
                         checkElement = searchForElement(elements, "confirmPassword");
                         p = checkElement.value;
@@ -98,14 +107,10 @@ $(document).ready(function() {
         
         if(flag){
             userInfo = elements;
+            $("#loader").show(100);
                 //login and redirect
-            if (userRegister(e,p)){
-                console.log("Creating user");
-                if(addUserDataToFirebase(elements)){
-                    console.log("adding  user information to data base");
-                    userLogin(e,p);
-                }
-            }
+            userRegister(e,p);
+            document.getElementById("registerButton").innerHTML = "Logging in";
 
 
         }else if(!flag){
@@ -125,16 +130,16 @@ function userLogin(e,p){
                  if (error) {
                     switch (error.code) {
                       case "INVALID_EMAIL":
-                        console.log("The specified user account email is invalid.");
+                       message = "The specified user account email is invalid.";
                         break;
                       case "INVALID_PASSWORD":
-                        console.log("The specified user account password is incorrect.");
+                        message ="The specified user account password is incorrect.";
                         break;
                       case "INVALID_USER":
-                        console.log("The specified user account does not exist.");
+                        message = "The specified user account does not exist.";
                         break;
                       default:
-                        console.log("Error logging user in:", error);
+                        message = "Error logging user in:", error;
                     }
                   } else {
                     console.log("Authenticated successfully with payload:", authData);
@@ -153,6 +158,8 @@ function userLogout(){
 }
 function userRegister(email, pword){
     
+    didRegister = true;
+    
     firebaseRef.createUser({
       email: email,
       password: pword
@@ -160,39 +167,68 @@ function userRegister(email, pword){
       if (error) {
         switch (error.code) {
           case "EMAIL_TAKEN":
-            alert("The new user account cannot be created because the email is already in use.");
+            message ="The new user account cannot be created because the email is already in use.";
+            didRegister = false;
             break;
           case "INVALID_EMAIL":
-            alert("The specified email is not a valid email.");
+            message = "The specified email is not a valid email.";
+            didRegister = false;
             break;
           default:
-            alert("Error creating user:", error);
+            message ="Error creating user:", error;
+            didRegister = false;
+            break;
         }
       } else {
-        console.log("Successfully created user account with uid:", userData.uid);
-          addUserDataToFirebase(userData)
-        return true;
+        message = "Successfully created user account with uid:", userData.uid;
+        firebaseRef.authWithPassword({
+            email: email,
+            password : pword
+        },function(error, authData){
+            
+            if(error){
+                switch (error.code) {
+                      case "INVALID_EMAIL":
+                       message = "The specified user account email is invalid.";
+                        didRegister = false;
+                        break;
+                      case "INVALID_PASSWORD":
+                        message ="The specified user account password is incorrect.";
+                        didRegister = false;
+                        break;
+                      case "INVALID_USER":
+                        message = "The specified user account does not exist.";
+                        didRegister = false;
+                        break;
+                      default:
+                        message = "Error logging user in:", error;
+                        didRegister = false;
+                }
+            }else{
+                message = "Successfully logged in user account with uid:", userData.uid;
+                addUserDataToFirebase(userInfo);
+            }
+        });
       }
     });
-    return false;
 }
 
 function isUserLoggedIn(){
     
-    authData = firebaseRef.getAuth()
+    authData = firebaseRef.getAuth();
     
     if (authData) {
-        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+        //console.log("User " + authData.uid + " is logged in with " + authData.provider);
         return true;
     } else {
-        console.log("User is logged out");
+        //console.log("User is logged out");
         return false;
     }
 }
     
 function validateEmail(email){
     filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if (filter.test(email.value)) {
+    if (filter.test(email)) {
         // Yay! valid
         return true;
     }else{
@@ -204,22 +240,24 @@ function addUserDataToFirebase(elements){
     
     //this function can be made universal.
     if(isUserLoggedIn()){
-        authData = firebaseRef.getAuth;
+        authData = firebaseRef.getAuth();
     
-        
-        
-        
         firebaseRef.child("users").child(authData.uid).set({
-            firstName: dylan, 
-        }, onComplete);
-            
-        var onComplete = function(error) {
+            firstname: elements[0].value,
+            lastname: elements[1].value,
+            emailaddress: elements[6].value,
+            address: elements[2].value,
+            state:elements[3].value,
+            postcode:elements[4].value,
+            country:elements[5].value,
+        }, function(error){
+            console.log(error);
             if (error) {
-                return false;
+                document.getElementById("message").innerHTML = error + "failed";
             }else {
-                return true;
+                window.location = "page_profile.php";
             }
-        };
+        });
     }
     
 }
