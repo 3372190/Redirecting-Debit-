@@ -13,11 +13,11 @@
         <!-- Firebase -->
     <script type="text/javascript" src="inc/firebase/firebase.js"></script>
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
+    <script type="text/javascript" src="inc/firebase/usersettings.js"></script>
     <script type="text/javascript">
         if(!isUserLoggedIn()){
             window.location = "page_login.php"
         }
-        loadUserDetails();
     </script>
 
 	<!-- Meta -->
@@ -90,7 +90,7 @@
 									<br>
 									<dl class="dl-horizontal">
 										<dt><strong>Your name </strong></dt>
-										<dd><div id="name"></div>
+										<dd><div id="firstname"></div>&nbsp;<div id="lastname"></div>
 											<span>
 												<a class="pull-right" href="#">
 													<i class="fa fa-pencil"></i>
@@ -100,7 +100,7 @@
 										<hr>
 										<dt><strong>Email</strong></dt>
 										<dd>
-											<div id="emailAddress"></div>
+											<div id="emailaddress"></div>
 											<span>
 												<a class="pull-right" href="#">
 													<i class="fa fa-pencil"></i>
