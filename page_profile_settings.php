@@ -14,9 +14,10 @@
     <script type="text/javascript" src="inc/firebase/firebase.js"></script>
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
     <script type="text/javascript">
-    if(!isUserLoggedIn()){
-        window.location = "page_login.php"
-    }
+        if(!isUserLoggedIn()){
+            window.location = "page_login.php"
+        }
+        loadUserDetails();
     </script>
 
 	<!-- Meta -->
@@ -89,8 +90,7 @@
 									<br>
 									<dl class="dl-horizontal">
 										<dt><strong>Your name </strong></dt>
-										<dd>
-											Edward Rooster
+										<dd><div id="name"></div>
 											<span>
 												<a class="pull-right" href="#">
 													<i class="fa fa-pencil"></i>
@@ -98,49 +98,9 @@
 											</span>
 										</dd>
 										<hr>
-										<dt><strong>Your ID </strong></dt>
+										<dt><strong>Email</strong></dt>
 										<dd>
-											FKJ-032440
-											<span>
-												<a class="pull-right" href="#">
-													<i class="fa fa-pencil"></i>
-												</a>
-											</span>
-										</dd>
-										<hr>
-										<dt><strong>Company name </strong></dt>
-										<dd>
-											Htmlstream
-											<span>
-												<a class="pull-right" href="#">
-													<i class="fa fa-pencil"></i>
-												</a>
-											</span>
-										</dd>
-										<hr>
-										<dt><strong>Primary Email Address </strong></dt>
-										<dd>
-											edward-rooster@gmail.com
-											<span>
-												<a class="pull-right" href="#">
-													<i class="fa fa-pencil"></i>
-												</a>
-											</span>
-										</dd>
-										<hr>
-										<dt><strong>Phone Number </strong></dt>
-										<dd>
-											(304) 33-2867-499
-											<span>
-												<a class="pull-right" href="#">
-													<i class="fa fa-pencil"></i>
-												</a>
-											</span>
-										</dd>
-										<hr>
-										<dt><strong>Office Number </strong></dt>
-										<dd>
-											(304) 44-9810-296
+											<div id="emailAddress"></div>
 											<span>
 												<a class="pull-right" href="#">
 													<i class="fa fa-pencil"></i>
@@ -150,7 +110,37 @@
 										<hr>
 										<dt><strong>Address </strong></dt>
 										<dd>
-											California, US
+											<div id="address"></div>
+											<span>
+												<a class="pull-right" href="#">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</span>
+										</dd>
+										<hr>
+										<dt><strong>State </strong></dt>
+										<dd>
+											<div id="state"></div>
+											<span>
+												<a class="pull-right" href="#">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</span>
+										</dd>
+										<hr>
+										<dt><strong>PostCode </strong></dt>
+										<dd>
+											<div id="postcode"></div>
+											<span>
+												<a class="pull-right" href="#">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</span>
+										</dd>
+										<hr>
+										<dt><strong>Country </strong></dt>
+										<dd>
+											<div id="country"></div>
 											<span>
 												<a class="pull-right" href="#">
 													<i class="fa fa-pencil"></i>

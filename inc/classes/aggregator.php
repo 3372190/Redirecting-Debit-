@@ -1,5 +1,19 @@
 <?php
+<<<<<<< HEAD
 
+=======
+        //SEE ME ON MASTER
+	
+	$date = [];
+	$description = [];
+	$count = 0;
+	$i = 0;
+	$founddesc = [];
+	$founddate = [];
+	$k = 1;
+	$j = 1;
+	$n = 0;
+>>>>>>> 04e286a627c4fecc9b207aa1c1d8e8efaafdeb2f
 
 $date = [];
 $description = [];
@@ -77,7 +91,16 @@ for ($i = 0; $i < $n; $i++)			//n = 10 for sample
 
 		while (empty($founddesc[$j]) && $j < $n)
 		{
+<<<<<<< HEAD
 			if ($j == $n)
+=======
+<<<<<<< HEAD
+			echo $founddesc[i];
+			echo $founddesc[i];
+=======
+>>>>>>> 0909fffc8abf48b6af112e6b4a55486fa65c154b
+			if (empty($founddesc[$j]))
+>>>>>>> 04e286a627c4fecc9b207aa1c1d8e8efaafdeb2f
 			{
 				echo "no more duplicates";
 				var_dump($founddesc);
