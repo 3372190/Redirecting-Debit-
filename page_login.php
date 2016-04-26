@@ -46,33 +46,39 @@
 		<div class="container content">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-					<form class="reg-page">
+					<form class="reg-page" method="post">
                         
                         <div class="reg-header">
 							<h2>Login to your account</h2>
 						</div>
+                           <div class="row">
+                               <center>
+                                   <h5 id="message" name="message" class="message"></h5>
+                               </center>
+                                
+                            </div>
 
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"><i class="fa fa-user"></i></span>
-							<input type="text" placeholder="Username" class="form-control" id="email">
+							<input type="text" placeholder="Email Address" class="form-control" id="emailAddress" name="emailAddress">
 						</div>
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-							<input type="password" placeholder="Password" class="form-control" id="pword">
+							<input type="password" placeholder="Password" class="form-control" id="password" name="password">
 						</div>
 
 						<div class="row">
 							<div class="col-md-6 checkbox">
-								<label><input type="checkbox"> Stay signed in</label>
+								<label><input type="checkbox" name="staySignedIn" id="staySignedIn"> Stay signed in</label>
 							</div>
 							<div class="col-md-6">
-								<button class="btn-u pull-right" id="loginButton">Login</button>
+								<button class="btn-u pull-right" id="loginButton" name="loginButton">Login</button>
 							</div>
 						</div>
                         <hr>
 
 						<h4>Forgotten your Password?</h4>
-						<p>No worries, <a class="color-green" href="#">click here</a> to reset your password.</p>
+						<p>No worries, <a name="passwordReset" id="passwordReset" class="color-green" href="#">click here</a> to reset your password.</p>
 					</form>
 				</div>
 			</div><!--/row-->

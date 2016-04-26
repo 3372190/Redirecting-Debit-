@@ -29,9 +29,19 @@
 				<div class="col-md-10 md-margin-bottom-40">
 					<p>
 						The Redirect Debit idea is the vision of founder Chris Yong.
-					</p>
-					<p>
-						As of 15/3/2016 it is being developed as a project by RMIT students.
+<br><br>
+There are 8 million credit card holders in Australia.
+Over 90%, or 7.2Mil credit cardholders have direct debit arrangements on credit card to pay bills, such as utilities, subscriptions and memberships.
+Over 30% of credit cardholders are impacted by fraud.
+Every 3 years credit cards require renewal.
+<br><br>
+What happens if your credit card details were changed due to lost, stolen, fraud or expiry? You need to contact all your service providers to update your details manually through phone calls, forms and mails. It takes an average of 3 hours and is very manual.
+<br><br>
+In 2013, there were over 30 million transactions worth $240 billion dollars related to direct debit arrangements on credit cards. 10% or $24 billion dollars of those transactions were failed direct debit payments. The current manual process frustrates the consumers. It also cost the service providers an average of $15 to follow-up on a failed payment through phone calls, mailing reminders and legal notices. That’s $45M a year service providers spend on resolving this problem.
+<br><br>
+In 2016 Chris graduated from the Founder Institute and has won a competition organised by the ANZ Bank and HealthWallace institute, for proposing this redirect debit business idea solving $24 billion dollars of a manual process problem in Australia.
+<br><br>
+As of 15/3/2016 it is being developed as a project by RMIT students.
 					</p>
 					<ul class="list-unstyled">
 						<li><i class="fa fa-check color-green"></i> This idea is awesome!</li>
@@ -44,7 +54,7 @@
 					<!-- Blockquotes -->
 					<blockquote class="hero-unify">
 						<p>Credit Card about to expire? Service Providers already hassling you for new details? Skip the hassle!</p>
-						<small></small>
+						<small>Redirect Debit will direct you with ease!</small>
 					</blockquote>
 				</div>
 			</div><!--/row-->
@@ -56,7 +66,7 @@
 					<div class="thumbnail-style">
 						<img class="img-responsive" src="assets/img/team/chris.jpg" alt="" />
 						<h3><a>Chris Yong</a> <small>Founder</small></h3>
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem...</p>
+                        <p>A business process improvement specialist, who has worked with well establish companies such as Ernst & Young, MasterCard, VISA, Slater & Gordon Lawyers and the Victorian Auditor-General's Office.</p>
 						<ul class="list-unstyled list-inline team-socail">
 							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -68,7 +78,7 @@
 					<div class="thumbnail-style">
 						<img class="img-responsive" src="assets/img/team/james.jpg" alt="" />
 						<h3><a>James Harland</a> <small>Project Supervisor</small></h3>
-						<p>RMIT Accosiate Professor who oversees the project</p>
+						<p>RMIT Accosiate Professor in Computational Logic, known internationally for his work on intelligent agent systems, automated reasoning, logic programming, Turing machines and computer science education.</p><p>A supervisor and overseerer of the Redirect Debit project</p>
 						<ul class="list-unstyled list-inline team-socail">
 							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -81,7 +91,7 @@
             <div class="row team">
 				<div class="col-sm-3">
 					<div class="thumbnail-style">
-						<img class="img-responsive" src="assets/img/team/img35-md.jpg" alt="" />
+						<img class="img-responsive" src="assets/img/team/sulien.jpg" alt="" />
 						<h3><a>Sulien Rigby</a> <small>Programmer / Tester</small></h3>
 						<p>A RMIT Bachelors of Engineering/Computer Science student. Involved in the development of this Capstone Programming Project. Invested in the development of software, hardware, micro-architecture, and communication based systems.</p>
 						<ul class="list-unstyled list-inline team-socail">
@@ -107,7 +117,7 @@
 					<div class="thumbnail-style">
 						<img class="img-responsive" src="assets/img/team/jacky.png" alt="" />
 						<h3><a>Wei Yew Tang</a> <small>Developer  / Researcher</small></h3>
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem...</p>
+						<p>An RMIT Bachelor of Information Technology student, that specialises in languages such as .NET, JAVA and PHP. Also proficient in technology design and management. </p>
 						<ul class="list-unstyled list-inline team-socail">
 							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
