@@ -1,17 +1,20 @@
 <?php
-        //SEE ME ON MASTER
-	
+
+
 	$date = [];
 	$description = [];
 	$count = 0;
 	$i = 0;
 	$founddesc = [];
 	$founddate = [];
-	$k = 1;
 	$j = 1;
 	$n = 0;
-
-	if (($handle = fopen("sampleStatement.csv", 'r')) !== FALSE)
+	$tempdate1;
+	$tempdate2;
+	$checkdate1;
+	$checkdate2;
+	
+	if (($handle = fopen("sampleStatement2.csv", 'r')) !== FALSE)
 	{
 		while (($data = fgetcsv($handle)) !== FALSE)
 		{
@@ -29,84 +32,88 @@
 			}
 		}
 	}
-	
+
 	$desc1 = [];
 	$date1 = [];
 	$desc2 = [];
 	$date2 = [];
 	
+				
+				//Start parsing and finding providers, DEFINE CRITERIA
 	for ($i = 1; $i <= $count; $i++)
 	{
-		$desc1[$i] = $description[$i]; //subway
+		$desc1[$i] = $description[$i]; 
 		$date1[$i] = $date[$i];
+		$date1[$i] = str_replace('/','-', $date1[$i]);
+		$checkdate1 = strtotime('1 month ago', strtotime($date1[$i]));
 		
-		for ($k = $i + 1; $k <= $count; $k++)
+		
+		for ($j = $i + 1; $j <= $count; $j++)
 		{
-			$desc2[$k] = $description[$k];
-			$date2[$k] = $date[$k];	
-	
-			if (strcmp($desc1[$i], $desc2[$k]) == 0) //Got a potential match
+			$desc2[$j] = $description[$j];
+			$date2[$j] = $date[$j];	
+			$date2[$j] = str_replace('/','-', $date2[$j]);	//Changes from date format: MM-DD-YY to WESTPACS FORM DD-MM-YY.
+			$checkdate2 = strtotime($date2[$j]);			
+			
+			
+			if (strcmp($desc1[$i], $desc2[$j]) == 0) 		//If two entries share same description, check dates
 			{
-				$founddesc[$n] = $desc1[$i];		//Put all matches into founddesc
-				$n++;
+					if ($checkdate1 == $checkdate2)			//If two entries are 1 month apart, potential SP.
+					{
+						$founddesc[$n] = $desc1[$i];		//Put all potentials  into founddesc
+						$n++;
+					}
+					/* Do the date check here?
+						- Start with monthy. -> month - 1 (for westpac recent to latest)
+						- If the debits by service of same name occurs 1 or  times over 4 months 
+							- Likely provider
+					*/
+					
+				
 			}	
 		}	
 	}
+
 	var_dump($founddesc);
-	
 	$i = 0;
 	$j = 0;
 	
-	for ($i = 0; $i < count($founddesc); $i++)
+	
+	for ($i = 0; $i < $n; $i++)					//Cleansing potential service providers
 	{
-		for ($j = $i+1; $j <= count($founddesc); $j++);
+		while (empty($founddesc[$i]))
 		{
-			echo $founddesc[i];
-			echo $founddesc[i];
-			if (empty($founddesc[$j]))
+			if ($i == $n)
 			{
-				$i = count($founddesc);				
-				var_dump($i);
-				var_dump($j);
+				echo "no more duplicates";
 				var_dump($founddesc);
-				echo "break.";
 				break;
 			}
-			if (strcmp($founddesc[$i], $founddesc[$j]) == 0)	//<---- Never enters this IF statement :s
-			{			
-				echo "Delete duplicate";
-				unset($founddesc[$j]);
+			$i++;
+		}
+		
+		for ($j = $i + 1; $j < $n; $j++)
+		{
+
+			while (empty($founddesc[$j]) && $j < $n)
+			{
+				if ($j == $n)
+				{
+					echo "no more duplicates";
+					var_dump($founddesc);
+					break;
+				}
+				$j++;
+			}
+			
+			if ($j != $n)
+			{;
+				if (strcmp($founddesc[$i], $founddesc[$j]) == 0)
+				{			
+					unset($founddesc[$j]);
+				}
 			}
 		}
 	}
-		var_dump($founddesc);
-	
-				
-				//OLD CODE
-
-				/*for ($a = 0; $a < count($founddesc) + 1; $a++)			//Have we already detected it?
-				{
-					var_dump($desc2[$k]);
-					var_dump($k);
-					if (empty($founddesc[$n])) 			//First item being checked 
-					{
-						$founddesc[$n] = $desc1[$i];
-						$founddate[$n] = $date1[$i];
-						break;
-					}
-					else if (strcmp($desc1[$i], $founddesc[$a]) != 0) //No, add to found array.
-					{
-						//echo "Found_Description ";
-						$founddesc[$n] = $desc1[$i];
-						$founddate[$n] = $date1[$i];
-						break;
-					}
-					else								//Yes, ignore
-					{						
-						//Already found, ignore.
-						break;
-					}
-				}*/
-
 
 ?>
