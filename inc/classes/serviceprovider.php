@@ -4,6 +4,7 @@ class ServiceProvider{
     
     private $transactionDate;
     private $transactionTitle;
+    private $transactionName;
     
     function __construct($title, $date) {
         $this->transactionDate = $date;
@@ -14,6 +15,14 @@ class ServiceProvider{
     public function setDate($date){
         $this->transactionDate = $date;
         
+    }
+    
+    public function setName($name){
+        $this->transactionName = $name;
+    }
+    
+    public function getName(){
+        return $this->transactionName;
     }
     
     public function setTitle($title){

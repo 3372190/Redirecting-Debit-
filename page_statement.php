@@ -186,6 +186,10 @@
 										<section>
                                             <h3>Upload Statement</h3>
                                             <input type="file" name="fileToUpload" id="fileToUpload" />
+                                            
+                                            
+                                            //get firebase providers 
+                                            
 										</section>
 
 										<div class="row">
