@@ -7,7 +7,7 @@ class ServiceProvider{
     private $transactionName;
     
     function __construct($title, $date) {
-        $this->transactionDate = $date;
+		$this->transactionDate = str_replace('/','-', $date);
         $this->transactionTitle = $title;
         
    }
