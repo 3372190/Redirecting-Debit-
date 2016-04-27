@@ -10,20 +10,18 @@ class rdaspa{
     // this will take in the list from processor
     function __construct($iList)
 	{
-<<<<<<< HEAD
 			
 		$checkdate1;
 		$checkdate2;
 		$i = 0;
 		$j;
-=======
+
 		if( ! ini_get('date.timezone') )
         {
             date_default_timezone_set('GMT');
         }	
 		$checkdate;
 		
->>>>>>> 6f6f6ef77e6eb2a72af1b044e3d1387aa0defb2f
         $this->initialList = $iList;
         $this->iListCopy = $iList;
         
