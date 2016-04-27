@@ -13,10 +13,14 @@
         <!-- Firebase -->
     <script type="text/javascript" src="inc/firebase/firebase.js"></script>
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
+    <script type="text/javascript" src="inc/firebase/pagestatement.js"></script>
     <script type="text/javascript">
     if(!isUserLoggedIn()){
         window.location = "page_login.php"
     }
+        
+        getUserId();
+        getProviderList();
     </script>
 
 	<!-- Meta -->
@@ -87,7 +91,7 @@
 							<div class="tab-content">
 								<div id="profile" class="profile-edit tab-pane fade in active">
                                     
-                                    <form class="sky-form" method="post" id="data" action="inc/formprocess.php" enctype="multipart/form-data">
+                                    <form class="sky-form" method="post" id="fileprocess" enctype="multipart/form-data">
 										<!--Checkout-Form-->
 										<section>
                                         <h2 class="heading-md">Use This Page To Upload Statements to be Processed By Us.</h2>
@@ -97,10 +101,6 @@
 										<section>
                                             <h3>Upload Statement</h3>
                                             <input type="file" name="fileToUpload" id="fileToUpload" />
-                                            
-                                            
-                                            //get firebase providers 
-                                            
 										</section>
 
 										<div class="row">
