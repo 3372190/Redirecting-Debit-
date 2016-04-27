@@ -40,8 +40,6 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
          //echo json_encode($processor->getServiceList());
             
             
-        //var_dump(processor->getServiceList());
-            
         }else{
            echo json_encode(array("Type" => "Error", "Message" => "File is empty" ),JSON_PRETTY_PRINT);
         }
