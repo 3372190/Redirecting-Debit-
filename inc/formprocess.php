@@ -8,13 +8,21 @@ include ('classes/processor.php');
 include ('classes/rdaspa.php');
 
 if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
-    $uId = "5d78119b-8736-4e8b-8591-da0b0f84761a";
+    
+    //grab users uid to upload file in correstponding directory
+    if(isset($_POST['uid'])){
+        $uId = $_POST['uid'];
+    }
     
     $fileUploader = new upload($uId, $_FILES["fileToUpload"]);
     if($fileUploader->checkFileType() && $fileUploader->checkFileExists()){
         $fileUploader->uploadFile();
         
         
+        $providers = $_POST['providerList'];
+        foreach($providers as $provider){
+            echo $provider;
+        }
         
         
         $processor = new Processor($fileUploader->getFilePath(), $_POST["bankNumber"]);

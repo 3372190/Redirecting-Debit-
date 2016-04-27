@@ -65,9 +65,11 @@ function submitAjaxForm(){
         //Create Form Data
         var formData = new FormData($('#fileprocess')[0]);
         //this gets all the providers from the prepopulated firebase list.
+    
+        formData.append("providerList", JSON.stringify(providerList));
         for(var i = 0; i < providerList.length; i ++){
             
-            formData.append("providerList[]", providerList[i]);
+            //formData.append("providerList[]", providerList[i]);
             /*var input = $("<input>")
                .attr("type", "hidden")
                .attr("name", "providerList[]").val(providerList[i]);  
@@ -111,7 +113,7 @@ function submitAjaxForm(){
                         console.log(data.text);
 					}else{
                         console.log(data);
-						output = '<div class="success">'+data.text+'</div>';
+						output = '<div class="success">'+data+'</div>';
 						$('input[type=text]').val(''); 
 						$('#contactform textarea').val(''); 
 					}
