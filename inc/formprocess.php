@@ -26,9 +26,8 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
             if($rda->compareProviders()){
             
                 foreach($rdaspa->getSpList() as $serviceProvider){
-                    echo json_encode(array($serviceProvider->))
+                    echo json_encode(array($serviceProvider->getName()), JSON_PRETTY_PRINT);
                 }
-                echo json_encode();
             }else{
             
                 
