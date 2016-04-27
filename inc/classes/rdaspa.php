@@ -10,7 +10,10 @@ class rdaspa{
     // this will take in the list from processor
     function __construct($iList)
 	{
-			
+		if( ! ini_get('date.timezone') )
+        {
+            date_default_timezone_set('GMT');
+        }	
 		$checkdate;
 		
         $this->initialList = $iList;
