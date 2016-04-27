@@ -159,27 +159,27 @@
 									<br>
 									<form class="sky-form" id="sky-form4" action="#">
 										<dl class="dl-horizontal">
-											<dt>Username</dt>
+											<dt>Email</dt>
 											<dd>
 												<section>
 													<label class="input">
 														<i class="icon-append fa fa-user"></i>
-														<input type="text" placeholder="Username" name="username">
+														<input type="text" placeholder="emailAddress" name="emailAddress">
 														<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
 													</label>
 												</section>
 											</dd>
-											<dt>Email address</dt>
+											<dt>Old Password</dt>
 											<dd>
 												<section>
 													<label class="input">
 														<i class="icon-append fa fa-envelope"></i>
-														<input type="email" placeholder="Email address" name="email">
-														<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+														<input type="email" placeholder="oldPassword" name="oldPassword" id="oldPassword">
+														<b class="tooltip tooltip-bottom-right">Needed to verify you remember your old password</b>
 													</label>
 												</section>
 											</dd>
-											<dt>Enter your password</dt>
+											<dt>New Password</dt>
 											<dd>
 												<section>
 													<label class="input">
@@ -189,24 +189,19 @@
 													</label>
 												</section>
 											</dd>
-											<dt>Confirm Password</dt>
+											<dt>Confirm New Password</dt>
 											<dd>
 												<section>
 													<label class="input">
 														<i class="icon-append fa fa-lock"></i>
-														<input type="password" name="passwordConfirm" placeholder="Confirm password">
+														<input type="password" name="confirmPassword" placeholder="Confirm password">
 														<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
 													</label>
 												</section>
 											</dd>
 										</dl>
-										<label class="toggle toggle-change"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Remember password</label>
-										<br>
-										<section>
-											<label class="checkbox"><input type="checkbox" id="terms" name="terms"><i></i><a href="#">I agree with the Terms and Conditions</a></label>
-										</section>
 										<button type="button" class="btn-u btn-u-default">Cancel</button>
-										<button class="btn-u" type="submit">Save Changes</button>
+										<button class="btn-u" name="updatePassword" id="updatePassword" type="submit">Update Password</button>
 									</form>
 								</div>
 
