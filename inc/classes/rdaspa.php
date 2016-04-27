@@ -37,14 +37,14 @@ class rdaspa{
 			{
 				$checkdate2 = strtotime($iList[$j]->getDate());			//Date to check against reference
 				
-					if (strcmp($iList[$i]->getTitle(), $iList[$j]->getTitle()) == 0)	//If matching desciptions
+				if (strcmp($iList[$i]->getTitle(), $iList[$j]->getTitle()) == 0)	//If matching desciptions
+				{
+					if ($checkdate1 == $checkdate2)			//and 1 month apart
 					{
-						if ($checkdate1 == $checkdate2)			//and 1 month apart
-						{
-							array_push($this->foundList, $iList[$i]);		//add to foundList
-						}
-						
+						array_push($this->foundList, $iList[$i]);		//add to foundList
 					}
+					
+				}
 			}
 		}
 
