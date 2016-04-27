@@ -5,6 +5,7 @@ class rdaspa{
     private $foundList = array();
     private $initialList = array();
 	private $iListCopy = array();
+	private $providerList = array();
     
     
     // this will take in the list from processor
@@ -28,48 +29,25 @@ class rdaspa{
         $this->iListCopy = $iList;
         
 		
-		for ($i = 0; $i < count($iList); $i++)
+		for ($i = 0; $i < count($iList); $i++)		
 		{
-			$checkdate1 = strtotime('1 month ago', strtotime($iList[$i]->getDate()));
+			$checkdate1 = strtotime('1 month ago', strtotime($iList[$i]->getDate()));	//Reference date
 			
 			for ($j = $i + 1; $j < count($iList); $j++)
 			{
-				$checkdate2 = strtotime($iList[$j]->getDate());
+				$checkdate2 = strtotime($iList[$j]->getDate());			//Date to check against reference
 				
-					if (strcmp($iList[$i]->getTitle(), $iList[$j]->getTitle()) == 0)
+					if (strcmp($iList[$i]->getTitle(), $iList[$j]->getTitle()) == 0)	//If matching desciptions
 					{
-						if ($checkdate1 == $checkdate2)
+						if ($checkdate1 == $checkdate2)			//and 1 month apart
 						{
-							array_push($this->foundList, $iList[$i]);
+							array_push($this->foundList, $iList[$i]);		//add to foundList
 						}
 						
 					}
 			}
 		}
-		/*
-		foreach($this->initialList[$i] as $initialNode)
-        {
-			$checkdate1 = strtotime('1 month ago', strtotime($initialNode->getDate()));
-			$j = $i + 1;
-            foreach($this->iListCopy[$j] as $copyNode)
-            {
-				initialList[$i]
-				$checkdate2 = strtotime($copyNode->getDate());
-                if(strcmp($initialNode->getTitle(),$copyNode->getTitle()))
-                {
-					
-					if($checkdate1 == $checkdate2)
-					{
-						//initial node in
-						array_push($this->foundList, $initialNode);
 
-					}
-					
-                }
-					
-			}
-			$i += 1;
-        }*/
        
     }
 	
@@ -77,7 +55,46 @@ class rdaspa{
 	{
 		return $this->foundList;
 	}
-    
+	
+	
+	function compareProvider()
+	{
+		/*Tokenise descriptions in foundlist.
+			- Run each token against each index of provider name array
+			- On match: set the matched objects name to be the provider
+			- add the object it to list.	
+		*/
+			//Starting westpac, commbank currently just has identifier.
+	$i;
+	
+	for ($i = 0; $i < count(foundList); $i++)
+	{
+		$token = strtok($foundList[$i]->getTitle(), " "); 		//Tokenize description
+		
+		while($token != FALSE)
+		{
+			if (strcmp($token, NAME) == 0)				//If token == name of provider in database
+			{
+				foundList[$i]->setName($TOKEN);			//Set object name = matched token
+				array_push($spList, foundList[$i]);		//Add object to found list/
+			}
+			
+			$token = strtok(" ");						//Next token
+		}
+	}
+		
+	}
+	function getspList()
+	{
+		return $this->spList;
+	}
+	
+	function setProviders($providerList){
+		$this->providerList = $providerList;
+	}
+	
+	
+ 
 }
 
 
