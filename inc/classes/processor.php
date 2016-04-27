@@ -5,10 +5,11 @@ include ('serviceprovider.php');
 class Processor{
 
     
-    
     private $serviceList = array();
     
-    function __construct($filename, $bankNumber){
+    function __construct($filename, $bankNumber)
+	{
+		$i = 0;
         
         if($handle = fopen($filename, 'r')){
             
