@@ -16,9 +16,9 @@ class Processor{
             while($data = fgetcsv($handle)){
                
                 //1 is westpac
-                if($bankNumber == 1) // 1 is westpac
+                if($bankNumber == 1) //Westpac
                 {
-                    
+                    /*
                     if ($i == 0)
                         {
                             $i++;
@@ -26,18 +26,25 @@ class Processor{
                         else
                         {
                             //Get data from columns 1 and 2
-                            
-                            $this->serviceList[] = new ServiceProvider($data[2], $data[1]);
-                            $i++;
-                        }
-
-
-                }else if($bankNumber  == 2){ // is commbank
-
-
-
+					$i++;
+                    */        
+					
+					$this->serviceList[] = new ServiceProvider($data[2], $data[1], $data[3]); //Data[3] debit column
                 }
-                
+				
+				else if($bankNumber  == 2 || $bankNumber  == 4)  //Commbank & ANZ
+				{
+					$this->serviceList[] = new ServiceProvider($data[2], $data[0], $data[1]); 
+					/* 0 - Date
+					   1 - Amount
+					   2 - Description
+					*/
+				}
+				else if($bankNumber == 3) //NAB
+				{
+					
+				}
+				else return FALSE;
                 
             }
             

@@ -4,11 +4,113 @@ $(document).ready(function() {
     
     loadUserDetails();
     
+    $("#updatePassword").click(changeUserPassword);
 
     
     
     
 });
+
+
+function changeUserPassword(){
+    var flag = true; 
+    var e, op, np;
+    
+    var elements = document.getElementsByTagName("input");
+    
+    for(var i = 0; i < elements.length; i ++){
+        listElement = elements[i];
+        var checkElement;
+        formInputName = listElement.getAttribute("name");
+        
+        
+        switch(formInputName){
+            case "oldPassword":
+                
+                if(checkFieldLength(listElement)){
+                    
+                }
+                break;
+            case "emailAddress":
+                
+                if(checkFieldLength(listElement)){
+                    if(validateEmail(listElement.value)){
+                        e = listElement.value;
+                    }else{
+                        flag = false;
+                        listElement.style.borderColor = 'red';
+                        message = "Email fields are not valid emails";
+                        break;
+                    }
+                }
+                
+                
+                
+
+                break;
+            case "password":
+                
+                //if the form input attribute name is password.
+                checkElement  = searchForElement(elements, "confirmPassword");
+                
+            case "confirmPassword":
+                checkElement = searchForElement(elements, "password");
+                
+                if(checkFieldLength(listElement) && checkFieldLength(checkElement)){
+                    if(!checkFieldsMatch(listElement, checkElement)){
+                        listElement.style.borderColor = 'red';
+                        checkElement.style.borderColor = 'red';
+                        message = formInputName + checkElement.getAttribute("name") + " Fields Must Match";
+                        flag = false;
+                        break;
+                    }else{
+                        np = listElement.value;
+                    }   
+                }else{
+                    listElement.style.borderColor = 'red';
+                    checkElement.style.borderColor = 'red';
+                    message = formInputName + checkElement.getAttribute("name") + " Fields must not be empty";
+                    flag = false;
+                    break;
+                }
+                
+                break;
+        }
+    }
+    
+    if(flag){
+        
+        firebaseRef.changePassword({
+          email: e,
+          oldPassword: op,
+          newPassword: np
+        }, function(error) {
+          if (error) {
+            switch (error.code) {
+              case "INVALID_PASSWORD":
+                console.log("The specified user account password is incorrect.");
+                break;
+              case "INVALID_USER":
+                console.log("The specified user account does not exist.");
+                break;
+              default:
+                console.log("Error changing password:", error);
+            }
+          } else {
+            console.log("User password changed successfully!");
+          }
+        });
+        
+    }else{
+        
+        
+    }
+    
+
+    
+    document.getElementById("message").innerHTML = message;
+    return false;
+}
                   
                   
 function loadUserDetails(){
