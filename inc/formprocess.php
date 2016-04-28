@@ -28,8 +28,18 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
         
         if($processor->getServiceList() != null){
         //implement Algorithm here
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> dylans
         /* $rdaspa = new rdaspa($processor->getServiceList());
             $rdaspa->setProviders($_POST['serviceproviders']);
+=======
+         $rdaspa = new rdaspa($processor->getServiceList());
+		 var_dump($rdaspa->printFound());
+        /*  $rdaspa->setProviders($_POST['serviceproviders']);
+>>>>>>> integratingAggr
             if($rda->compareProviders()){
             
                 foreach($rdaspa->getSpList() as $serviceProvider){
@@ -39,11 +49,32 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
             
                 
             }
+<<<<<<< HEAD
         */
+=======
+>>>>>>> integratingAggr
             
             foreach($processor->getServiceList() as $obj){
                 echo json_encode(array($obj->getTitle(), $obj->getDate()),JSON_PRETTY_PRINT);
             }
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> integratingAggr
+        $rdaspa = new rdaspa($processor->getServiceList());
+        */
+           /* foreach($rdaspa->printFound() as $obj)
+        var_dump($rdaspa->printFound());
+			{
+				var_dump($rdaspa);
+                //echo json_encode(array($obj->getTitle(), $obj->getDate()),JSON_PRETTY_PRINT);
+            }*/
+>>>>>>> b1904f54ac64004bb760e2c4e9f828efadcf99ec
+         //echo json_encode($processor->getServiceList());
+            
+=======
+>>>>>>> dylans
             
             
         }else{
