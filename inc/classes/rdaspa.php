@@ -11,11 +11,21 @@ class rdaspa{
     // this will take in the list from processor
     function __construct($iList)
 	{
+<<<<<<< HEAD
 			
 		$checkdate1;
 		$checkdate2;
 		$i = 0;
 		$j;
+=======
+		$startDate;
+		$endDate;
+		$currDate;
+		$newDate;
+		$i = 0;
+		$j;
+		//$foundCount= [];
+>>>>>>> integratingAggr
 
 		if( ! ini_get('date.timezone') )
         {
@@ -26,27 +36,50 @@ class rdaspa{
         $this->initialList = $iList;
         $this->iListCopy = $iList;
         
+		/* Service Provider Criteria
+			- Recurring payments every month (+- 3 days)
+			- MUST CHECK DIRECTION OF FUNDS.
+			
+		*/
 		
 		for ($i = 0; $i < count($iList); $i++)		
 		{
-			$checkdate1 = strtotime('1 month ago', strtotime($iList[$i]->getDate()));	//Reference date
+			$currDate = strtotime('1 month ago', strtotime($iList[$i]->getDate()));	//Reference date (1 month before original)
+			$startDate = strtotime('-3 days', $currDate);							//3 days prior to 1 month reference
+			$endDate = strtotime('+3 days', $currDate);								//3 days after 1 month reference
 			
-			for ($j = $i + 1; $j < count($iList); $j++)
+			if (strcmp($iList[$i]->getAmount(), " ") == 0)
 			{
-				$checkdate2 = strtotime($iList[$j]->getDate());			//Date to check against reference
 				
+			}
+			else
+			{
+				for ($j = $i + 1; $j < count($iList); $j++)
+				{
+					$newDate = strtotime($iList[$j]->getDate());						//Date to check against reference
 					if (strcmp($iList[$i]->getTitle(), $iList[$j]->getTitle()) == 0)	//If matching desciptions
 					{
-						if ($checkdate1 == $checkdate2)			//and 1 month apart
+						if($newDate > $startDate && $newDate < $endDate)				//1 month +- 3 days.
+						{	
+							if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable....
+							{
+								array_push($this->foundList, $iList[$i]);					//add to foundList
+							}
+						}
+						else{
+							break;
+						}
+						
+						/*
+						if ($currDate == $newDate)							//and 1 month apart
 						{
 							array_push($this->foundList, $iList[$i]);		//add to foundList
 						}
-						
+						*/
 					}
+				}
 			}
 		}
-
-       
     }
 	
 	function printFound()
@@ -62,8 +95,10 @@ class rdaspa{
 			- On match: set the matched objects name to be the provider
 			- add the object it to list.	
 		*/
-			//Starting westpac, commbank currently just has identifier.
-	$i;
+	
+	//Starting westpac, commbank currently just has identifier.
+	
+	/*$i;
 	
 	for ($i = 0; $i < count(foundList); $i++)
 	{
@@ -80,6 +115,9 @@ class rdaspa{
 			$token = strtok(" ");						//Next token
 		}
 	}
+	*/
+	
+	
 		
 	}
 	function getspList()
