@@ -53,7 +53,7 @@ class rdaspa{
 					{
 						if($newDate > $startDate && $newDate < $endDate)				//1 month +- 3 days.
 						{	
-							if($iList[$i]->getAmount() == $iList[$j]->getAmount())
+							if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable....
 							{
 								array_push($this->foundList, $iList[$i]);					//add to foundList
 							}
