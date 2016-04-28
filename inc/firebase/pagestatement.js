@@ -50,8 +50,7 @@ function submitAjaxForm(){
 		var fileToUpload    = $('#fileToUpload').val(); 
 		var bankNumber    	= $('#bankNumber option:selected').val()
 		var flag = true;
-        console.log(bankNumber);
-        console.log(fileToUpload);
+
 		/********validate all our form fields***********/
 		//Name field validation  
         if(bankNumber == 0){ 
@@ -67,22 +66,10 @@ function submitAjaxForm(){
         //this gets all the providers from the prepopulated firebase list.
     
         formData.append("providerList", JSON.stringify(providerList));
-        for(var i = 0; i < providerList.length; i ++){
-            
-            //formData.append("providerList[]", providerList[i]);
-            /*var input = $("<input>")
-               .attr("type", "hidden")
-               .attr("name", "providerList[]").val(providerList[i]);  
-            formData.append($(input));*/
-        }
-    
-        //this gets the uId and puts it into the form.
-            /*var input = $("<input>")
-               .attr("type", "hidden")
-               .attr("name", "uid").val(uId);  
-            formData.append($(input));*/
         formData.append("uid", uId);
-        console.log(formData);
+        //console.log(bankNumber);
+        //console.log(fileToUpload);
+        //console.log(formData);
         
 		/********Validation end here ****/
 		// If all are ok then we send ajax request to formprocess.php *******

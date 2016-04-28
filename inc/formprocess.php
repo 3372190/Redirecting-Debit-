@@ -20,9 +20,8 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
         
         
         $providers = $_POST['providerList'];
-        foreach($providers as $provider){
-            echo $provider;
-        }
+        
+        var_dump($providers);
         
         
         $processor = new Processor($fileUploader->getFilePath(), $_POST["bankNumber"]);
