@@ -13,99 +13,14 @@
         <!-- Firebase -->
     <script type="text/javascript" src="inc/firebase/firebase.js"></script>
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
+    <script type="text/javascript" src="inc/firebase/pagestatement.js"></script>
     <script type="text/javascript">
     if(!isUserLoggedIn()){
         window.location = "page_login.php"
     }
-    </script>
-    
-    <script>
-    //upload ajax function will post user id and csv file to processupload.php
         
-    $(document).ready(function(){
-                      
-                      
-                      
-        $("#uploadButton").click(function(){
-        /*
-        -error check form
-        -process upload with userid as identifier
-        -upload file
-        -process with algorithm
-        -return jason response display on next page.
-        
-        
-        */
-        });
-        
-        /*$("form#data").submit(function() { 
-		//get input field values
-		var fileToUpload    = $('#fileToUpload').val(); 
-		var bankNumber    	= $('#bankNumber option:selected').val()
-		var flag = true;
-        console.log(bankNumber);
-        console.log(fileToUpload);
-		/********validate all our form fields***********/
-		/* Name field validation  
-        if(bankNumber == 0){ 
-            $('#bankNumber').css('border-color','red'); 
-            flag = false;
-        }
-        if(fileToUpload == null){
-            $('#fileToUpload').css('border-color', 'red');
-            flag = false;
-        }
-		/********Validation end here ****/
-		/* If all are ok then we send ajax request to email_send.php *******
-		if(flag) {
-            var formData = new FormData($(this)[0]);
-			$.ajax({
-				type: 'post',
-				url: "inc/formprocess.php",
-                processData: false,
-				data: formData,
-				beforeSend: function() {
-					$('#submit').attr('disabled', true);
-					$('#submit').after('<span class="wait">&nbsp;<img width="150px" height="150px" src="assets/img/loading.gif" alt="" /></span>');
-				},
-				complete: function() {
-					$('#submit').attr('disabled', false);
-					$('.wait').remove();
-				},	
-				success: function(data)
-				{
-					if(data.type == 'error')
-					{
-						output = '<div class="error">'+data.text+'</div>';
-                        console.log(data.text);
-					}else{
-                        console.log(JSON.parse(data.text));
-						output = '<div class="success">'+data.text+'</div>';
-						$('input[type=text]').val(''); 
-						$('#contactform textarea').val(''); 
-					}
-					
-					$("#result").hide().html(output).slideDown();			
-				}
-			 });
-		  }
-        return false;
-	   });*/
-        
-        $("#cancel").click(function(){
-           //cancel and go back to main profile page. 
-            window.location = "page_profile.php"
-            
-        });       
-                      
-    });
-        
-    //next button will continue 
-        
-    
-    
-    
-    
+        getUserId();
+        getProviderList();
     </script>
 
 	<!-- Meta -->
@@ -176,7 +91,7 @@
 							<div class="tab-content">
 								<div id="profile" class="profile-edit tab-pane fade in active">
                                     
-                                    <form class="sky-form" method="post" id="data" action="inc/formprocess.php" enctype="multipart/form-data">
+                                    <form class="sky-form" method="post" id="fileprocess" enctype="multipart/form-data">
 										<!--Checkout-Form-->
 										<section>
                                         <h2 class="heading-md">Use This Page To Upload Statements to be Processed By Us.</h2>
@@ -186,10 +101,6 @@
 										<section>
                                             <h3>Upload Statement</h3>
                                             <input type="file" name="fileToUpload" id="fileToUpload" />
-                                            
-                                            
-                                            //get firebase providers 
-                                            
 										</section>
 
 										<div class="row">

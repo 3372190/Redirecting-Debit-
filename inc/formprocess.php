@@ -8,13 +8,20 @@ include ('classes/processor.php');
 include ('classes/rdaspa.php');
 
 if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
-    $uId = "5d78119b-8736-4e8b-8591-da0b0f84761a";
+    
+    //grab users uid to upload file in correstponding directory
+    if(isset($_POST['uid'])){
+        $uId = $_POST['uid'];
+    }
     
     $fileUploader = new upload($uId, $_FILES["fileToUpload"]);
     if($fileUploader->checkFileType() && $fileUploader->checkFileExists()){
         $fileUploader->uploadFile();
         
         
+        $providers = $_POST['providerList'];
+        
+        var_dump($providers);
         
         
         $processor = new Processor($fileUploader->getFilePath(), $_POST["bankNumber"]);
@@ -23,6 +30,9 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
         //implement Algorithm here
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> dylans
         /* $rdaspa = new rdaspa($processor->getServiceList());
             $rdaspa->setProviders($_POST['serviceproviders']);
 =======
@@ -48,6 +58,7 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
                 echo json_encode(array($obj->getTitle(), $obj->getDate()),JSON_PRETTY_PRINT);
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> integratingAggr
@@ -62,8 +73,9 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
 >>>>>>> b1904f54ac64004bb760e2c4e9f828efadcf99ec
          //echo json_encode($processor->getServiceList());
             
+=======
+>>>>>>> dylans
             
-        //var_dump(processor->getServiceList());
             
         }else{
            echo json_encode(array("Type" => "Error", "Message" => "File is empty" ),JSON_PRETTY_PRINT);
