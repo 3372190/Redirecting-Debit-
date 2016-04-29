@@ -59,8 +59,10 @@ class rdaspa{
 					{
 						if($newDate > $startDate && $newDate < $endDate)				//1 month +- 3 days.
 						{	
+                            
 							if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable....
 							{
+                                
 								array_push($this->foundList, $iList[$i]);					//add to foundList
 							}
 						}
@@ -78,9 +80,10 @@ class rdaspa{
 				}
 			}
 		}
+        var_dump($this->foundList);
     }
 	
-	function printFound()
+	function getFoundList()
 	{
 		return $this->foundList;
 	}
@@ -103,6 +106,7 @@ class rdaspa{
 		$token = strtok($foundList[$i]->getTitle(), " "); 		//Tokenize description
 		
 		while($token != FALSE)
+        
 		{
 			if (strcmp($token, NAME) == 0)				//If token == name of provider in database
 			{

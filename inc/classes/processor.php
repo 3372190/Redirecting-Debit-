@@ -29,7 +29,7 @@ class Processor{
 					$i++;
                     */        
 					
-					$this->serviceList[] = new ServiceProvider($data[2], $data[1], $data[3]); //Data[3] debit column
+					$this->serviceList[] = new ServiceProvider($data[2], $data[0], $data[1]); //Data[3] debit column
                 }
 				
 				else if($bankNumber  == 2 || $bankNumber  == 4)  //Commbank & ANZ
