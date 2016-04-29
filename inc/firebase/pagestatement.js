@@ -67,7 +67,7 @@ function getProviderDetails(child){
                 var result = childSnapshot.val();
                 console.log(result);
                 
-                 $('#serviceresult > tbody:last-child').append('<tr><td><img width="150px" height="150px" class="rounded-x" src="'+result.img+'" alt=""></td><td class="td-width"><h3><a href="#">'+result.name+'</a></h3><p>'+result.description+'</p></td><td><input type="checkbox" checked="" name="checkbox[]"></td></tr>');
+                 $('#serviceresult > tbody:last-child').append('<tr><td><img width="150px" height="150px" class="rounded-x" src="'+result.img+'" alt=""></td><td class="td-width"><h3><a href="#">'+result.name+'</a></h3><p>'+result.description+'</p></td><td><input type="checkbox" checked="" name="checkbox[]" value="'+ key+'"></td></tr>');
                 
             }
 
