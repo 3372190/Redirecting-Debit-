@@ -34,9 +34,9 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
 
             var_dump($rdaspa->getFoundList());
 
-            foreach($rdaspa->getFoundList() as $obj){
+            /*foreach($rdaspa->getFoundList() as $obj){
                 echo json_encode(array($obj->getTitle(), $obj->getDate()),JSON_PRETTY_PRINT);
-            }
+            }*/
         
             
         }else{

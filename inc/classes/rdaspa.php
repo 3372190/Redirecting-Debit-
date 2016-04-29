@@ -59,12 +59,14 @@ class rdaspa{
 					{
 						if($newDate > $startDate && $newDate < $endDate)				//1 month +- 3 days.
 						{	
+                            var_dump($iList[$i]);
+                            array_push($this->foundList, $iList[$i]);	
                             
-							if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable....
+							/*if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable....
 							{
                                 
-								array_push($this->foundList, $iList[$i]);					//add to foundList
-							}
+												//add to foundList
+							}*/
 						}
 						else{
 							break;
