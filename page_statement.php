@@ -81,10 +81,9 @@
 					<div class="profile-body margin-bottom-20">
 						<div class="tab-v1">
 							<ul class="nav nav-justified nav-tabs">
-								<li class="active"><a data-toggle="tab" href="#profile">Upload Statement</a></li>
-								<li id="passwordTab"><a data-toggle="tab" id="passwordTab" href="#passwordTab">Select Service Providers</a></li>
-								<li><a data-toggle="tab" href="#payment">Add Service Providers</a></li>
-								<li><a data-toggle="tab" href="#settings">Review and Save</a></li>
+								<li class="disabled active"><a data-toggle="tab" href="#profile">Upload Statement</a></li>
+								<li class="disabled"><a data-toggle="tab" href="#passwordTab" onclick="return false;">Select Service Providers</a></li>
+								<li class="disabled"><a data-toggle="tab" href="#settings" onclick="return false;">Review and Save</a></li>
 							</ul>
                             
                             
@@ -123,23 +122,11 @@
 								</div>
 
 								<div id="passwordTab" class="profile-edit tab-pane fade">
-                                    <form class="sky-form" id="sky-form3" action="#">
+                                    <form class="sky-form" id="tableForm" action="#">
 				                    <div class="table-search-v2" >
                                         <div class="table-responsive">
-                                            <table class="table table-bordered table-striped">
+                                            <table class="table table-bordered table-striped" id="serviceresult">
                                                     <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <img class="rounded-x" src="assets/img/testimonials/img1.jpg" alt="">
-                                                            </td>
-                                                            <td class="td-width">
-                                                                <h3><a href="#">Vaya</a></h3>
-                                                                <p>Vaya is an Australian online mobile service provider offering low-cost SIM only mobile phone plans and data plans on the Optus 4G Plus network. </p>
-                                                                <small class="hex">Joined February 28, 2014</small>
-                                                            </td>
-                                                            <td>
-                                                                <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"></label>
-                                                            </td>
                                                     </tbody>
                                             </table>
                                         </div>

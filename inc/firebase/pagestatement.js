@@ -5,6 +5,9 @@ var uId;
 var providerNames = [];
 
 $(document).ready(function(){
+$('.nav-tabs li.disabled > a[data-toggle=tab]').on('click', function(e) {
+    e.stopImmediatePropagation();
+});
     
     
     $("#submit").click(submitAjaxForm);
@@ -20,9 +23,15 @@ $(document).ready(function(){
     
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         //show selected tab / active
-         console.log ( $(e.target).attr('id') );
+        console.log ( $(e.target).attr('href') );
+        var tab = $(e.target).attr('href');
         
-        
+        if(tab == "#passwordTab"){
+            for(var i = 0 ; i <  providerNames.length; i ++){
+                console.log(providerNames[i].toLowerCase())
+                getProviderDetails(providerNames[i].toLowerCase());
+            }
+        }
     });
 
 });
@@ -42,24 +51,43 @@ function showTab(tab){
     $('.nav-tabs a[href="#' + tab + '"]').tab('show');
 };
 
-function getProviderDetails(){
+
+
+function getProviderDetails(child){
     
-    //TODO get firebase details in reg
+    var serviceProvidersRef = firebaseRef.child("serviceprovider");
+    
+    
+    serviceProvidersRef.once("value", function(snap){
+        snap.forEach(function(childSnapshot){
+
+            var key = childSnapshot.key();
+            
+            if(childSnapshot.val().name == child){
+                var result = childSnapshot.val();
+                console.log(result);
+                
+                 $('#serviceresult > tbody:last-child').append('<tr><td><img width="150px" height="150px" class="rounded-x" src="'+result.img+'" alt=""></td><td class="td-width"><h3><a href="#">'+result.name+'</a></h3><p>'+result.description+'</p></td><td><input type="checkbox" checked="" name="checkbox[]"></td></tr>');
+                
+            }
+
+        });
+    });
 }
 
 function getProviderList(){
     
     var serviceProvidersRef = firebaseRef.child("serviceprovider");
 
-        serviceProvidersRef.once("value", function(snap){
-            snap.forEach(function(childSnapshot){
+    serviceProvidersRef.once("value", function(snap){
+        snap.forEach(function(childSnapshot){
 
-                var key = childSnapshot.key();
+            var key = childSnapshot.key();
 
-                var data = childSnapshot.val().name;
-                providerList.push(data)
+            var data = childSnapshot.val().name;
+            providerList.push(data)
 
-            });
+        });
     }); 
 }
 
