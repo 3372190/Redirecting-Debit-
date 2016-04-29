@@ -14,6 +14,7 @@
     <!-- Firebase -->
     <script type="text/javascript" src="inc/firebase/firebase.js"></script>
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
+    <script type="text/javascript" src="inc/firebase/pageoverall.js"></script>
     <script type="text/javascript">
     if(!isUserLoggedIn()){
         window.location = "page_login.php"

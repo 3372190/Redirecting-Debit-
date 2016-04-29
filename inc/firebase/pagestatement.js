@@ -13,7 +13,7 @@ $(document).ready(function(){
     });
     
     $("#selectproviders").click(selectProviders);
-    $("#saveproviders").click(saveProvidersToUser);
+    $("#saveproviders").click(save);
     $("#submit").click(submitAjaxForm);
     $("#providerBack").click(cancel);
         
@@ -31,31 +31,46 @@ $(document).ready(function(){
         
         if(tab == "#passwordTab"){
             for(var i = 0 ; i <  providerNames.length; i ++){
-                //console.log(providerNames[i].toLowerCase())
                 getProviderDetails(providerNames[i].toLowerCase());
             }
+        }else if(tab == "#settings"){
+            for(var i = 0 ; i <  providerids.length; i ++){
+                saveGetProviderDetails(providerids[i]);
+            }
+            
         }
     });
-    
-    
-
-
 });
 
 function selectProviders(){
     //get list of providers and display them on next tab
     
-    var $boxes = $('input[name="checkbox[]":checked');
-    
-   $boxes.each(function(){
-    console.log($boxes.attr("id"));
-   });
-    
+    $('input:checkbox[name="providerid"]').each(function () {
+        if (this.checked) {
+            providerids.push($(this).val());
+        }
+    });
+    if(providerids.length >=1 ){
+        showTab("settings");
+    }else{
+        console.log("no providers selected");
+    }
 }
 
-function saveProvidersToUser(){
+function save(){
     
+    for(var i = 0 ; i < providerids.length; i ++){
+        saveProvidersToUser(providerids[i])
+    }
+    alert("updated");
+}
+
+function saveProvidersToUser(id){
     
+    usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
+    pushRef =  usersRef.child(id);
+    
+    pushRef.set({'notified': 'pending'});
 }
 
 function cancel(){
@@ -81,6 +96,8 @@ function showTab(tab){
 
 function getProviderDetails(child){
     
+    //this can be made cleaner
+    
     var serviceProvidersRef = firebaseRef.child("serviceprovider");
     
     
@@ -91,14 +108,27 @@ function getProviderDetails(child){
             
             if(childSnapshot.val().name == child){
                 var result = childSnapshot.val();
-                //console.log(result);
                 
-                 $('#serviceresult > tbody:last-child').append('<tr><td><img width="150px" height="150px" class="rounded-x" src="'+result.img+'" alt=""></td><td class="td-width"><h3><a href="#">'+result.name+'</a></h3><p>'+result.description+'</p></td><td><input type="checkbox" checked="" name="checkbox[]" id="'+ key+'"></td></tr>');
+                 $('#serviceresult > tbody:last-child').append('<tr><td><img width="150px" height="150px" class="rounded-x" src="'+result.img+'" alt=""></td><td class="td-width"><h3><a href="#">'+result.name+'</a></h3><p>'+result.description+'</p></td><td><input type="checkbox" checked="" name="providerid" value="'+ key+'"></td></tr>');
                 
             }
 
         });
     });
+}
+
+function saveGetProviderDetails(id){
+    var serviceProviderRef = firebaseRef.child("serviceprovider").child(id);
+    
+    
+    serviceProviderRef.once("value", function(snap){
+        
+        var result = snap.val();
+        
+         $('#servicesave > tbody:last-child').append('<tr><td><img width="150px" height="150px" class="rounded-x" src="'+result.img+'" alt=""></td><td class="td-width"><h3><a href="#">'+result.name+'</a></h3><p>'+result.description+'</p></td></td></tr>');
+    });
+    
+    
 }
 
 function getProviderList(){
