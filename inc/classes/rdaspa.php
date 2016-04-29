@@ -1,5 +1,4 @@
 <?php
-
 class rdaspa{
     
     private $foundList = array();
@@ -23,8 +22,6 @@ class rdaspa{
 		$i = 0;
 		$j;
 		//$foundCount= [];
-
-
 		if( ! ini_get('date.timezone') )
         {
             date_default_timezone_set('GMT');
@@ -101,24 +98,29 @@ class rdaspa{
 	
 	//Starting westpac, commbank currently just has identifier.
 	
-	/*$i;
+	$i;
+	$j;
 	
-	for ($i = 0; $i < count(foundList); $i++)
+	for ($i = 0; $i < count($foundList); $i++)
 	{
-		$token = strtok($foundList[$i]->getTitle(), " "); 		//Tokenize description
-		
-		while($token != FALSE)
-        
+		$j = 0;		
+		while($j < count(providerList))
 		{
-			if (strcmp($token, NAME) == 0)				//If token == name of provider in database
+			$token = strtok($foundList[$i]->getTitle(), " "); 		//Tokenize description
+			while($token != FALSE)
 			{
-				foundList[$i]->setName($TOKEN);			//Set object name = matched token
-				array_push($spList, foundList[$i]);		//Add object to found list/
+				if (strcmp($token, providerList[$j]) == 0)				//If token == name of provider in database
+				{
+					$foundList[$i]->setName($token);				//Set object name = matched token
+					array_push($spList, foundList[$i]);			//Add object to found list/
+				}
+				$token = strtok(" ");							//Next token
 			}
 			
-			$token = strtok(" ");						//Next token
+			$j++;
 		}
 	}
+	/*
 	*/
 	
 	
@@ -130,18 +132,11 @@ class rdaspa{
 	}
 	
 	function setProviders($providerList){
+        var_dump($providerList);
 		$this->providerList = $providerList;
 	}
 	
 	
  
 }
-
-
-
-
-
-
-
-
 ?>
