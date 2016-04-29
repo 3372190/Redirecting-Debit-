@@ -82,7 +82,7 @@
 						<div class="tab-v1">
 							<ul class="nav nav-justified nav-tabs">
 								<li class="active"><a data-toggle="tab" href="#profile">Upload Statement</a></li>
-								<li><a data-toggle="tab" href="#passwordTab">Select Service Providers</a></li>
+								<li id="passwordTab"><a data-toggle="tab" id="passwordTab" href="#passwordTab">Select Service Providers</a></li>
 								<li><a data-toggle="tab" href="#payment">Add Service Providers</a></li>
 								<li><a data-toggle="tab" href="#settings">Review and Save</a></li>
 							</ul>
@@ -134,7 +134,7 @@
                                                             </td>
                                                             <td class="td-width">
                                                                 <h3><a href="#">Vaya</a></h3>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id commodo lacus. Fusce non malesuada ante. Donec vel arcu.</p>
+                                                                <p>Vaya is an Australian online mobile service provider offering low-cost SIM only mobile phone plans and data plans on the Optus 4G Plus network. </p>
                                                                 <small class="hex">Joined February 28, 2014</small>
                                                             </td>
                                                             <td>

@@ -14,10 +14,17 @@ $(document).ready(function(){
             window.location = "page_profile.php"
             
         });
-    $("providerBack").click(function(){
+    $("#providerBack").click(function(){
         showTab("profile");
     });
-                      
+    
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        //show selected tab / active
+         console.log ( $(e.target).attr('id') );
+        
+        
+    });
+
 });
 
 function getUserId(){
@@ -34,6 +41,11 @@ function getUserId(){
 function showTab(tab){
     $('.nav-tabs a[href="#' + tab + '"]').tab('show');
 };
+
+function getProviderDetails(){
+    
+    //TODO get firebase details in reg
+}
 
 function getProviderList(){
     
