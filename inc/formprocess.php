@@ -30,7 +30,6 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
             $rdaspa = new rdaspa($processor->getServiceList());
             $rdaspa->setProviders($providers);
             $rdaspa->compareProvider();
-
             foreach($rdaspa->getSpList() as $obj){
                 echo json_encode(array($obj->getName()),JSON_PRETTY_PRINT);
             }

@@ -123,61 +123,31 @@
 								</div>
 
 								<div id="passwordTab" class="profile-edit tab-pane fade">
-									<h2 class="heading-md">Manage your Security Settings</h2>
-									<p>Change your password.</p>
-									<br>
-									<form class="sky-form" id="sky-form4" action="#">
-										<dl class="dl-horizontal">
-											<dt>Username</dt>
-											<dd>
-												<section>
-													<label class="input">
-														<i class="icon-append fa fa-user"></i>
-														<input type="text" placeholder="Username" name="username">
-														<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
-													</label>
-												</section>
-											</dd>
-											<dt>Email address</dt>
-											<dd>
-												<section>
-													<label class="input">
-														<i class="icon-append fa fa-envelope"></i>
-														<input type="email" placeholder="Email address" name="email">
-														<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
-													</label>
-												</section>
-											</dd>
-											<dt>Enter your password</dt>
-											<dd>
-												<section>
-													<label class="input">
-														<i class="icon-append fa fa-lock"></i>
-														<input type="password" id="password" name="password" placeholder="Password">
-														<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
-													</label>
-												</section>
-											</dd>
-											<dt>Confirm Password</dt>
-											<dd>
-												<section>
-													<label class="input">
-														<i class="icon-append fa fa-lock"></i>
-														<input type="password" name="passwordConfirm" placeholder="Confirm password">
-														<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
-													</label>
-												</section>
-											</dd>
-										</dl>
-										<label class="toggle toggle-change"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Remember password</label>
-										<br>
-										<section>
-											<label class="checkbox"><input type="checkbox" id="terms" name="terms"><i></i><a href="#">I agree with the Terms and Conditions</a></label>
-										</section>
-										<button type="button" class="btn-u btn-u-default">Cancel</button>
-										<button class="btn-u" type="submit">Save Changes</button>
+                                    <form class="sky-form" id="sky-form3" action="#">
+				                    <div class="table-search-v2" >
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <img class="rounded-x" src="assets/img/testimonials/img1.jpg" alt="">
+                                                            </td>
+                                                            <td class="td-width">
+                                                                <h3><a href="#">Vaya</a></h3>
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id commodo lacus. Fusce non malesuada ante. Donec vel arcu.</p>
+                                                                <small class="hex">Joined February 28, 2014</small>
+                                                            </td>
+                                                            <td>
+                                                                <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"></label>
+                                                            </td>
+                                                    </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                <button type="button" id="providerBack" name="providerBack" class="btn-u btn-u-default">Back</button>
+										<button class="btn-u" type="submit">Next</button>
 									</form>
-								</div>
+                            </div>
 
 								<div id="payment" class="profile-edit tab-pane fade">
 									<h2 class="heading-md">Manage your Payment Settings</h2>

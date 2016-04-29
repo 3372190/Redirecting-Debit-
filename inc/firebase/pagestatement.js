@@ -14,6 +14,9 @@ $(document).ready(function(){
             window.location = "page_profile.php"
             
         });
+    $("providerBack").click(function(){
+        showTab("profile");
+    });
                       
 });
 
@@ -27,6 +30,10 @@ function getUserId(){
         return false;
     }
 }
+
+function showTab(tab){
+    $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+};
 
 function getProviderList(){
     
@@ -98,8 +105,10 @@ function submitAjaxForm(){
 						output = '<div class="error">'+data.text+'</div>';
                         console.log(data.text);
 					}else{
+                        
                         providerNames = JSON.parse(data);
                         console.log(providerNames);
+                        showTab('passwordTab');
                         $("#submit").after(data);
 						output = '<div class="success">'+data+'</div>';
 					}
