@@ -84,7 +84,7 @@
 								<div class="service-block-v3 service-block-u">
 									<i class="icon-users"></i>
 									<span class="service-heading">Number Of Services</span>
-									<span class="counter">10</span>
+									<span id="numofproviders" class="counter"></span>
 
 									<div class="clearfix margin-bottom-10"></div>
 
@@ -139,46 +139,12 @@
 						<!--Profile Blog-->
 						<div class="panel panel-profile">
 							<div class="panel-heading overflow-h">
-								<h2 class="panel-title heading-sm pull-left"><i class="fa fa-tasks"></i>Contacts</h2>
+								<h2 class="panel-title heading-sm pull-left"><i class="fa fa-tasks"></i>Service Providers</h2>
 								<a href="page_profile_users.html" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right">View All</a>
 							</div>
 							<div class="panel-body">
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="profile-blog blog-border">
-											<img class="rounded-x" src="assets/img/testimonials/img1.jpg" alt="">
-											<div class="name-location">
-												<strong>Mikel Andrews</strong>
-												<span><i class="fa fa-map-marker"></i><a href="#">California,</a> <a href="#">US</a></span>
-											</div>
-											<div class="clearfix margin-bottom-20"></div>
-											<p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-											<hr>
-											<ul class="list-inline share-list">
-												<li><i class="fa fa-bell"></i><a href="#">12 Notifications</a></li>
-												<li><i class="fa fa-group"></i><a href="#">54 Followers</a></li>
-												<li><i class="fa fa-twitter"></i><a href="#">Retweet</a></li>
-											</ul>
-										</div>
-									</div>
-
-									<div class="col-sm-6">
-										<div class="profile-blog blog-border">
-											<img class="rounded-x" src="assets/img/testimonials/img4.jpg" alt="">
-											<div class="name-location">
-												<strong>Natasha Kolnikova</strong>
-												<span><i class="fa fa-map-marker"></i><a href="#">Moscow,</a> <a href="#">Russia</a></span>
-											</div>
-											<div class="clearfix margin-bottom-20"></div>
-											<p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-											<hr>
-											<ul class="list-inline share-list">
-												<li><i class="fa fa-bell"></i><a href="#">37 Notifications</a></li>
-												<li><i class="fa fa-group"></i><a href="#">46 Followers</a></li>
-												<li><i class="fa fa-twitter"></i><a href="#">Retweet</a></li>
-											</ul>
-										</div>
-									</div>
+								<div class="row" id="providerrow">
+									
 								</div>
 							</div>
 						</div>
