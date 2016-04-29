@@ -19,10 +19,8 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
         $fileUploader->uploadFile();
         
         
-        $providers = $_POST['providerList'];
-        
-        //var_dump($providers);
-        
+        $providers = json_decode($_POST['providerList']);
+
         
         $processor = new Processor($fileUploader->getFilePath(), $_POST["bankNumber"]);
         
@@ -30,7 +28,8 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
             //implement Algorithm here
 
             $rdaspa = new rdaspa($processor->getServiceList());
-            $rdaspa->setProviders($_POST['serviceproviders']);
+            $rdaspa->setProviders($providers);
+            $rdaspa->compareProvider();
 
             var_dump($rdaspa->getSpList());
 

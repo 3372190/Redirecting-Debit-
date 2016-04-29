@@ -101,18 +101,21 @@ class rdaspa{
 	$i;
 	$j;
 	
-	for ($i = 0; $i < count($foundList); $i++)
+	for ($i = 0; $i < count($this->foundList); $i++)
 	{
 		$j = 0;		
-		while($j < count(providerList))
+		while($j < count($this->providerList))
 		{
-			$token = strtok($foundList[$i]->getTitle(), " "); 		//Tokenize description
-			while($token != FALSE)
+			$token = strtok($this->foundList[$i]->getTitle(), " "); 		//Tokenize description
+            while($token != NULL)
 			{
-				if (strcmp($token, $providerList[$j]) == 0)				//If token == name of provider in database
+                
+                $token  = strtoupper($token);
+                $this->providerList[$j] = strtoupper($this->providerList[$j]);
+				if (strcmp($token, $this->providerList[$j]) == 0)				//If token == name of provider in database
 				{
-					$foundList[$i]->setName($token);				//Set object name = matched token
-					array_push($spList, $foundList[$i]);			//Add object to found list/
+					$this->foundList[$i]->setName($token);				//Set object name = matched token
+					array_push($this->spList, $this->foundList[$i]);			//Add object to found list/
 				}
 				$token = strtok(" ");							//Next token
 			}
