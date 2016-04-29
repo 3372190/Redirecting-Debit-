@@ -122,7 +122,6 @@
 								</div>
 
 								<div id="passwordTab" class="profile-edit tab-pane fade">
-                                    <form class="sky-form" id="tableForm" action="#">
 				                    <div class="table-search-v2" >
                                         <div class="table-responsive">
                                             <table class="table table-bordered table-striped" id="serviceresult">
@@ -132,8 +131,8 @@
                                         </div>
                                     </div>
                                 <button type="button" id="providerBack" name="providerBack" class="btn-u btn-u-default">Back</button>
-										<button class="btn-u" type="submit">Next</button>
-									</form>
+								<button class="btn-u"  id="selectproviders" name="selectproviders" type="submit">Next</button>
+									
                             </div>
 
 								<div id="payment" class="profile-edit tab-pane fade">

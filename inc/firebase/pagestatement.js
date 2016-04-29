@@ -3,38 +3,64 @@ var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 var providerList = [];
 var uId;
 var providerNames = [];
+var providerids = [];
 
 $(document).ready(function(){
-$('.nav-tabs li.disabled > a[data-toggle=tab]').on('click', function(e) {
-    e.stopImmediatePropagation();
-});
     
     
+    $('.nav-tabs li.disabled > a[data-toggle=tab]').on('click', function(e) {
+        e.stopImmediatePropagation();
+    });
+    
+    $("#selectproviders").click(selectProviders);
+    $("#saveproviders").click(saveProvidersToUser);
     $("#submit").click(submitAjaxForm);
+    $("#providerBack").click(cancel);
         
         $("#cancel").click(function(){
            //cancel and go back to main profile page. 
             window.location = "page_profile.php"
             
         });
-    $("#providerBack").click(function(){
-        showTab("profile");
-    });
+    
     
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         //show selected tab / active
-        console.log ( $(e.target).attr('href') );
+        //console.log ( $(e.target).attr('href') );
         var tab = $(e.target).attr('href');
         
         if(tab == "#passwordTab"){
             for(var i = 0 ; i <  providerNames.length; i ++){
-                console.log(providerNames[i].toLowerCase())
+                //console.log(providerNames[i].toLowerCase())
                 getProviderDetails(providerNames[i].toLowerCase());
             }
         }
     });
+    
+    
+
 
 });
+
+function selectProviders(){
+    //get list of providers and display them on next tab
+    
+    var $boxes = $('input[name="checkbox[]":checked');
+    
+   $boxes.each(function(){
+    console.log($boxes.attr("id"));
+   });
+    
+}
+
+function saveProvidersToUser(){
+    
+    
+}
+
+function cancel(){
+    window.location = "page_profile.php";
+}
 
 function getUserId(){
     var auth = firebaseRef.getAuth();
@@ -65,9 +91,9 @@ function getProviderDetails(child){
             
             if(childSnapshot.val().name == child){
                 var result = childSnapshot.val();
-                console.log(result);
+                //console.log(result);
                 
-                 $('#serviceresult > tbody:last-child').append('<tr><td><img width="150px" height="150px" class="rounded-x" src="'+result.img+'" alt=""></td><td class="td-width"><h3><a href="#">'+result.name+'</a></h3><p>'+result.description+'</p></td><td><input type="checkbox" checked="" name="checkbox[]" value="'+ key+'"></td></tr>');
+                 $('#serviceresult > tbody:last-child').append('<tr><td><img width="150px" height="150px" class="rounded-x" src="'+result.img+'" alt=""></td><td class="td-width"><h3><a href="#">'+result.name+'</a></h3><p>'+result.description+'</p></td><td><input type="checkbox" checked="" name="checkbox[]" id="'+ key+'"></td></tr>');
                 
             }
 
@@ -143,17 +169,14 @@ function submitAjaxForm(){
 					if(data.type == 'error')
 					{
 						output = '<div class="error">'+data.text+'</div>';
-                        console.log(data.text);
+                        //console.log(data.text);
 					}else{
                         
                         providerNames = JSON.parse(data);
-                        console.log(providerNames);
+                        //console.log(providerNames);
                         showTab('passwordTab');
                         $("#submit").after(data);
-						output = '<div class="success">'+data+'</div>';
-					}
-					
-					$("#result").hide().html(output).slideDown();			
+					}		
 				}
 			 });
 		  }
