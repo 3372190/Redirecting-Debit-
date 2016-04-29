@@ -5,6 +5,7 @@ class rdaspa{
     private $initialList = array();
 	private $iListCopy = array();
 	private $providerList = array();
+    private $spList = array();
     
     
     // this will take in the list from processor
@@ -56,7 +57,7 @@ class rdaspa{
 					{
 						if($newDate > $startDate && $newDate < $endDate)				//1 month +- 3 days.
 						{	
-                            var_dump($iList[$i]);
+                            //var_dump($iList[$i]);
                             array_push($this->foundList, $iList[$i]);	
                             
 							/*if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable....
@@ -79,7 +80,6 @@ class rdaspa{
 				}
 			}
 		}
-        var_dump($this->foundList);
     }
 	
 	function getFoundList()
@@ -109,10 +109,10 @@ class rdaspa{
 			$token = strtok($foundList[$i]->getTitle(), " "); 		//Tokenize description
 			while($token != FALSE)
 			{
-				if (strcmp($token, providerList[$j]) == 0)				//If token == name of provider in database
+				if (strcmp($token, $providerList[$j]) == 0)				//If token == name of provider in database
 				{
 					$foundList[$i]->setName($token);				//Set object name = matched token
-					array_push($spList, foundList[$i]);			//Add object to found list/
+					array_push($spList, $foundList[$i]);			//Add object to found list/
 				}
 				$token = strtok(" ");							//Next token
 			}
@@ -132,7 +132,7 @@ class rdaspa{
 	}
 	
 	function setProviders($providerList){
-        var_dump($providerList);
+        //var_dump($providerList);
 		$this->providerList = $providerList;
 	}
 	
