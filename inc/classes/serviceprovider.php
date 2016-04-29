@@ -4,10 +4,7 @@ class ServiceProvider{
     
     private $transactionDate;
     private $transactionTitle;
-<<<<<<< HEAD
-=======
 	private $transactionAmount; 
->>>>>>> integratingAggr
     private $transactionName;
     
     function __construct($title, $date, $amnt) {
@@ -18,14 +15,6 @@ class ServiceProvider{
 	
     public function setDate($date){
         $this->transactionDate = $date;
-    }
-    
-    public function setName($name){
-        $this->transactionName = $name;
-    }
-    
-    public function getName(){
-        return $this->transactionName;
     }
     
     public function setName($name){

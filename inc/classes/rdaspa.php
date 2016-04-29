@@ -1,23 +1,21 @@
 <?php
-
 class rdaspa{
     
     private $foundList = array();
     private $initialList = array();
 	private $iListCopy = array();
 	private $providerList = array();
+    private $spList = array();
     
     
     // this will take in the list from processor
     function __construct($iList)
 	{
-<<<<<<< HEAD
 			
 		$checkdate1;
 		$checkdate2;
 		$i = 0;
 		$j;
-=======
 		$startDate;
 		$endDate;
 		$currDate;
@@ -25,8 +23,6 @@ class rdaspa{
 		$i = 0;
 		$j;
 		//$foundCount= [];
->>>>>>> integratingAggr
-
 		if( ! ini_get('date.timezone') )
         {
             date_default_timezone_set('GMT');
@@ -61,10 +57,14 @@ class rdaspa{
 					{
 						if($newDate > $startDate && $newDate < $endDate)				//1 month +- 3 days.
 						{	
-							if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable....
+                            //var_dump($iList[$i]);
+                            array_push($this->foundList, $iList[$i]);	
+                            
+							/*if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable....
 							{
-								array_push($this->foundList, $iList[$i]);					//add to foundList
-							}
+                                
+												//add to foundList
+							}*/
 						}
 						else{
 							break;
@@ -82,7 +82,7 @@ class rdaspa{
 		}
     }
 	
-	function printFound()
+	function getFoundList()
 	{
 		return $this->foundList;
 	}
@@ -98,23 +98,32 @@ class rdaspa{
 	
 	//Starting westpac, commbank currently just has identifier.
 	
-	/*$i;
+	$i;
+	$j;
 	
-	for ($i = 0; $i < count(foundList); $i++)
+	for ($i = 0; $i < count($this->foundList); $i++)
 	{
-		$token = strtok($foundList[$i]->getTitle(), " "); 		//Tokenize description
-		
-		while($token != FALSE)
+		$j = 0;		
+		while($j < count($this->providerList))
 		{
-			if (strcmp($token, NAME) == 0)				//If token == name of provider in database
+			$token = strtok($this->foundList[$i]->getTitle(), " "); 		//Tokenize description
+            while($token != NULL)
 			{
-				foundList[$i]->setName($TOKEN);			//Set object name = matched token
-				array_push($spList, foundList[$i]);		//Add object to found list/
+                
+                $token  = strtoupper($token);
+                $this->providerList[$j] = strtoupper($this->providerList[$j]);
+				if (strcmp($token, $this->providerList[$j]) == 0)				//If token == name of provider in database
+				{
+					$this->foundList[$i]->setName($token);				//Set object name = matched token
+					array_push($this->spList, $this->foundList[$i]);			//Add object to found list/
+				}
+				$token = strtok(" ");							//Next token
 			}
 			
-			$token = strtok(" ");						//Next token
+			$j++;
 		}
 	}
+	/*
 	*/
 	
 	
@@ -126,18 +135,11 @@ class rdaspa{
 	}
 	
 	function setProviders($providerList){
+        //var_dump($providerList);
 		$this->providerList = $providerList;
 	}
 	
 	
  
 }
-
-
-
-
-
-
-
-
 ?>

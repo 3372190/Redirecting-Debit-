@@ -8,62 +8,35 @@ include ('classes/processor.php');
 include ('classes/rdaspa.php');
 
 if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
-    $uId = "5d78119b-8736-4e8b-8591-da0b0f84761a";
+    
+    //grab users uid to upload file in correstponding directory
+    if(isset($_POST['uid'])){
+        $uId = $_POST['uid'];
+    }
     
     $fileUploader = new upload($uId, $_FILES["fileToUpload"]);
     if($fileUploader->checkFileType() && $fileUploader->checkFileExists()){
         $fileUploader->uploadFile();
         
         
-        
+        $providers = json_decode($_POST['providerList']);
+
         
         $processor = new Processor($fileUploader->getFilePath(), $_POST["bankNumber"]);
         
         if($processor->getServiceList() != null){
-        //implement Algorithm here
-<<<<<<< HEAD
-<<<<<<< HEAD
-        /* $rdaspa = new rdaspa($processor->getServiceList());
-            $rdaspa->setProviders($_POST['serviceproviders']);
-=======
-         $rdaspa = new rdaspa($processor->getServiceList());
-		 var_dump($rdaspa->printFound());
-        /*  $rdaspa->setProviders($_POST['serviceproviders']);
->>>>>>> integratingAggr
-            if($rda->compareProviders()){
-            
-                foreach($rdaspa->getSpList() as $serviceProvider){
-                    echo json_encode(array($serviceProvider->getName()), JSON_PRETTY_PRINT);
-                }
-            }else{
-            
-                
-            }
-<<<<<<< HEAD
-        */
-=======
->>>>>>> integratingAggr
-            
-            foreach($processor->getServiceList() as $obj){
+            //implement Algorithm here
+
+            $rdaspa = new rdaspa($processor->getServiceList());
+            $rdaspa->setProviders($providers);
+            $rdaspa->compareProvider();
+
+            var_dump($rdaspa->getSpList());
+
+            /*foreach($rdaspa->getFoundList() as $obj){
                 echo json_encode(array($obj->getTitle(), $obj->getDate()),JSON_PRETTY_PRINT);
-            }
-<<<<<<< HEAD
-=======
-=======
->>>>>>> integratingAggr
-        $rdaspa = new rdaspa($processor->getServiceList());
-        */
-           /* foreach($rdaspa->printFound() as $obj)
-        var_dump($rdaspa->printFound());
-			{
-				var_dump($rdaspa);
-                //echo json_encode(array($obj->getTitle(), $obj->getDate()),JSON_PRETTY_PRINT);
             }*/
->>>>>>> b1904f54ac64004bb760e2c4e9f828efadcf99ec
-         //echo json_encode($processor->getServiceList());
-            
-            
-        //var_dump(processor->getServiceList());
+        
             
         }else{
            echo json_encode(array("Type" => "Error", "Message" => "File is empty" ),JSON_PRETTY_PRINT);
