@@ -1,11 +1,14 @@
 <?php
-
 class rdaspa{
     
     private $foundList = array();
     private $initialList = array();
 	private $iListCopy = array();
 	private $providerList = array();
+<<<<<<< HEAD
+=======
+    private $spList = array();
+>>>>>>> dylans
     
     
     // this will take in the list from processor
@@ -17,7 +20,10 @@ class rdaspa{
 		$checkdate2;
 		$i = 0;
 		$j;
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> dylans
 		$startDate;
 		$endDate;
 		$currDate;
@@ -25,8 +31,11 @@ class rdaspa{
 		$i = 0;
 		$j;
 		//$foundCount= [];
+<<<<<<< HEAD
 >>>>>>> integratingAggr
 
+=======
+>>>>>>> dylans
 		if( ! ini_get('date.timezone') )
         {
             date_default_timezone_set('GMT');
@@ -61,10 +70,21 @@ class rdaspa{
 					{
 						if($newDate > $startDate && $newDate < $endDate)				//1 month +- 3 days.
 						{	
+<<<<<<< HEAD
 							if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable....
 							{
 								array_push($this->foundList, $iList[$i]);					//add to foundList
 							}
+=======
+                            //var_dump($iList[$i]);
+                            array_push($this->foundList, $iList[$i]);	
+                            
+							/*if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable....
+							{
+                                
+												//add to foundList
+							}*/
+>>>>>>> dylans
 						}
 						else{
 							break;
@@ -82,7 +102,7 @@ class rdaspa{
 		}
     }
 	
-	function printFound()
+	function getFoundList()
 	{
 		return $this->foundList;
 	}
@@ -98,6 +118,7 @@ class rdaspa{
 	
 	//Starting westpac, commbank currently just has identifier.
 	
+<<<<<<< HEAD
 	/*$i;
 	
 	for ($i = 0; $i < count(foundList); $i++)
@@ -115,6 +136,34 @@ class rdaspa{
 			$token = strtok(" ");						//Next token
 		}
 	}
+=======
+	$i;
+	$j;
+	
+	for ($i = 0; $i < count($this->foundList); $i++)
+	{
+		$j = 0;		
+		while($j < count($this->providerList))
+		{
+			$token = strtok($this->foundList[$i]->getTitle(), " "); 		//Tokenize description
+            while($token != NULL)
+			{
+                
+                $token  = strtoupper($token);
+                $this->providerList[$j] = strtoupper($this->providerList[$j]);
+				if (strcmp($token, $this->providerList[$j]) == 0)				//If token == name of provider in database
+				{
+					$this->foundList[$i]->setName($token);				//Set object name = matched token
+					array_push($this->spList, $this->foundList[$i]);			//Add object to found list/
+				}
+				$token = strtok(" ");							//Next token
+			}
+			
+			$j++;
+		}
+	}
+	/*
+>>>>>>> dylans
 	*/
 	
 	
@@ -126,18 +175,14 @@ class rdaspa{
 	}
 	
 	function setProviders($providerList){
+<<<<<<< HEAD
+=======
+        //var_dump($providerList);
+>>>>>>> dylans
 		$this->providerList = $providerList;
 	}
 	
 	
  
 }
-
-
-
-
-
-
-
-
 ?>

@@ -19,14 +19,13 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
         $fileUploader->uploadFile();
         
         
-        $providers = $_POST['providerList'];
-        
-        var_dump($providers);
-        
+        $providers = json_decode($_POST['providerList']);
+
         
         $processor = new Processor($fileUploader->getFilePath(), $_POST["bankNumber"]);
         
         if($processor->getServiceList() != null){
+<<<<<<< HEAD
         //implement Algorithm here
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -76,6 +75,20 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
 =======
 >>>>>>> dylans
             
+=======
+            //implement Algorithm here
+
+            $rdaspa = new rdaspa($processor->getServiceList());
+            $rdaspa->setProviders($providers);
+            $rdaspa->compareProvider();
+
+            var_dump($rdaspa->getSpList());
+
+            /*foreach($rdaspa->getFoundList() as $obj){
+                echo json_encode(array($obj->getTitle(), $obj->getDate()),JSON_PRETTY_PRINT);
+            }*/
+        
+>>>>>>> dylans
             
         }else{
            echo json_encode(array("Type" => "Error", "Message" => "File is empty" ),JSON_PRETTY_PRINT);

@@ -40,9 +40,7 @@ function getProviderList(){
                 providerList.push(data)
 
             });
-    });
-    
-    
+    }); 
 }
 
 function submitAjaxForm(){

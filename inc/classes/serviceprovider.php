@@ -5,9 +5,13 @@ class ServiceProvider{
     private $transactionDate;
     private $transactionTitle;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	private $transactionAmount; 
 >>>>>>> integratingAggr
+=======
+	private $transactionAmount; 
+>>>>>>> dylans
     private $transactionName;
     
     function __construct($title, $date, $amnt) {
@@ -18,6 +22,7 @@ class ServiceProvider{
 	
     public function setDate($date){
         $this->transactionDate = $date;
+<<<<<<< HEAD
     }
     
     public function setName($name){
@@ -26,6 +31,8 @@ class ServiceProvider{
     
     public function getName(){
         return $this->transactionName;
+=======
+>>>>>>> dylans
     }
     
     public function setName($name){
