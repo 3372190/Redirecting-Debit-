@@ -10,6 +10,7 @@ var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 
 var userInfo;
 var message;
+var uId;
 
 $(document).ready(function() {
     getUserToolbar();
@@ -291,6 +292,7 @@ function isUserLoggedIn(){
     authData = firebaseRef.getAuth();
     
     if (authData) {
+        uId = authData.uid;
         //console.log("User " + authData.uid + " is logged in with " + authData.provider);
         return true;
     } else {
