@@ -31,11 +31,9 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
             $rdaspa->setProviders($providers);
             $rdaspa->compareProvider();
 
-            var_dump($rdaspa->getSpList());
-
-            /*foreach($rdaspa->getFoundList() as $obj){
-                echo json_encode(array($obj->getTitle(), $obj->getDate()),JSON_PRETTY_PRINT);
-            }*/
+            foreach($rdaspa->getSpList() as $obj){
+                echo json_encode(array($obj->getName()),JSON_PRETTY_PRINT);
+            }
         
             
         }else{

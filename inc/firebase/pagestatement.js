@@ -2,6 +2,7 @@ var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 
 var providerList = [];
 var uId;
+var providerNames = [];
 
 $(document).ready(function(){
     
@@ -97,10 +98,10 @@ function submitAjaxForm(){
 						output = '<div class="error">'+data.text+'</div>';
                         console.log(data.text);
 					}else{
-                        console.log(data);
+                        providerNames = JSON.parse(data);
+                        console.log(providerNames);
+                        $("#submit").after(data);
 						output = '<div class="success">'+data+'</div>';
-						$('input[type=text]').val(''); 
-						$('#contactform textarea').val(''); 
 					}
 					
 					$("#result").hide().html(output).slideDown();			
