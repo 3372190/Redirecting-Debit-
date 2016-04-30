@@ -225,6 +225,7 @@ function userLogin(e,p){
 function userLogout(){
     
     if (isUserLoggedIn){
+        localStorage.clear();
         firebaseRef.unauth();
        window.location = "index.php";
    }
