@@ -37,7 +37,35 @@
 			</div>
 		</div><!--/container-->
 		<!--=== End Content Part ===-->
-
+			<!-- Owl Clients v1 -->
+        <div class="container content-sm">
+			<div class="headline"><h2>Compatible Companies</h2></div>
+			<div class="owl-clients-v1">
+				<div class="item">
+					<img src="assets/img/banks/anz_logo.png" alt="">
+				</div>
+				<div class="item">
+					<img src="assets/img/banks/bendigo_logo.png" alt="">
+				</div>
+				<div class="item">
+					<img src="assets/img/banks/commbank_logo1.png" alt="">
+				</div>
+				<div class="item">
+					<img src="assets/img/banks/hsbc-logo.png" alt="">
+				</div>
+				<div class="item">
+					<img src="assets/img/banks/nab_logo.png" alt="">
+				</div>
+				<div class="item">
+					<img src="assets/img/banks/westpac_logo.png" alt="">
+				</div>
+				<div class="item">
+					<img src="assets/img/banks/ing_logo.png" alt="">
+				</div>
+			</div>
+			<!-- End Owl Clients v1 -->
+        </div>
+		<!-- End Content Part -->
 		<!--=== Footer Version 1 ===-->
             <?php include 'inc/footer.php'?>
 		<!--=== End Footer Version 1 ===-->

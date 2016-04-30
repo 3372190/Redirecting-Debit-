@@ -66,7 +66,7 @@ As of 15/3/2016 it is being developed as a project by RMIT students.
 					<div class="thumbnail-style">
 						<img class="img-responsive" src="assets/img/team/chris.jpg" alt="" />
 						<h3><a>Chris Yong</a> <small>Founder</small></h3>
-                        <p>A business process improvement specialist, who has worked with well establish companies such as Ernst & Young, MasterCard, VISA, Slater & Gordon Lawyers and the Victorian Auditor-General's Office.</p>
+                        <p>A business process improvement specialist, who has worked with well establish companies such as Ernst & Young, MasterCard, VISA, Slater & Gordon Lawyers and the Victorian Auditor-General's Office.</p><p>Graduated from Founder Institute and won a competition held by ANZ bank and HealthWallce institute.</p>
 						<ul class="list-unstyled list-inline team-socail">
 							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
