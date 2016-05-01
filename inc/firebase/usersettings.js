@@ -111,6 +111,44 @@ function changeUserPassword(){
 
 function changeUserPicture(){
     
+        
+        //gather the form and post it to profileupload
+        var formData = new FormData($('#fileprocess')[0]);
+		/********Validation end here ****/
+		// If all are ok then we send ajax request to formprocess.php *******
+		if(flag) {
+            
+            
+			$.ajax({
+				type: 'post',
+				url: "inc/profileupload.php",
+				data:  formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                
+				beforeSend: function() {
+					$('#submit').attr('disabled', true);
+					$('#submit').after('<span class="wait">&nbsp;<img width="150px" height="150px" src="assets/img/loading.gif" alt="" /></span>');
+				},
+				complete: function() {
+					$('#submit').attr('disabled', false);
+					$('.wait').remove();
+				},	
+				success: function(data)
+				{
+					if(data.type == 'error')
+					{
+						output = '<div class="error">'+data.text+'</div>';
+                        
+					}else{
+                        console.log(data);
+                        $("#submit").after(data);
+					}		
+				}
+			 });
+		  }
+        return false;
     
     
     

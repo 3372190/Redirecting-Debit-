@@ -14,6 +14,10 @@ if(isset($_FILES['fileToUpload'])){
     
     
     
+}else{
+    
+    
+    echo json_encode(array("type" => "Error", "Message" => "File Not Set"),JSON_PRETTY_PRINT);
 }
 
 
