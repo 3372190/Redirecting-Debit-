@@ -5,10 +5,7 @@ $(document).ready(function() {
     loadUserDetails();
     
     $("#updatePassword").click(changeUserPassword);
-
-    
-    
-    
+    $("#updatepp").click(changeUserPicture);
 });
 
 
@@ -110,6 +107,13 @@ function changeUserPassword(){
     
     document.getElementById("message").innerHTML = message;
     return false;
+}
+
+function changeUserPicture(){
+    
+    
+    
+    
 }
                   
                   

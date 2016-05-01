@@ -15,6 +15,7 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
     }
     
     $fileUploader = new upload($uId, $_FILES["fileToUpload"]);
+    $fileUploader->setUploadDir("statements");
     if($fileUploader->checkFileType() && $fileUploader->checkFileExists()){
         $fileUploader->uploadFile();
         

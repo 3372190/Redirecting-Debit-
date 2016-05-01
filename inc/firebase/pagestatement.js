@@ -199,9 +199,9 @@ function submitAjaxForm(){
 					if(data.type == 'error')
 					{
 						output = '<div class="error">'+data.text+'</div>';
-                        //console.log(data.text);
-					}else{
                         
+					}else{
+                        //console.log(data);
                         providerNames = JSON.parse(data);
                         //console.log(providerNames);
                         showTab('passwordTab');

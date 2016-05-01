@@ -85,9 +85,31 @@
 							</ul>
 							<div class="tab-content">
 								<div id="profile" class="profile-edit tab-pane fade in active">
-									<h2 class="heading-md">Manage your Name, ID and Email Addresses.</h2>
-									<p>Below are the name and email addresses on file for your account.</p>
-									<br>
+                                    <form class="sky-form" method="post" id="fileprocess" enctype="multipart/form-data">
+										<!--profile form-->
+										<section>
+                                        <h2 class="heading-md">Manage your Name, ID and Email Addresses.</h2>
+                                        <p>Below are the name and email addresses on file for your account.</p>
+                                        <br>
+										</section>
+
+										<section>
+                                            <div class="row">
+                                                <section class="col col-10">
+                                                    <img name="profilepreview" id="profilepreview" class="img-responsive profile-img margin-bottom-20" width="150" height="150"
+                                                    src="assets/img/team/img32-md.jpg" alt="">
+                                                    <input type="file" name="fileToUpload" id="fileToUpload" />
+                                                </section>
+                                                <section class="col col-10">
+                                                    <button class="btn-u"  id="uploadpp" name="uploadpp">Upload</button>
+                                                </section>
+                                            </div>
+                                            
+										</section>
+										
+                                        <br>
+										<!--End profile pic-Form-->
+									</form>
 									<dl class="dl-horizontal">
 										<dt><strong>Your name </strong></dt>
 										<dd><div id="firstname"></div>&nbsp;<div id="lastname"></div>
@@ -157,14 +179,14 @@
 									<h2 class="heading-md">Manage your Security Settings</h2>
 									<p>Change your password.</p>
 									<br>
-									<form class="sky-form" id="sky-form4" action="#">
+									<form class="sky-form"  action="#">
 										<dl class="dl-horizontal">
 											<dt>Email</dt>
 											<dd>
 												<section>
 													<label class="input">
 														<i class="icon-append fa fa-user"></i>
-														<input type="text" placeholder="emailAddress" name="emailAddress">
+														<input type="text" placeholder="Email Address" name="emailAddress">
 														<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
 													</label>
 												</section>
@@ -174,7 +196,7 @@
 												<section>
 													<label class="input">
 														<i class="icon-append fa fa-envelope"></i>
-														<input type="email" placeholder="oldPassword" name="oldPassword" id="oldPassword">
+														<input type="email" placeholder="Old Password" name="oldPassword" id="oldPassword">
 														<b class="tooltip tooltip-bottom-right">Needed to verify you remember your old password</b>
 													</label>
 												</section>
