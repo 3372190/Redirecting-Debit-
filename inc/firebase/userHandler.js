@@ -13,7 +13,6 @@ var message;
 var uId;
 
 $(document).ready(function() {
-    getUserToolbar();
 
     $("#loader").hide(100);
     
