@@ -104,7 +104,7 @@ function loginFunction (){
                 document.getElementById("loginButton").innerHTML = "Logging in";
                 userLogin(e, p);
             }else{
-                document.getElementById("message").innerHTML = message;
+                messageDisplay(message);
             }
         return false;
     
@@ -189,7 +189,7 @@ function registerFunction(){
 
 
         }else if(!flag){
-            document.getElementById("message").innerHTML = message;
+            messageDisplay(message);
         }
         return false; 
         
@@ -205,22 +205,32 @@ function userLogin(e,p){
                     switch (error.code) {
                       case "INVALID_EMAIL":
                        message = "The specified user account email is invalid.";
+                        messageDisplay(message);
                         break;
                       case "INVALID_PASSWORD":
                         message ="The specified user account password is incorrect.";
+                            messageDisplay(message);
                         break;
                       case "INVALID_USER":
                         message = "The specified user account does not exist.";
+                            messageDisplay(message);
                         break;
                       default:
-                        message = "Error logging user in:", error;
+                        message = "Error logging user in:";
+                            messageDisplay(message);
                     }
                   } else {
-                    //console.log("Authenticated successfully with payload:", authData);
+                    message = "Authenticated successfully.";
+                      messageDisplay(message);
                       window.location = "page_profile.php";
                     return true;
                   }
             });
+    
+}
+
+function messageDisplay(msg){
+    document.getElementById("message").innerHTML = msg;
 }
 function userLogout(){
     
@@ -303,7 +313,6 @@ function loadUserDetails(){
 }
 function userRegister(email, pword){
     
-    didRegister = true;
     
     firebaseRef.createUser({
       email: email,
@@ -313,19 +322,20 @@ function userRegister(email, pword){
         switch (error.code) {
           case "EMAIL_TAKEN":
             message ="The new user account cannot be created because the email is already in use.";
-            didRegister = false;
+            messageDisplay(message);
             break;
           case "INVALID_EMAIL":
             message = "The specified email is not a valid email.";
-            didRegister = false;
+            messageDisplay(message);
             break;
           default:
             message ="Error creating user:", error;
-            didRegister = false;
+            messageDisplay(message);
             break;
         }
       } else {
         message = "Successfully created user account with uid:", userData.uid;
+          messageDisplay(message);
         firebaseRef.authWithPassword({
             email: email,
             password : pword
@@ -335,22 +345,23 @@ function userRegister(email, pword){
                 switch (error.code) {
                       case "INVALID_EMAIL":
                        message = "The specified user account email is invalid.";
-                        didRegister = false;
+                        messageDisplay(message);
                         break;
                       case "INVALID_PASSWORD":
                         message ="The specified user account password is incorrect.";
-                        didRegister = false;
+                        messageDisplay(message);
                         break;
                       case "INVALID_USER":
                         message = "The specified user account does not exist.";
-                        didRegister = false;
+                        messageDisplay(message);
                         break;
                       default:
                         message = "Error logging user in:", error;
-                        didRegister = false;
+                        messageDisplay(message);
                 }
             }else{
                 message = "Successfully logged in user account with uid:", userData.uid;
+                messageDisplay(message);
                 addUserDataToFirebase(userInfo);
             }
         });

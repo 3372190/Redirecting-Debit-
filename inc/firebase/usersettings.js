@@ -34,9 +34,10 @@ function changeUserPassword(){
         formInputName = listElement.getAttribute("name");
         
         
-        switch(formInputName){
-            case "oldPassword":
-                
+        
+        
+        if(formInputName == "oldPassword"){
+                    
                 if(checkFieldLength(listElement)){
                     op = listElement.value;
                 }else{
@@ -45,48 +46,40 @@ function changeUserPassword(){
                     message = "old password is empty";
                     break;   
                 }
-                break;
-            case "emailAddress":
-                
-                if(checkFieldLength(listElement)){
-                    if(validateEmail(listElement.value)){
-                        e = listElement.value;
-                    }else{
-                        flag = false;
-                        listElement.style.borderColor = 'red';
-                        message = "Email fields are not valid emails";
-                        break;
+                        
+        }else if ((formInputName == "password") ||(formInputName == "confirmPassword")){
+                    // create element
+                     var checkElement;
+                    if(formInputName == "password"){
+                        checkElement = searchForElement(elements, "confirmPassword");
+                        
+                    }else if(formInputName == "confirmPassword"){
+                        checkElement = searchForElement(elements, "password");
                     }
-                }
-                
-                break;
-            case "password":
-                
-                //if the form input attribute name is password.
-                checkElement  = searchForElement(elements, "confirmPassword");
-                
-            case "confirmPassword":
-                checkElement = searchForElement(elements, "password");
-                
-                if(checkFieldLength(listElement) && checkFieldLength(checkElement)){
-                    if(!checkFieldsMatch(listElement, checkElement)){
-                        listElement.style.borderColor = 'red';
-                        checkElement.style.borderColor = 'red';
-                        message = formInputName + checkElement.getAttribute("name") + " Fields Must Match";
-                        flag = false;
-                        break;
-                    }else{
-                        np = listElement.value;
-                    }   
-                }else{
+                    
+                    if(checkFieldLength(listElement) && checkFieldLength(checkElement)){
+                        if(!checkFieldsMatch(listElement, checkElement)){
+                            listElement.style.borderColor = 'red';
+                            checkElement.style.borderColor = 'red';
+                            message = formInputName + checkElement.getAttribute("name") + " Fields Must Match";
+                            flag = false;
+                            break;
+                        }else{
+                            np = listElement.value;
+e                        }
+                    }
+        }else if(formInputName == "emailAddress"){
+            if(validateEmail(listElement)){
+                if(!checkFieldLength(listElement)) {
                     listElement.style.borderColor = 'red';
-                    checkElement.style.borderColor = 'red';
-                    message = formInputName + checkElement.getAttribute("name") + " Fields must not be empty";
+                    message = formInputName + " Must not be blank";  
                     flag = false;
                     break;
-                }
-                
-                break;
+                }else{
+                    e = listElement.value;
+                } 
+            }
+            
         }
     }
     
