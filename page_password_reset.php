@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-	<title>Login | Redirect Debit</title>
+	<title>Reset Password | Redirect Debit</title>
         	<!-- JS Global Compulsory -->
 	<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
@@ -52,7 +52,7 @@
 					<form class="reg-page" method="post">
                         
                         <div class="reg-header">
-							<h2>Login to your account</h2>
+							<h2>Enter Your Email</h2>
 						</div>
                            <div class="row">
                                <center>
@@ -65,23 +65,12 @@
 							<span class="input-group-addon"><i class="fa fa-user"></i></span>
 							<input type="text" placeholder="Email Address" class="form-control" id="emailAddress" name="emailAddress">
 						</div>
-						<div class="input-group margin-bottom-20">
-							<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-							<input type="password" placeholder="Password" class="form-control" id="password" name="password">
-						</div>
 
-						<div class="row">
-							<div class="col-md-6 checkbox">
-								<label><input type="checkbox" name="staySignedIn" id="staySignedIn"> Stay signed in</label>
-							</div>
+						<div class="row"> 
 							<div class="col-md-6">
-								<button class="btn-u pull-right" id="loginButton" name="loginButton">Login</button>
+								<button class="btn-u pull-right" id="resetButton" name="restButton">Reset Password</button>
 							</div>
 						</div>
-                        <hr>
-
-						<h4>Forgotten your Password?</h4>
-						<p>No worries, <a name="passwordReset" id="passwordReset" class="color-green" href="page_password_reset.php">click here</a> to reset your password.</p>
 					</form>
 				</div>
 			</div><!--/row-->
