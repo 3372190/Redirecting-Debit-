@@ -69,14 +69,14 @@ function changeUserPassword(){
 e                        }
                     }
         }else if(formInputName == "emailAddress"){
-            if(validateEmail(listElement)){
-                if(!checkFieldLength(listElement)) {
+            if(validateEmail(listElement.value)){
+                if(checkFieldLength(listElement)) {
+                   e = listElement.value;
+                }else{
                     listElement.style.borderColor = 'red';
                     message = formInputName + " Must not be blank";  
                     flag = false;
                     break;
-                }else{
-                    e = listElement.value;
                 } 
             }
             
@@ -93,25 +93,26 @@ e                        }
           if (error) {
             switch (error.code) {
               case "INVALID_PASSWORD":
-                message = "The specified user account password is incorrect.";
+                    message = "The specified user account password is incorrect.";
+                    messageDisplay(message);
                 break;
               case "INVALID_USER":
                 message = "The specified user account does not exist.";
+                    messageDisplay(message);
                 break;
               default:
                 message = "Error changing password: " +error;
+                    messageDisplay(message);
             }
           } else {
             message = "User password changed successfully!";
+              messageDisplay(message);
           }
         });
         
     }else{
-        
-        
+        messageDisplay(message);
     }
-    
-    document.getElementById("message").innerHTML = message;
     return false;
 }
 

@@ -217,12 +217,15 @@ function userLogin(e,p){
                         break;
                       default:
                         message = "Error logging user in:";
-                            messageDisplay(message);
+                            messageDisplay(error);
                     }
                   } else {
-                    message = "Authenticated successfully.";
+                    message = "Authenticated successfully. <br> Redirecting in 2 seconds";
+                      
                       messageDisplay(message);
-                      window.location = "page_profile.php";
+                        setTimeout(function () {
+                            window.location.href = "page_profile.php";
+                        }, 2000); //will call the function after 2 secs.
                     return true;
                   }
             });

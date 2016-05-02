@@ -184,6 +184,13 @@
 									<h2 class="heading-md">Manage your Security Settings</h2>
 									<p>Change your password.</p>
 									<br>
+                                    <div class="row">
+                                       <center>
+                                           <h5 id="message" name="message" class="message"></h5>
+                                       </center>
+                                
+                                    </div>
+
 									<form class="sky-form" method="post" action="#">
 										<dl class="dl-horizontal">
 											<dt>Email</dt>
