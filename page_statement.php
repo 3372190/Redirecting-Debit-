@@ -21,7 +21,9 @@
         
         getUserId();
         getProviderList();
-        getUserToolbar();
+    $(document).ready(function() {
+        getUserToolbar(); 
+    });
     </script>
 
 	<!-- Meta -->

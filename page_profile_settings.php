@@ -19,7 +19,10 @@
             window.location = "page_login.php"
         }
         getUserId();
-        getUserToolbar();
+        
+        $(document).ready(function() {
+           getUserToolbar(); 
+        });
     </script>
 
 	<!-- Meta -->
@@ -198,7 +201,7 @@
 												<section>
 													<label class="input">
 														<i class="icon-append fa fa-envelope"></i>
-														<input type="email" placeholder="Old Password" name="oldPassword" id="oldPassword">
+														<input type="password" placeholder="Old Password" name="oldPassword" id="oldPassword">
 														<b class="tooltip tooltip-bottom-right">Needed to verify you remember your old password</b>
 													</label>
 												</section>
