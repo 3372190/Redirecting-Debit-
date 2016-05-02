@@ -10,6 +10,7 @@ var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 
 var userInfo;
 var message;
+var uId;
 
 $(document).ready(function() {
     getUserToolbar();
@@ -224,10 +225,81 @@ function userLogin(e,p){
 function userLogout(){
     
     if (isUserLoggedIn){
+        localStorage.clear();
         firebaseRef.unauth();
        window.location = "index.php";
    }
     
+}
+function loadUserDetails(){
+    
+    var isLocalSupported = checkLocalStorageSupport();
+    
+    //check if local storage exists
+    if(isLocalSupported){
+        
+        
+        if(localStorage.getItem("userDetails") != null){
+            //console.log(localStorage.getItem('userdetails'));
+            var userDetails = JSON.parse(localStorage.getItem("userDetails"));
+            for (var property in userDetails) {
+            if (userDetails.hasOwnProperty(property)) {
+                if(property == "profileimage"){
+                    $("#" +property+ "").attr("src", userDetails[property]);
+                    $("#profilepreview").attr("src", userDetails[property]);
+                }else{
+                    $("#"+ property+"").replaceWith(userDetails[property]);
+                }
+                
+            }
+}
+            
+            
+        }else{
+            var authData = firebaseRef.getAuth();
+            var usersRef = firebaseRef.child("users").child(authData.uid);
+
+            usersRef.once("value", function(snap){
+
+                //because the data doesnt exist in local storage and it is supported, add it to local storage
+                var object = snap.val();
+                localStorage.setItem('userDetails', JSON.stringify(object));
+                
+                snap.forEach(function(childSnapshot){
+
+                    var key = childSnapshot.key();
+
+                    var data = childSnapshot.val();
+                    
+                    if(key == "profileimage"){
+                        $("#" +key+ "").attr("src", data);
+                        $("#profilepreview").attr("src", data);
+                    }else{
+                        $("#"+ key+"").replaceWith(data);
+                    }
+
+                });
+            });
+            
+        }
+    }else{
+        var authData = firebaseRef.getAuth();
+        var usersRef = firebaseRef.child("users").child(authData.uid);
+        
+        
+        //because local storage is not supported load the data dynamically, this method creates visual delays.
+        usersRef.once("value", function(snap){
+            snap.forEach(function(childSnapshot){
+
+                var key = childSnapshot.key();
+
+                var data = childSnapshot.val();
+
+                $("#"+key+"").replaceWith(data);
+
+            });
+        });
+    }
 }
 function userRegister(email, pword){
     
@@ -291,6 +363,7 @@ function isUserLoggedIn(){
     authData = firebaseRef.getAuth();
     
     if (authData) {
+        uId = authData.uid;
         //console.log("User " + authData.uid + " is logged in with " + authData.provider);
         return true;
     } else {
@@ -323,6 +396,7 @@ function addUserDataToFirebase(elements){
             state:elements[3].value,
             postcode:elements[4].value,
             country:elements[5].value,
+            profileimage: "assets/img/team/img32-md.jpg",
         }, function(error){
             if (error) {
                 document.getElementById("message").innerHTML = error + "failed";

@@ -2,19 +2,81 @@ var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 
 var providerList = [];
 var uId;
+var providerNames = [];
+var providerids = [];
 
 $(document).ready(function(){
+    loadUserDetails();
     
     
+    $('.nav-tabs li.disabled > a[data-toggle=tab]').on('click', function(e) {
+        e.stopImmediatePropagation();
+    });
+    
+    $("#selectproviders").click(selectProviders);
+    $("#saveproviders").click(save);
     $("#submit").click(submitAjaxForm);
+    $("#providerBack").click(cancel);
         
         $("#cancel").click(function(){
            //cancel and go back to main profile page. 
             window.location = "page_profile.php"
             
         });
-                      
+    
+    
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        //show selected tab / active
+        //console.log ( $(e.target).attr('href') );
+        var tab = $(e.target).attr('href');
+        
+        if(tab == "#passwordTab"){
+            for(var i = 0 ; i <  providerNames.length; i ++){
+                getProviderDetails(providerNames[i].toLowerCase());
+            }
+        }else if(tab == "#settings"){
+            for(var i = 0 ; i <  providerids.length; i ++){
+                saveGetProviderDetails(providerids[i]);
+            }
+            
+        }
+    });
 });
+
+function selectProviders(){
+    //get list of providers and display them on next tab
+    
+    $('input:checkbox[name="providerid"]').each(function () {
+        if (this.checked) {
+            providerids.push($(this).val());
+        }
+    });
+    if(providerids.length >=1 ){
+        showTab("settings");
+    }else{
+        console.log("no providers selected");
+    }
+}
+
+function save(){
+    
+    for(var i = 0 ; i < providerids.length; i ++){
+        saveProvidersToUser(providerids[i])
+    }
+    alert("updated");
+}
+
+function saveProvidersToUser(id){
+    
+    usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
+    pushRef =  usersRef.child(id);
+    
+    pushRef.set({'notified': 'pending'});
+}
+
+function cancel(){
+    window.location = "page_profile.php";
+}
 
 function getUserId(){
     var auth = firebaseRef.getAuth();
@@ -27,19 +89,62 @@ function getUserId(){
     }
 }
 
+function showTab(tab){
+    $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+};
+
+
+
+function getProviderDetails(child){
+    
+    //this can be made cleaner
+    
+    var serviceProvidersRef = firebaseRef.child("serviceprovider");
+    
+    
+    serviceProvidersRef.once("value", function(snap){
+        snap.forEach(function(childSnapshot){
+
+            var key = childSnapshot.key();
+            
+            if(childSnapshot.val().name == child){
+                var result = childSnapshot.val();
+                
+                 $('#serviceresult > tbody:last-child').append('<tr><td><img width="150px" height="150px" class="rounded-x" src="'+result.img+'" alt=""></td><td class="td-width"><h3><a href="#">'+result.name+'</a></h3><p>'+result.description+'</p></td><td><input type="checkbox" checked="" name="providerid" value="'+ key+'"></td></tr>');
+                
+            }
+
+        });
+    });
+}
+
+function saveGetProviderDetails(id){
+    var serviceProviderRef = firebaseRef.child("serviceprovider").child(id);
+    
+    
+    serviceProviderRef.once("value", function(snap){
+        
+        var result = snap.val();
+        
+         $('#servicesave > tbody:last-child').append('<tr><td><img width="150px" height="150px" class="rounded-x" src="'+result.img+'" alt=""></td><td class="td-width"><h3><a href="#">'+result.name+'</a></h3><p>'+result.description+'</p></td></td></tr>');
+    });
+    
+    
+}
+
 function getProviderList(){
     
     var serviceProvidersRef = firebaseRef.child("serviceprovider");
 
-        serviceProvidersRef.once("value", function(snap){
-            snap.forEach(function(childSnapshot){
+    serviceProvidersRef.once("value", function(snap){
+        snap.forEach(function(childSnapshot){
 
-                var key = childSnapshot.key();
+            var key = childSnapshot.key();
 
-                var data = childSnapshot.val().name;
-                providerList.push(data)
+            var data = childSnapshot.val().name;
+            providerList.push(data)
 
-            });
+        });
     }); 
 }
 
@@ -95,15 +200,14 @@ function submitAjaxForm(){
 					if(data.type == 'error')
 					{
 						output = '<div class="error">'+data.text+'</div>';
-                        console.log(data.text);
+                        
 					}else{
-                        console.log(data);
-						output = '<div class="success">'+data+'</div>';
-						$('input[type=text]').val(''); 
-						$('#contactform textarea').val(''); 
-					}
-					
-					$("#result").hide().html(output).slideDown();			
+                        //console.log(data);
+                        providerNames = JSON.parse(data);
+                        //console.log(providerNames);
+                        showTab('passwordTab');
+                        $("#submit").after(data);
+					}		
 				}
 			 });
 		  }

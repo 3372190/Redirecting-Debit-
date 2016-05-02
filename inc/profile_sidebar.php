@@ -1,6 +1,6 @@
 				<!--Left Sidebar-->
 				<div class="col-md-3 md-margin-bottom-40">
-					<img class="img-responsive profile-img margin-bottom-20" src="assets/img/team/img32-md.jpg" alt="">
+					<img class="img-responsive profile-img margin-bottom-20" id="profileimage" name="profileimage" src="assets/img/team/img32-md.jpg" alt="">
 
 					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 						<li class="list-group-item active">

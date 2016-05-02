@@ -1,16 +1,26 @@
 var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
+var uId;
+var message;
 
 $(document).ready(function() {
     
     loadUserDetails();
     
     $("#updatePassword").click(changeUserPassword);
-
-    
-    
-    
+    $("#uploadpp").click(changeUserPicture);
 });
 
+
+function getUserId(){
+    var auth = firebaseRef.getAuth();
+    
+    if(auth){
+        uId = auth.uid;
+        return true;
+    }else{
+        return false;
+    }
+}
 
 function changeUserPassword(){
     var flag = true; 
@@ -44,9 +54,6 @@ function changeUserPassword(){
                     }
                 }
                 
-                
-                
-
                 break;
             case "password":
                 
@@ -111,64 +118,93 @@ function changeUserPassword(){
     document.getElementById("message").innerHTML = message;
     return false;
 }
-                  
-                  
-function loadUserDetails(){
-    
-    var isLocalSupported = checkLocalStorageSupport;
-    
-    //check if local storage exists
-    if(isLocalSupported){
+
+function changeUserPicture(){
         
-        
-        if(localStorage.getItem("userDetails") != null){
-            //console.log(localStorage.getItem('userdetails'));
-            var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-            for (var property in userDetails) {
-            if (userDetails.hasOwnProperty(property)) {
-                $("#"+ property+"").replaceWith(userDetails[property]);
-            }
-}
-            
-            
-        }else{
-            var authData = firebaseRef.getAuth();
-            var usersRef = firebaseRef.child("users").child(authData.uid);
-
-            usersRef.once("value", function(snap){
-
-                //because the data doesnt exist in local storage and it is supported, add it to local storage
-                var object = snap.val();
-                localStorage.setItem('userDetails', JSON.stringify(object));
-                
-                snap.forEach(function(childSnapshot){
-
-                    var key = childSnapshot.key();
-
-                    var data = childSnapshot.val();
-
-                    $("#"+key+"").replaceWith(data);
-
-                });
-            });
+        var flag = true;
+        if($("#fileToUpload").val() == null){
+            flag = false;
             
         }
-    }else{
-        var authData = firebaseRef.getAuth();
-        var usersRef = firebaseRef.child("users").child(authData.uid);
+        if(uId == null){
+            flag = false;
+        }
+    
         
-        
-        //because local storage is not supported load the data dynamically, this method creates visual delays.
-        usersRef.once("value", function(snap){
-            snap.forEach(function(childSnapshot){
-
-                var key = childSnapshot.key();
-
-                var data = childSnapshot.val();
-
-                $("#"+key+"").replaceWith(data);
-
-            });
-        });
-    }
+        //gather the form and post it to profileupload
+        var formData = new FormData($('#profileupload')[0]);
+        formData.append("uid", uId);
+		/********Validation end here ****/
+		// If all are ok then we send ajax request to formprocess.php *******
+		if(flag) {
+            
+            
+            
+			$.ajax({
+				type: 'post',
+				url: "inc/profileupload.php",
+				data:  formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                
+				beforeSend: function() {
+                    $('#profilepreview').attr("src", "assets/img/loading.gif");
+					$('#submit').attr('disabled', true);
+					$('#submit').after('<span class="wait">&nbsp;<img width="150px" height="150px" src="assets/img/loading.gif" alt="" /></span>');
+				},
+				complete: function() {
+					$('#submit').attr('disabled', false);
+					$('.wait').remove();
+				},	
+				success: function(data)
+				{
+					if(data.type == 'error')
+					{
+						message = data.text;
+                        
+					}else{
+                        
+                       var response =  JSON.parse(data);
+                        //console.log(response);
+                        if(response['Type'] == "Error"){
+                            message = response['Message'];
+                            
+                        }else{
+                            updateProfilePicture(uId, response['Message']);
+                            message = "File sucessfully updated";
+                        }
+                        $("#profilepreview").before("<h3>" + message+ "</h3>").css("color", "red");
+                        
+					}		
+				}
+			 });
+		  }
+        return false;
+    $("#profilepreview").before("<h3>" + message+ "</h3>").css("color", "red");
 }
+
+function updateProfilePicture(uid, path){
+    
+    path = path.substring(3);
+    
+    profilepictureRef = firebaseRef.child("users").child(uId);
+    profilepictureRef.update({ profileimage: path });
+    $("#profileimage").attr("src", path);
+    $("#profilepreview").attr("src", path);
+    if(localStorage){
+        
+        var userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        userDetails['profileimage'] = path;
+        localStorage.setItem("userDetails", JSON.stringify(userDetails));
+    }
+    
+}
+
+function changeUserDetails(){
+    
+    
+    
+}
+                  
+                  
