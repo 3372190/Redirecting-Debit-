@@ -126,10 +126,12 @@ function changeUserPicture(){
         
         var flag = true;
         if($("#fileToUpload").val() == null){
+            message = "file not set";
             flag = false;
             
         }
         if(uId == null){
+            message = "user id not set";
             flag = false;
         }
     
@@ -153,8 +155,7 @@ function changeUserPicture(){
                 
 				beforeSend: function() {
                     $('#profilepreview').attr("src", "assets/img/loading.gif");
-					$('#submit').attr('disabled', true);
-					$('#submit').after('<span class="wait">&nbsp;<img width="150px" height="150px" src="assets/img/loading.gif" alt="" /></span>');
+                    $('#profileimage').attr("src", "assets/img/loading.gif");
 				},
 				complete: function() {
 					$('#submit').attr('disabled', false);
