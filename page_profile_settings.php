@@ -19,6 +19,7 @@
             window.location = "page_login.php"
         }
         getUserId();
+        getUserToolbar();
     </script>
 
 	<!-- Meta -->
@@ -96,19 +97,19 @@
 
 										<section>
                                             <div class="row">
-                                                <section class="col col-10">
+                                                <section class="col col-3">
                                                     <img name="profilepreview" id="profilepreview" src="assets/img/team/img32-md.jpg" class="img-responsive profile-img margin-bottom-20" width="150" height="150"
                                                      alt="">
-                                                    <input type="file" name="fileToUpload" id="fileToUpload" />
+                                                    
                                                 </section>
-                                                <section class="col col-10">
+                                                <section class="col col-3">
+                                                    <input type="file" name="fileToUpload" id="fileToUpload" /><br>
                                                     <button class="btn-u"  id="uploadpp" type="submit" name="uploadpp">Upload</button>
                                                 </section>
                                             </div>
                                             
 										</section>
-										
-                                        <br>
+								
 										<!--End profile pic-Form-->
 									</form>
 									<dl class="dl-horizontal">

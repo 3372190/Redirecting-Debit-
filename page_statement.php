@@ -21,6 +21,7 @@
         
         getUserId();
         getProviderList();
+        getUserToolbar();
     </script>
 
 	<!-- Meta -->
