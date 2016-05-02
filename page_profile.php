@@ -128,12 +128,12 @@
 									<tbody>
 										<tr>
 											<td>
-												<img class="rounded-x" src="assets/img/testimonials/img1.jpg" alt="">
+												<img class="rounded-x" src="assets/img/profile_serviceproviders/vodafone_logo.png" alt="">
 											</td>
 											<td class="td-width">
-												<h3><a href="#">Sed nec elit arcu</a></h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id commodo lacus. Fusce non malesuada ante. Donec vel arcu.</p>
-												<small class="hex">Joined February 28, 2014</small>
+												<h3><a href="#">Vodafone Mobile Plan</a></h3>
+												<p>Vodafone direct debit update information requested. Account Number: 1234 5678 Account Name: John Smith.</p>
+												<small class="hex">Date Requested April 25, 2016</small>
 											</td>
 											<td>
 												<span class="label label-success">Success</span>
@@ -141,12 +141,13 @@
 											<td>
 												<ul class="list-inline s-icons">
 													<li>
-														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Facebook" href="#">
+														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Facebook" href="https://www.facebook.com/vodafoneau">
 															<i class="fa fa-facebook"></i>
 														</a>
 													</li>
 													<li>
-														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Twitter" href="#">
+														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Twitter" href="https://twitter.com/VodafoneAU
+">
 															<i class="fa fa-twitter"></i>
 														</a>
 													</li>
@@ -156,36 +157,37 @@
 														</a>
 													</li>
 													<li>
-														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Linkedin" href="#">
+														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Linkedin" href="https://www.linkedin.com/company/vodafone">
 															<i class="fa fa-linkedin"></i>
 														</a>
 													</li>
 												</ul>
-												<span><a href="#">info@example.com</a></span>
-												<span><a href="#">www.htmlstream.com</a></span>
+												<span><a href="#">vodafone@email.com</a></span>
+												<span><a href="www.vodafone.com.au">www.vodafone.com.au</a></span>
 											</td>
 										</tr>
 										<tr>
 											<td>
-												<img class="rounded-x" src="assets/img/testimonials/img2.jpg" alt="">
+												<img class="rounded-x" src="assets/img/profile_serviceproviders/lumo-energy_logo.png" alt="">
 											</td>
 											<td>
-												<h3><a href="#">Donec at aliquam est, a mattis mauris</a></h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id commodo lacus. Fusce non malesuada ante. Donec vel arcu.</p>
-												<small class="hex">Joined March 2, 2014</small>
+												<h3><a href="#">Lumo Energy Bill</a></h3>
+												<p>Lumo Direct debit energy monthly bill, credit card update requested.</p>
+												<small class="hex">Requested April 30, 2016</small>
 											</td>
 											<td>
-												<span class="label label-info"> Pending</span>
+												<span class="label label-success">Success</span>
 											</td>
 											<td>
 												<ul class="list-inline s-icons">
 													<li>
-														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Facebook" href="#">
+														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Facebook" href="https://www.facebook.com/Lumo.Energy/
+ ">
 															<i class="fa fa-facebook"></i>
 														</a>
 													</li>
 													<li>
-														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Twitter" href="#">
+														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Twitter" href="https://twitter.com/Lumo_Energy">
 															<i class="fa fa-twitter"></i>
 														</a>
 													</li>
@@ -195,36 +197,36 @@
 														</a>
 													</li>
 													<li>
-														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Linkedin" href="#">
+														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Linkedin" href="https://www.linkedin.com/company/lumo-energy">
 															<i class="fa fa-linkedin"></i>
 														</a>
 													</li>
 												</ul>
-												<span><a href="#">info@example.com</a></span>
-												<span><a href="#">www.htmlstream.com</a></span>
+												<span><a href="#">lumo-engergy@email.com</a></span>
+												<span><a href="www.lumoenergy.com.au">www.lumoenergy.com.au</a></span>
 											</td>
 										</tr>
 										<tr>
 											<td>
-												<img class="rounded-x" src="assets/img/testimonials/img3.jpg" alt="">
+												<img class="rounded-x" src="assets/img/profile_serviceproviders/tpg_logo.png" alt="">
 											</td>
 											<td>
-												<h3><a href="#">Pellentesque semper tempus vehicula</a></h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id commodo lacus. Fusce non malesuada ante. Donec vel arcu.</p>
-												<small class="hex">Joined March 3, 2014</small>
+												<h3><a href="#"></a>TPG Internet Service Monthly Bill</h3>
+												<p>Credit card update for TPG monthly direct debit requested.</p>
+												<small class="hex">Requested May 1, 2016</small>
 											</td>
 											<td>
-												<span class="label label-warning">Expiring</span>
+												<span class="label label-danger">Failed</span>
 											</td>
 											<td>
 												<ul class="list-inline s-icons">
 													<li>
-														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Facebook" href="#">
+														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Facebook" href="https://www.facebook.com/pages/TPG-Telecom/103129136393562?fref=ts">
 															<i class="fa fa-facebook"></i>
 														</a>
 													</li>
 													<li>
-														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Twitter" href="#">
+														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Twitter" href="https://twitter.com/tpg_telecom?lang=en">
 															<i class="fa fa-twitter"></i>
 														</a>
 													</li>
@@ -234,36 +236,37 @@
 														</a>
 													</li>
 													<li>
-														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Linkedin" href="#">
+														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Linkedin" href="https://www.linkedin.com/company/tpgtelecom">
 															<i class="fa fa-linkedin"></i>
 														</a>
 													</li>
 												</ul>
-												<span><a href="#">info@example.com</a></span>
-												<span><a href="#">www.htmlstream.com</a></span>
+												<span><a href="#">tpg-support@email.com</a></span>
+												<span><a href="https://www.tpg.com.au/
+ ">www.tpg.com.au</a></span>
 											</td>
 										</tr>
 										<tr>
 											<td>
-												<img class="rounded-x" src="assets/img/testimonials/img4.jpg" alt="">
+												<img class="" src="assets/img/profile_serviceproviders/fitness-first_logo.png" alt="">
 											</td>
 											<td>
-												<h3><a href="#">Alesuada fames ac turpis egestas</a></h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id commodo lacus. Fusce non malesuada ante. Donec vel arcu.</p>
-												<small class="hex">Joined March 4, 2014</small>
+												<h3><a href="#">Fitness First Membership</a></h3>
+												<p>Fitness First memebership direct debit payments, credit card update requested.</p>
+												<small class="hex">Requested May 2, 2016</small>
 											</td>
 											<td>
-												<span class="label label-danger">Error!</span>
+												<span class="label label-info">Pending</span>
 											</td>
 											<td>
 												<ul class="list-inline s-icons">
 													<li>
-														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Facebook" href="#">
+														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Facebook" href="https://www.facebook.com/FitnessFirstAustralia">
 															<i class="fa fa-facebook"></i>
 														</a>
 													</li>
 													<li>
-														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Twitter" href="#">
+														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Twitter" href="https://twitter.com/fitnessfirstau">
 															<i class="fa fa-twitter"></i>
 														</a>
 													</li>
@@ -273,13 +276,13 @@
 														</a>
 													</li>
 													<li>
-														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Linkedin" href="#">
+														<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Linkedin" href="https://www.linkedin.com/company/fitness-first">
 															<i class="fa fa-linkedin"></i>
 														</a>
 													</li>
 												</ul>
-												<span><a href="#">info@example.com</a></span>
-												<span><a href="#">www.htmlstream.com</a></span>
+												<span><a href="#">fitness-first@support.com</a></span>
+												<span><a href="www.fitnessfirst.com.au/">www.fitnessfirst.com.au</a></span>
 											</td>
 										</tr>
 									</tbody>
@@ -293,7 +296,7 @@
 						<!--Profile Blog-->
 						<div class="panel panel-profile">
 							<div class="panel-heading overflow-h">
-								<h2 class="panel-title heading-sm pull-left"><i class="fa fa-tasks"></i>Contacts</h2>
+								<h2 class="panel-title heading-sm pull-left"><i class="fa fa-tasks"></i>Banks</h2>
 								<a href="page_profile_users.html" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right">View All</a>
 							</div>
 							<div class="panel-body">

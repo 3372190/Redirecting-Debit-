@@ -26,44 +26,44 @@
 					</div>
 					<ul class="list-unstyled mCustomScrollbar margin-bottom-20" data-mcs-theme="minimal-dark">
 						<li class="notification">
-							<i class="icon-custom icon-sm rounded-x icon-bg-red icon-line icon-envelope"></i>
+							<img class="" src="assets/img/profile_serviceproviders/vodafone_logo.png" alt="">
 							<div class="overflow-h">
-								<span><strong>Telstra</strong> Updated Details</span>
+								<span><strong>Vodafone</strong> Updated Details</span>
 								<small>Two minutes ago</small>
 							</div>
 						</li>
 						<li class="notification">
-							<img class="rounded-x" src="assets/img/testimonials/img6.jpg" alt="">
+							<img class="" src="assets/img/profile_serviceproviders/fitness-first_logo.png" alt="">
 							<div class="overflow-h">
-								<span><strong>Local Gym</strong>Is Approving</span>
+								<span><strong>Fitness First Gym</strong> Is Approving.</span>
 								<small>Today 18:25 pm</small>
 							</div>
 						</li>
 						<li class="notification">
-							<i class="icon-custom icon-sm rounded-x icon-bg-yellow icon-line fa fa-bolt"></i>
+                            <img class="" src="assets/img/profile_serviceproviders/tpg_logo.png" alt="">
 							<div class="overflow-h">
-								<span><strong>Natasha Kolnikova</strong> accepted your invitation.</span>
+								<span><strong>TPG Telecom</strong> Are having technical difficulties, details could not be updated.</span>
 								<small>Yesterday 1:07 pm</small>
 							</div>
 						</li>
 						<li class="notification">
-							<img class="rounded-x" src="assets/img/testimonials/img1.jpg" alt="">
+							<img class="rounded-x" src="assets/img/profile_serviceproviders/lumo-energy_logo.png" alt="">
 							<div class="overflow-h">
-								<span><strong>Mikel Andrews</strong> commented on your Timeline.</span>
+								<span><strong>Lumo Energy</strong> Have successfully updated your direct debit details.</span>
 								<small>23/12 11:01 am</small>
 							</div>
 						</li>
 						<li class="notification">
-							<i class="icon-custom icon-sm rounded-x icon-bg-blue icon-line fa fa-comments"></i>
+							<img class="" src="assets/img/profile_banks/commbank_logo1.png" alt="">
 							<div class="overflow-h">
-								<span><strong>Bruno Js.</strong> added you to group chating.</span>
+								<span><strong>Commonwealth Bank </strong>Have been notified about your lost credit card.</span>
 								<small>Yesterday 1:07 pm</small>
 							</div>
 						</li>
 						<li class="notification">
 							<img class="rounded-x" src="assets/img/testimonials/img6.jpg" alt="">
 							<div class="overflow-h">
-								<span><strong>Taylor Lee</strong> changed profile picture.</span>
+								<span><strong>Commonwealth Bank </strong>You have noted that you are with commonwealth bank</span>
 								<small>23/12 15:15 pm</small>
 							</div>
 						</li>
