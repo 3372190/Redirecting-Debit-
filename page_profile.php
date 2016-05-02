@@ -19,6 +19,7 @@
     if(!isUserLoggedIn()){
         window.location = "page_login.php"
     }
+        loadUserDetails();
     </script>
 
 	<!-- Meta -->

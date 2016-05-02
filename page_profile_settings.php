@@ -18,6 +18,7 @@
         if(!isUserLoggedIn()){
             window.location = "page_login.php"
         }
+        getUserId();
     </script>
 
 	<!-- Meta -->
@@ -85,7 +86,7 @@
 							</ul>
 							<div class="tab-content">
 								<div id="profile" class="profile-edit tab-pane fade in active">
-                                    <form class="sky-form" method="post" id="fileprocess" enctype="multipart/form-data">
+                                    <form class="sky-form" method="post" id="profileupload" name="profileupload" enctype="multipart/form-data">
 										<!--profile form-->
 										<section>
                                         <h2 class="heading-md">Manage your Name, ID and Email Addresses.</h2>
@@ -96,12 +97,12 @@
 										<section>
                                             <div class="row">
                                                 <section class="col col-10">
-                                                    <img name="profilepreview" id="profilepreview" class="img-responsive profile-img margin-bottom-20" width="150" height="150"
-                                                    src="assets/img/team/img32-md.jpg" alt="">
+                                                    <img name="profilepreview" id="profilepreview" src="assets/img/team/img32-md.jpg" class="img-responsive profile-img margin-bottom-20" width="150" height="150"
+                                                     alt="">
                                                     <input type="file" name="fileToUpload" id="fileToUpload" />
                                                 </section>
                                                 <section class="col col-10">
-                                                    <button class="btn-u"  id="uploadpp" name="uploadpp">Upload</button>
+                                                    <button class="btn-u"  id="uploadpp" type="submit" name="uploadpp">Upload</button>
                                                 </section>
                                             </div>
                                             
@@ -179,7 +180,7 @@
 									<h2 class="heading-md">Manage your Security Settings</h2>
 									<p>Change your password.</p>
 									<br>
-									<form class="sky-form"  action="#">
+									<form class="sky-form" method="post" action="#">
 										<dl class="dl-horizontal">
 											<dt>Email</dt>
 											<dd>

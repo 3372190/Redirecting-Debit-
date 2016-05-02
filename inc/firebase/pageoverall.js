@@ -1,9 +1,9 @@
 var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 var uId;
 $(document).ready(function(){
+    loadUserDetails();
     loadUserServiceProviders();
     loadProviders();
-    
 });
 
 

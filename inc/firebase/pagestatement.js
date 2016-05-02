@@ -6,6 +6,7 @@ var providerNames = [];
 var providerids = [];
 
 $(document).ready(function(){
+    loadUserDetails();
     
     
     $('.nav-tabs li.disabled > a[data-toggle=tab]').on('click', function(e) {
