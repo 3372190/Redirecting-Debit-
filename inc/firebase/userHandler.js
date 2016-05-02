@@ -32,7 +32,6 @@ function getUserToolbar(){
                 var firstName = localStorage.getItem("firstname");
                 var lastName = localStorage.getItem("lastname");
                 var fullName = firstName + " " +lastName;
-                console.log(fullName);
                 $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " + fullName +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
             }else{
 
