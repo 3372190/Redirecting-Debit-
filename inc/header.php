@@ -9,9 +9,9 @@
 				<!-- Topbar -->
 				<div class="topbar">
 					<ul id="topbar" class="loginbar pull-right">
-						<li><a href="page_faq.html">Help</a></li>
+						<li><a href="page_faq.php">Help</a></li>
 						<li class="topbar-devider"></li>
-						<li><a id="loginFunction" href="page_login.php">Login</a></li>
+						<li id="loginFunction" name="loginFunction">&nbsp;</li>
 					</ul>
 				</div>
 				<!-- End Topbar -->
@@ -29,7 +29,7 @@
 				<div class="container">
 					<ul class="nav navbar-nav">
 						<!-- Home -->
-						<li class="active">
+						<li id="home" class="active">
 							<a href="index.php" >
 								Home
 							</a>
@@ -37,19 +37,19 @@
 						<!-- End Home -->
 
 						<!-- Pages -->
-						<li >
+						<li id="about">
 							<a href="page_about.php">
 								About
 							</a>
                         </li>
-                        						<li >
+                        <li id="banks">
 							<a href="page_bank_search.php">
 								Compatible Banks
 							</a>
                         </li>
 
                         
-                        <li >
+                        <li id="faq">
 							<a href="page_faq.php">
 								F.A.Q
 							</a>

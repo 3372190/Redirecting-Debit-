@@ -13,10 +13,16 @@
         <!-- Firebase -->
     <script type="text/javascript" src="inc/firebase/firebase.js"></script>
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
+    <script type="text/javascript" src="inc/firebase/usersettings.js"></script>
     <script type="text/javascript">
-    if(!isUserLoggedIn()){
-        window.location = "page_login.php"
-    }
+        if(!isUserLoggedIn()){
+            window.location = "page_login.php"
+        }
+        getUserId();
+        
+        $(document).ready(function() {
+           getUserToolbar(); 
+        });
     </script>
 
 	<!-- Meta -->
@@ -84,13 +90,34 @@
 							</ul>
 							<div class="tab-content">
 								<div id="profile" class="profile-edit tab-pane fade in active">
-									<h2 class="heading-md">Manage your Name, ID and Email Addresses.</h2>
-									<p>Below are the name and email addresses on file for your account.</p>
-									<br>
+                                    <form class="sky-form" method="post" id="profileupload" name="profileupload" enctype="multipart/form-data">
+										<!--profile form-->
+										<section>
+                                        <h2 class="heading-md">Manage your Name, ID and Email Addresses.</h2>
+                                        <p>Below are the name and email addresses on file for your account.</p>
+                                        <br>
+										</section>
+
+										<section>
+                                            <div class="row">
+                                                <section class="col col-3">
+                                                    <img name="profilepreview" id="profilepreview" src="assets/img/team/img32-md.jpg" class="img-responsive profile-img margin-bottom-20" width="150" height="150"
+                                                     alt="">
+                                                    
+                                                </section>
+                                                <section class="col col-3">
+                                                    <input type="file" name="fileToUpload" id="fileToUpload" /><br>
+                                                    <button class="btn-u"  id="uploadpp" type="submit" name="uploadpp">Upload</button>
+                                                </section>
+                                            </div>
+                                            
+										</section>
+								
+										<!--End profile pic-Form-->
+									</form>
 									<dl class="dl-horizontal">
 										<dt><strong>Your name </strong></dt>
-										<dd>
-											Edward Rooster
+										<dd><div id="firstname"></div>&nbsp;<div id="lastname"></div>
 											<span>
 												<a class="pull-right" href="#">
 													<i class="fa fa-pencil"></i>
@@ -98,49 +125,9 @@
 											</span>
 										</dd>
 										<hr>
-										<dt><strong>Your ID </strong></dt>
+										<dt><strong>Email</strong></dt>
 										<dd>
-											FKJ-032440
-											<span>
-												<a class="pull-right" href="#">
-													<i class="fa fa-pencil"></i>
-												</a>
-											</span>
-										</dd>
-										<hr>
-										<dt><strong>Company name </strong></dt>
-										<dd>
-											Htmlstream
-											<span>
-												<a class="pull-right" href="#">
-													<i class="fa fa-pencil"></i>
-												</a>
-											</span>
-										</dd>
-										<hr>
-										<dt><strong>Primary Email Address </strong></dt>
-										<dd>
-											edward-rooster@gmail.com
-											<span>
-												<a class="pull-right" href="#">
-													<i class="fa fa-pencil"></i>
-												</a>
-											</span>
-										</dd>
-										<hr>
-										<dt><strong>Phone Number </strong></dt>
-										<dd>
-											(304) 33-2867-499
-											<span>
-												<a class="pull-right" href="#">
-													<i class="fa fa-pencil"></i>
-												</a>
-											</span>
-										</dd>
-										<hr>
-										<dt><strong>Office Number </strong></dt>
-										<dd>
-											(304) 44-9810-296
+											<div id="emailaddress"></div>
 											<span>
 												<a class="pull-right" href="#">
 													<i class="fa fa-pencil"></i>
@@ -150,7 +137,37 @@
 										<hr>
 										<dt><strong>Address </strong></dt>
 										<dd>
-											California, US
+											<div id="address"></div>
+											<span>
+												<a class="pull-right" href="#">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</span>
+										</dd>
+										<hr>
+										<dt><strong>State </strong></dt>
+										<dd>
+											<div id="state"></div>
+											<span>
+												<a class="pull-right" href="#">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</span>
+										</dd>
+										<hr>
+										<dt><strong>PostCode </strong></dt>
+										<dd>
+											<div id="postcode"></div>
+											<span>
+												<a class="pull-right" href="#">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</span>
+										</dd>
+										<hr>
+										<dt><strong>Country </strong></dt>
+										<dd>
+											<div id="country"></div>
 											<span>
 												<a class="pull-right" href="#">
 													<i class="fa fa-pencil"></i>
@@ -167,29 +184,29 @@
 									<h2 class="heading-md">Manage your Security Settings</h2>
 									<p>Change your password.</p>
 									<br>
-									<form class="sky-form" id="sky-form4" action="#">
+									<form class="sky-form" method="post" action="#">
 										<dl class="dl-horizontal">
-											<dt>Username</dt>
+											<dt>Email</dt>
 											<dd>
 												<section>
 													<label class="input">
 														<i class="icon-append fa fa-user"></i>
-														<input type="text" placeholder="Username" name="username">
+														<input type="text" placeholder="Email Address" name="emailAddress">
 														<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
 													</label>
 												</section>
 											</dd>
-											<dt>Email address</dt>
+											<dt>Old Password</dt>
 											<dd>
 												<section>
 													<label class="input">
 														<i class="icon-append fa fa-envelope"></i>
-														<input type="email" placeholder="Email address" name="email">
-														<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+														<input type="password" placeholder="Old Password" name="oldPassword" id="oldPassword">
+														<b class="tooltip tooltip-bottom-right">Needed to verify you remember your old password</b>
 													</label>
 												</section>
 											</dd>
-											<dt>Enter your password</dt>
+											<dt>New Password</dt>
 											<dd>
 												<section>
 													<label class="input">
@@ -199,24 +216,19 @@
 													</label>
 												</section>
 											</dd>
-											<dt>Confirm Password</dt>
+											<dt>Confirm New Password</dt>
 											<dd>
 												<section>
 													<label class="input">
 														<i class="icon-append fa fa-lock"></i>
-														<input type="password" name="passwordConfirm" placeholder="Confirm password">
+														<input type="password" name="confirmPassword" placeholder="Confirm password">
 														<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
 													</label>
 												</section>
 											</dd>
 										</dl>
-										<label class="toggle toggle-change"><input type="checkbox" checked="" name="checkbox-toggle-1"><i class="no-rounded"></i>Remember password</label>
-										<br>
-										<section>
-											<label class="checkbox"><input type="checkbox" id="terms" name="terms"><i></i><a href="#">I agree with the Terms and Conditions</a></label>
-										</section>
 										<button type="button" class="btn-u btn-u-default">Cancel</button>
-										<button class="btn-u" type="submit">Save Changes</button>
+										<button class="btn-u" name="updatePassword" id="updatePassword" type="submit">Update Password</button>
 									</form>
 								</div>
 

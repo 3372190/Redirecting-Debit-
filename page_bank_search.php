@@ -4,7 +4,22 @@
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
 	<title>Registration | Redirect Debit</title>
+    
 <?php include 'inc/head.php'?>
+                	<!-- JS Global Compulsory -->
+	<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    
+    
+    <!-- Firebase -->
+    <script type="text/javascript" src="inc/firebase/firebase.js"></script>
+    <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+           getUserToolbar(); 
+        });
+    </script>
 </head>
 
 <body>

@@ -14,10 +14,16 @@
     <!-- Firebase -->
     <script type="text/javascript" src="inc/firebase/firebase.js"></script>
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
+    <script type="text/javascript" src="inc/firebase/pageoverall.js"></script>
     <script type="text/javascript">
     if(!isUserLoggedIn()){
         window.location = "page_login.php"
     }
+        
+        loadUserDetails();
+        $(document).ready(function() {
+           getUserToolbar(); 
+        });
     </script>
 
 	<!-- Meta -->
@@ -83,7 +89,7 @@
 								<div class="service-block-v3 service-block-u">
 									<i class="icon-users"></i>
 									<span class="service-heading">Number Of Services</span>
-									<span class="counter">10</span>
+									<span id="numofproviders" class="counter"></span>
 
 									<div class="clearfix margin-bottom-10"></div>
 
@@ -116,16 +122,17 @@
 												<!-- Begin Table Search v2 -->
 						<div class="table-search-v2">
 							<div class="table-responsive">
-								<table class="table table-bordered table-striped">
+								<table class="table table-bordered table-striped" id="serviceoverall">
 									<thead>
 										<tr>
-											<th>User Image</th>
-											<th class="hidden-sm">About</th>
+											<th>Image</th>
+											<th>About</th>
 											<th>Status</th>
 											<th>Contacts</th>
 										</tr>
 									</thead>
 									<tbody>
+<<<<<<< HEAD
 										<tr>
 											<td>
 												<img class="rounded-x" src="assets/img/profile_serviceproviders/vodafone_logo.png" alt="">
@@ -285,6 +292,9 @@
 												<span><a href="www.fitnessfirst.com.au/">www.fitnessfirst.com.au</a></span>
 											</td>
 										</tr>
+=======
+										
+>>>>>>> 87a2682a077252fd5bd772d8237f8e0fcfd10226
 									</tbody>
 								</table>
 							</div>
@@ -296,46 +306,16 @@
 						<!--Profile Blog-->
 						<div class="panel panel-profile">
 							<div class="panel-heading overflow-h">
+<<<<<<< HEAD
 								<h2 class="panel-title heading-sm pull-left"><i class="fa fa-tasks"></i>Banks</h2>
+=======
+								<h2 class="panel-title heading-sm pull-left"><i class="fa fa-tasks"></i>Service Providers</h2>
+>>>>>>> 87a2682a077252fd5bd772d8237f8e0fcfd10226
 								<a href="page_profile_users.html" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right">View All</a>
 							</div>
 							<div class="panel-body">
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="profile-blog blog-border">
-											<img class="rounded-x" src="assets/img/testimonials/img1.jpg" alt="">
-											<div class="name-location">
-												<strong>Mikel Andrews</strong>
-												<span><i class="fa fa-map-marker"></i><a href="#">California,</a> <a href="#">US</a></span>
-											</div>
-											<div class="clearfix margin-bottom-20"></div>
-											<p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-											<hr>
-											<ul class="list-inline share-list">
-												<li><i class="fa fa-bell"></i><a href="#">12 Notifications</a></li>
-												<li><i class="fa fa-group"></i><a href="#">54 Followers</a></li>
-												<li><i class="fa fa-twitter"></i><a href="#">Retweet</a></li>
-											</ul>
-										</div>
-									</div>
-
-									<div class="col-sm-6">
-										<div class="profile-blog blog-border">
-											<img class="rounded-x" src="assets/img/testimonials/img4.jpg" alt="">
-											<div class="name-location">
-												<strong>Natasha Kolnikova</strong>
-												<span><i class="fa fa-map-marker"></i><a href="#">Moscow,</a> <a href="#">Russia</a></span>
-											</div>
-											<div class="clearfix margin-bottom-20"></div>
-											<p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-											<hr>
-											<ul class="list-inline share-list">
-												<li><i class="fa fa-bell"></i><a href="#">37 Notifications</a></li>
-												<li><i class="fa fa-group"></i><a href="#">46 Followers</a></li>
-												<li><i class="fa fa-twitter"></i><a href="#">Retweet</a></li>
-											</ul>
-										</div>
-									</div>
+								<div class="row" id="providerrow">
+									
 								</div>
 							</div>
 						</div>

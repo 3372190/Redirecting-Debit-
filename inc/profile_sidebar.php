@@ -1,6 +1,6 @@
 				<!--Left Sidebar-->
 				<div class="col-md-3 md-margin-bottom-40">
-					<img class="img-responsive profile-img margin-bottom-20" src="assets/img/team/img32-md.jpg" alt="">
+					<img class="img-responsive profile-img margin-bottom-20" id="profileimage" name="profileimage" src="assets/img/team/img32-md.jpg" alt="">
 
 					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 						<li class="list-group-item active">
@@ -35,6 +35,7 @@
 						<li class="notification">
 							<img class="" src="assets/img/profile_serviceproviders/fitness-first_logo.png" alt="">
 							<div class="overflow-h">
+<<<<<<< HEAD
 								<span><strong>Fitness First Gym</strong> Is Approving.</span>
 								<small>Today 18:25 pm</small>
 							</div>
@@ -67,6 +68,12 @@
 								<small>23/12 15:15 pm</small>
 							</div>
 						</li>
+=======
+								<span><strong>Local Gym</strong> Is Approving</span>
+								<small>Today 18:25 pm</small>
+							</div>
+						</li>
+>>>>>>> 87a2682a077252fd5bd772d8237f8e0fcfd10226
 					</ul>
 					<button type="button" class="btn-u btn-u-default btn-u-sm btn-block">Load More</button>
 					<!--End Notification-->
