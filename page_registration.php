@@ -16,6 +16,9 @@
     if(isUserLoggedIn()){
         window.location = "page_profile.php"
     }
+        $(document).ready(function() {
+           getUserToolbar(); 
+        });
     </script>
 <?php include 'inc/head.php'?>
 </head>
