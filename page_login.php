@@ -81,7 +81,7 @@
                         <hr>
 
 						<h4>Forgotten your Password?</h4>
-						<p>No worries, <a name="passwordReset" id="passwordReset" class="color-green" href="#">click here</a> to reset your password.</p>
+						<p>No worries, <a name="passwordReset" id="passwordReset" class="color-green" href="page_password_reset.php">click here</a> to reset your password.</p>
 					</form>
 				</div>
 			</div><!--/row-->

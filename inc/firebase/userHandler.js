@@ -18,6 +18,7 @@ $(document).ready(function() {
     
     $("#loginButton").click(loginFunction);
     $('#registerButton').click(registerFunction); 
+    $('#resetButton').click(resetFuction); 
 });
 
 function getUserToolbar(){
@@ -151,6 +152,7 @@ function registerFunction(){
                         if(validateEmail(listElement.value) && validateEmail(checkElement.value)){
                             e = checkElement.value;
                         }else{
+                            listElement.style.borderColor = 'red';
                             flag = false;
                             message = "Email fields are not valid emails";
                             break;
@@ -229,6 +231,55 @@ function userLogin(e,p){
                     return true;
                   }
             });
+    
+}
+
+function resetFuction(){
+    var flag = true;
+    var e;
+    
+    var emailAddress = $("#emailAddress").val();
+    
+    if(emailAddress.length > 0){
+        if(validateEmail(emailAddress)){
+            e = emailAddress;
+        }
+    }else{
+        $("#emailAddress").borderColor = 'red';
+        flag = false;
+        message = "Email fields are not valid emails";
+    }
+    
+    if(flag){
+        resetPassword(e);
+    }else{
+        messageDisplay(error);
+    }
+    return false;
+}
+
+function resetPassword(e){
+    
+    
+  
+    firebaseRef.resetPassword({
+      email: e
+    }, function(error) {
+      if (error) {
+        switch (error.code) {
+          case "INVALID_USER":
+            message ="The specified user account does not exist.";
+                messageDisplay(error);
+            break;
+          default:
+            message = "Error resetting password:" + error;
+                messageDisplay(error);
+        }
+      } else {
+        message ="Password reset email sent successfully!";
+          messageDisplay(error);
+      }
+    });
     
 }
 
