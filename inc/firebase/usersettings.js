@@ -38,7 +38,12 @@ function changeUserPassword(){
             case "oldPassword":
                 
                 if(checkFieldLength(listElement)){
-                    
+                    op = listElement.value;
+                }else{
+                    flag = false;
+                    listElement.style.border = 'red';
+                    message = "old password is empty";
+                    break;   
                 }
                 break;
             case "emailAddress":
@@ -95,16 +100,16 @@ function changeUserPassword(){
           if (error) {
             switch (error.code) {
               case "INVALID_PASSWORD":
-                console.log("The specified user account password is incorrect.");
+                message = "The specified user account password is incorrect.";
                 break;
               case "INVALID_USER":
-                console.log("The specified user account does not exist.");
+                message = "The specified user account does not exist.";
                 break;
               default:
-                console.log("Error changing password:", error);
+                message = "Error changing password: " +error;
             }
           } else {
-            console.log("User password changed successfully!");
+            message = "User password changed successfully!";
           }
         });
         
@@ -112,8 +117,6 @@ function changeUserPassword(){
         
         
     }
-    
-
     
     document.getElementById("message").innerHTML = message;
     return false;

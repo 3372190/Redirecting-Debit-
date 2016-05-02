@@ -15,9 +15,9 @@
     <script type="text/javascript" src="inc/firebase/firebase.js"></script>
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
     <script type="text/javascript">
-    /*if(isUserLoggedIn()){
-        document.getElementById("topbar").innerHTML = '<ul id="topbar" class="loginbar pull-right"><li><a href="page_faq.html">Help</a></li><li class="topbar-devider"></li><li><a id="loginFunction" href="page_login.php">Logout</a></li></ul>'
-    }*/
+        $(document).ready(function() {
+           getUserToolbar(); 
+        });
     </script>
 <?php include 'inc/head.php'?>
 	<!-- Meta -->

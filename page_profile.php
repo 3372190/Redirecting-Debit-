@@ -19,8 +19,11 @@
     if(!isUserLoggedIn()){
         window.location = "page_login.php"
     }
-        getUserToolbar();
+        
         loadUserDetails();
+        $(document).ready(function() {
+           getUserToolbar(); 
+        });
     </script>
 
 	<!-- Meta -->
