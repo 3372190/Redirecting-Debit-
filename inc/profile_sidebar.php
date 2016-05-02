@@ -26,19 +26,54 @@
 					</div>
 					<ul class="list-unstyled mCustomScrollbar margin-bottom-20" data-mcs-theme="minimal-dark">
 						<li class="notification">
-							<i class="icon-custom icon-sm rounded-x icon-bg-red icon-line icon-envelope"></i>
+							<img class="" src="assets/img/profile_serviceproviders/vodafone_logo.png" alt="">
 							<div class="overflow-h">
-								<span><strong>Telstra</strong> Updated Details</span>
+								<span><strong>Vodafone</strong> Updated Details</span>
 								<small>Two minutes ago</small>
+							</div>
+						</li>
+						<li class="notification">
+							<img class="" src="assets/img/profile_serviceproviders/fitness-first_logo.png" alt="">
+							<div class="overflow-h">
+<<<<<<< HEAD
+								<span><strong>Fitness First Gym</strong> Is Approving.</span>
+								<small>Today 18:25 pm</small>
+							</div>
+						</li>
+						<li class="notification">
+                            <img class="" src="assets/img/profile_serviceproviders/tpg_logo.png" alt="">
+							<div class="overflow-h">
+								<span><strong>TPG Telecom</strong> Are having technical difficulties, details could not be updated.</span>
+								<small>Yesterday 1:07 pm</small>
+							</div>
+						</li>
+						<li class="notification">
+							<img class="rounded-x" src="assets/img/profile_serviceproviders/lumo-energy_logo.png" alt="">
+							<div class="overflow-h">
+								<span><strong>Lumo Energy</strong> Have successfully updated your direct debit details.</span>
+								<small>23/12 11:01 am</small>
+							</div>
+						</li>
+						<li class="notification">
+							<img class="" src="assets/img/profile_banks/commbank_logo1.png" alt="">
+							<div class="overflow-h">
+								<span><strong>Commonwealth Bank </strong>Have been notified about your lost credit card.</span>
+								<small>Yesterday 1:07 pm</small>
 							</div>
 						</li>
 						<li class="notification">
 							<img class="rounded-x" src="assets/img/testimonials/img6.jpg" alt="">
 							<div class="overflow-h">
+								<span><strong>Commonwealth Bank </strong>You have noted that you are with commonwealth bank</span>
+								<small>23/12 15:15 pm</small>
+							</div>
+						</li>
+=======
 								<span><strong>Local Gym</strong> Is Approving</span>
 								<small>Today 18:25 pm</small>
 							</div>
 						</li>
+>>>>>>> 87a2682a077252fd5bd772d8237f8e0fcfd10226
 					</ul>
 					<button type="button" class="btn-u btn-u-default btn-u-sm btn-block">Load More</button>
 					<!--End Notification-->
