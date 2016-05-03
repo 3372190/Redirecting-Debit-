@@ -6,12 +6,14 @@ class rdaspa{
 	private $iListCopy = array();
 	private $providerList = array();
     private $spList = array();
+	private $iList = array();
     
     
     // this will take in the list from processor
-    function __construct($iList)
+    function __construct($iList, $providers)
 	{
-			
+		$this->providerList = $providers;
+		$this->iList = $iList;
 		$checkdate1;
 		$checkdate2;
 		$i = 0;
@@ -22,15 +24,15 @@ class rdaspa{
 		$newDate;
 		$i = 0;
 		$j;
-		//$foundCount= [];
+
 		if( ! ini_get('date.timezone') )
         {
             date_default_timezone_set('GMT');
         }	
 		$checkdate;
 		
-        $this->initialList = $iList;
-        $this->iListCopy = $iList;
+        $this->initialList = $this->iList;
+        $this->iListCopy = $this->iList;
         
 		/* Service Provider Criteria
 			- Recurring payments every month (+- 3 days)
@@ -52,35 +54,101 @@ class rdaspa{
 			{
 				for ($j = $i + 1; $j < count($iList); $j++)
 				{
+					
 					$newDate = strtotime($iList[$j]->getDate());						//Date to check against reference
-					if (strcmp($iList[$i]->getTitle(), $iList[$j]->getTitle()) == 0)	//If matching desciptions
+					//var_dump($newDate);
+					
+					if($newDate > $startDate && $newDate < $endDate)					//1 month +- 3 days
 					{
-						if($newDate > $startDate && $newDate < $endDate)				//1 month +- 3 days.
+						
+						if ($this->checkTokens($j))			//If dates are a go, check if token in description exists in SP database.
+						{
+							array_push($this->spList, $iList[$j]);	
+						}
+						//var_dump($newDate);
+						/*
+						if (strcmp($iList[$i]->getTitle(), $iList[$j]->getTitle()) == 0)	//If matching desciptions.
 						{	
-                            //var_dump($iList[$i]);
                             array_push($this->foundList, $iList[$i]);	
-                            
-							/*if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable....
-							{
-                                
-												//add to foundList
-							}*/
+						}
+                        */ 
+						
+							/*if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable.... */
+							
+						/*
+						if($this->checkTokens($j))
+						{
+							//var_dump($iList[$j]->getTitle());
+							array_push($this->spList, $iList[$j]);	
 						}
 						else{
 							break;
-						}
-						
-						/*
-						if ($currDate == $newDate)							//and 1 month apart
-						{
-							array_push($this->foundList, $iList[$i]);		//add to foundList
-						}
-						*/
+						}*/
 					}
 				}
 			}
 		}
     }
+	
+	
+	function checkTokens($k)				//Here only if entry $k passes date test.
+	{	
+		$n;
+		
+		for ($n = 0; $n < count($this->providerList); $n++)
+		{	
+			$token = strtok($this->iList[$k]->getTitle(), " ");	
+			$token = strtoupper($token);
+			$this->providerList[$n] = strtoupper($this->providerList[$n]);
+			
+			while ($token != NULL)
+			{
+				
+				if(strcmp($token, $this->providerList[$n]) == 0)				//If token in description matches SP database
+				{
+					//$this->iList[$k]->setName($token);
+					if ($this->checkExistence($token))					//Check if we already found that provider.
+					{
+						$this->iList[$k]->setName($token);
+						return true;
+					}
+					//Set name to token
+					//var_dump($token);
+					//return true;
+				}
+				$token = strtok(" ");
+			}
+		}
+		
+		return false;		
+	}
+	
+	function checkExistence($token)			//Check to see if $token already assigned to name in spList
+	{
+		
+		$i;
+		if (count($this->spList) == 0)
+		{
+			return true;
+		}
+		else
+		{
+			for ($i = 0; $i<count($this->spList); $i++)
+			{
+				if (strcmp($token, $this->spList[$i]->getName() == 0))
+				{
+					//echo("here");
+					return false;
+					//array_push($this->spList, $this->foundList[$i]);			//Add object to found list/
+				}
+			}
+		}	
+		
+		return true;
+		
+		
+	}
+	
 	
 	function getFoundList()
 	{
@@ -109,26 +177,23 @@ class rdaspa{
 			$token = strtok($this->foundList[$i]->getTitle(), " "); 		//Tokenize description
             while($token != NULL)
 			{
-                
                 $token  = strtoupper($token);
                 $this->providerList[$j] = strtoupper($this->providerList[$j]);
+				//var_dump($this->providerList[$j]);
 				if (strcmp($token, $this->providerList[$j]) == 0)				//If token == name of provider in database
 				{
 					$this->foundList[$i]->setName($token);				//Set object name = matched token
-					array_push($this->spList, $this->foundList[$i]);			//Add object to found list/
+					checkExistence($token);
+					
 				}
 				$token = strtok(" ");							//Next token
 			}
 			
 			$j++;
 		}
+	}		
 	}
-	/*
-	*/
 	
-	
-		
-	}
 	function getspList()
 	{
 		return $this->spList;
