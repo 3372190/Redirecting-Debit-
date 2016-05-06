@@ -129,6 +129,7 @@
 								<div id="passwordTab" class="profile-edit tab-pane fade">
 				                    <div class="table-search-v2" >
                                         <div class="table-responsive">
+                                            <h5 id="nomessage" name="nomessage" style="color:red;" ></h5>
                                             <table class="table table-bordered table-striped" id="serviceresult">
                                                     <tbody>
                                                     </tbody>
@@ -144,6 +145,7 @@
 								<div id="settings" class="profile-edit tab-pane fade">
 								    <div class="table-search-v2" >
                                         <div class="table-responsive">
+                                            <h5 id="upmessage" name="upmessage" style="color:red;" ></h5>
                                             <table class="table table-bordered table-striped" id="servicesave">
                                                     <tbody>
                                                     </tbody>
