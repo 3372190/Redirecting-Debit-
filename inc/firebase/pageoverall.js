@@ -28,6 +28,11 @@ function loadUserServiceProviders(){
     
 }
 
+function notifyProviders(){
+    
+    
+    
+}
 function loadProviders(){
     providersRef = firebaseRef.child("serviceprovider");
     providersRef.limit(2).once('value', function(providerSnap){

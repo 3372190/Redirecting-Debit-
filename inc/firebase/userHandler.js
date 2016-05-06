@@ -388,8 +388,10 @@ function userRegister(email, pword){
             break;
         }
       } else {
-        message = "Successfully created user account with uid:", userData.uid;
+        message = "Successfully created user account with uid: "+  userData.uid;
           messageDisplay(message);
+          
+          
         firebaseRef.authWithPassword({
             email: email,
             password : pword
@@ -414,7 +416,7 @@ function userRegister(email, pword){
                         messageDisplay(message);
                 }
             }else{
-                message = "Successfully logged in user account with uid:", userData.uid;
+                message = "Successfully logged in user account with uid: "+ userData.uid;
                 messageDisplay(message);
                 addUserDataToFirebase(userInfo);
             }

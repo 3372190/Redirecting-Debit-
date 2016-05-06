@@ -54,7 +54,8 @@ function selectProviders(){
     if(providerids.length >=1 ){
         showTab("settings");
     }else{
-        console.log("no providers selected");
+        document.getElementById("nomessage").innerHTML = "No provider selected";
+        //messageDisplay("no providers selected");
     }
 }
 
@@ -63,7 +64,11 @@ function save(){
     for(var i = 0 ; i < providerids.length; i ++){
         saveProvidersToUser(providerids[i])
     }
-    alert("updated");
+    //messageDisplay("updated");
+   document.getElementById("upmessage").innerHTML = "updated <br> Redirecting you in 2 seconds";
+    setTimeout(function () {
+        window.location.href = "page_profile.php";
+    }, 2000); //will call the function after 2 secs.
 }
 
 function saveProvidersToUser(id){
