@@ -202,11 +202,15 @@ function submitAjaxForm(){
 						output = '<div class="error">'+data.text+'</div>';
                         
 					}else{
-                        //console.log(data);
+                        
+                        console.log(data);
                         providerNames = JSON.parse(data);
-                        //console.log(providerNames);
-                        showTab('passwordTab');
-                        $("#submit").after(data);
+                        
+                        if(providerNames['Type'] == "Error"){
+                            messageDisplay(providerNames['Message']);
+                        }else{
+                            showTab('passwordTab');
+                        }
 					}		
 				}
 			 });

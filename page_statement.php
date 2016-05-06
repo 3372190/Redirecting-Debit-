@@ -97,12 +97,14 @@
 										<!--Checkout-Form-->
 										<section>
                                         <h2 class="heading-md">Use This Page To Upload Statements to be Processed By Us.</h2>
-									<p>Statements can be in Csv format only</p>
+									<p>Statements can be in Csv format only!!</p>
+                                            
 										</section>
 
 										<section>
                                             <h3>Upload Statement</h3>
                                             <input type="file" name="fileToUpload" id="fileToUpload" />
+                                            <h5 id="message" name="message" style="color:red;" ></h5>
 										</section>
 
 										<div class="row">
