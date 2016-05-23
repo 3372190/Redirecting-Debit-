@@ -22,29 +22,16 @@ $(document).ready(function() {
 });
 
 function getUserToolbar(){
-    
     var loggedIn = isUserLoggedIn();
     if(loggedIn){
         if(checkLocalStorageSupport){
             
         
-            if(localStorage.getItem("firstname") != null && localStorage.getItem("lastname") != null){
-
-                var firstName = localStorage.getItem("firstname");
-                var lastName = localStorage.getItem("lastname");
-                var fullName = firstName + " " +lastName;
+            if(localStorage.getItem("userDetails") != null){
+                var userDetails = JSON.parse(localStorage.getItem("userDetails"));
+                var fullName = userDetails["firstname"] + " " +userDetails["lastname"];
+                
                 $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " + fullName +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
-            }else{
-
-                var a = firebaseRef.getAuth();
-
-                firebaseRef.child("users").child(a.uid).once('value', function(snap){
-                    var id  = snap.val();
-                    localStorage.setItem("firstname", id.firstname);
-                    localStorage.setItem("lastname", id.lastname);
-                    var fullName = id.firstName + " " + id.lastName;
-                    $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " + fullName +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
-                });
             }
         
         
@@ -59,6 +46,7 @@ function getUserToolbar(){
         }
         
     }else{
+        console.log("here")
         $("#loginFunction").html("<a href='page_login.php'>Login</a>");
     }
 
@@ -221,10 +209,20 @@ function userLogin(e,p){
                         message = "Error logging user in:";
                             messageDisplay(error);
                     }
-                  } else {
-                    message = "Authenticated successfully. <br> Redirecting in 2 seconds";
-                      
+                  }else{
+                      message = "Authenticated successfully. <br> Redirecting in 2 seconds";
                       messageDisplay(message);
+                          
+                      var authData = firebaseRef.getAuth();
+                      var usersRef = firebaseRef.child("users").child(authData.uid);
+                      usersRef.once("value", function(snap){
+
+                        //because the data doesnt exist in local storage and it is supported, add it to local storage
+                        var object = snap.val();
+                        localStorage.setItem('userDetails', JSON.stringify(object));
+                
+                
+                      });
                         setTimeout(function () {
                             window.location.href = "page_profile.php";
                         }, 2000); //will call the function after 2 secs.
@@ -307,46 +305,20 @@ function loadUserDetails(){
             //console.log(localStorage.getItem('userdetails'));
             var userDetails = JSON.parse(localStorage.getItem("userDetails"));
             for (var property in userDetails) {
-            if (userDetails.hasOwnProperty(property)) {
-                if(property == "profileimage"){
-                    $("#" +property+ "").attr("src", userDetails[property]);
-                    $("#profilepreview").attr("src", userDetails[property]);
-                }else{
-                    $("#"+ property+"").replaceWith(userDetails[property]);
-                }
-                
-            }
-}
-            
-            
-        }else{
-            var authData = firebaseRef.getAuth();
-            var usersRef = firebaseRef.child("users").child(authData.uid);
-
-            usersRef.once("value", function(snap){
-
-                //because the data doesnt exist in local storage and it is supported, add it to local storage
-                var object = snap.val();
-                localStorage.setItem('userDetails', JSON.stringify(object));
-                
-                snap.forEach(function(childSnapshot){
-
-                    var key = childSnapshot.key();
-
-                    var data = childSnapshot.val();
-                    
-                    if(key == "profileimage"){
-                        $("#" +key+ "").attr("src", data);
-                        $("#profilepreview").attr("src", data);
+                if (userDetails.hasOwnProperty(property)) {
+                    if(property == "profileimage"){
+                        $("#" +property+ "").attr("src", userDetails[property]);
+                        $("#profilepreview").attr("src", userDetails[property]);
                     }else{
-                        $("#"+ key+"").replaceWith(data);
+                        $("#"+ property+"").replaceWith(userDetails[property]);
                     }
-
-                });
-            });
+                
+                }
+            }
+            
             
         }
-    }else{
+        }else{
         var authData = firebaseRef.getAuth();
         var usersRef = firebaseRef.child("users").child(authData.uid);
         
@@ -425,18 +397,61 @@ function userRegister(email, pword){
     });
 }
 
+function serviceProviderRegister(){
+    
+    firebaseRef.createUser({
+      email: email,
+      password: pword
+    }, function(error, userData) {
+      if (error) {
+        switch (error.code) {
+          case "EMAIL_TAKEN":
+            message ="The new user account cannot be created because the email is already in use.";
+            messageDisplay(message);
+            break;
+          case "INVALID_EMAIL":
+            message = "The specified email is not a valid email.";
+            messageDisplay(message);
+            break;
+          default:
+            message ="Error creating user:", error;
+            messageDisplay(message);
+            break;
+        }
+      } else {
+        message = "Successfully created user account with uid: "+  userData.uid;
+          messageDisplay(message);
+          addUserDataToFirebase(userInfo, userData.uid);
+      }
+    });
+    
+}
+
 function isUserLoggedIn(){
     
     authData = firebaseRef.getAuth();
-    
+
     if (authData) {
         uId = authData.uid;
-        //console.log("User " + authData.uid + " is logged in with " + authData.provider);
+        console.log(authData.uid)
         return true;
     } else {
         //console.log("User is logged out");
         return false;
     }
+    
+}
+function getUserLev(){
+    
+    if(isUserLoggedIn){
+        var userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        return userDetails["userlevel"];
+        console.log(userDetails["userlevel"])
+    }else{
+        window.location = 'login.php'
+    }
+    
+    return 0;
 }
     
 function validateEmail(email){
@@ -463,6 +478,7 @@ function addUserDataToFirebase(elements){
             state:elements[3].value,
             postcode:elements[4].value,
             country:elements[5].value,
+            userlevel: "3",
             profileimage: "assets/img/team/img32-md.jpg",
         }, function(error){
             if (error) {
@@ -473,6 +489,31 @@ function addUserDataToFirebase(elements){
         });
     }
     
+}
+
+function addSpToFirebase(elements, userId){
+    
+        if(isUserLoggedIn()){
+       
+    
+        firebaseRef.child("serviceprovideraccounts").child(userId).set({
+            firstname: elements[0].value,
+            lastname: elements[1].value,
+            emailaddress: elements[6].value,
+            address: elements[2].value,
+            state:elements[3].value,
+            postcode:elements[4].value,
+            country:elements[5].value,
+            userlevel: "2",
+            profileimage: "assets/img/team/img32-md.jpg",
+        }, function(error){
+            if (error) {
+                messageDisplay("failed adding user details")
+            }else {
+                messageDisplay("User Data added To Database")
+            }
+        });
+    }
 }
 
 function checkFieldLength(field){
