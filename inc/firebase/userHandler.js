@@ -285,7 +285,7 @@ function messageDisplay(msg){
 }
 function userLogout(){
     
-    if (isUserLoggedIn){
+    if (isUserLoggedIn()){
         localStorage.clear();
         firebaseRef.unauth();
        window.location = "index.php";
@@ -412,15 +412,15 @@ function isUserLoggedIn(){
 }
 function getUserLev(){
     
-    if(isUserLoggedIn){
+    if(isUserLoggedIn()){
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
+         console.log(userDetails)
         return userDetails["userlevel"];
-        console.log(userDetails["userlevel"])
+       
     }else{
-        window.location = 'login.php'
+        return 0;
     }
     
-    return 0;
 }
     
 function validateEmail(email){
