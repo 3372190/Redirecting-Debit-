@@ -23,7 +23,6 @@ $(document).ready(function() {
 
 function getUserToolbar(){
     var loggedIn = isUserLoggedIn();
-    console.log(loggedIn)
     if(loggedIn){
         if(checkLocalStorageSupport){
             
@@ -47,7 +46,6 @@ function getUserToolbar(){
         }
         
     }else{
-        console.log("here")
         $("#loginFunction").html("<a href='page_login.php'>Login</a>");
     }
 
@@ -175,8 +173,7 @@ function registerFunction(){
             userInfo = elements;
             $("#loader").show(100);
                 //login and redirect
-            //userRegister(e,p);
-            adminRegister(e,p);
+            userRegister(e,p);
             document.getElementById("registerButton").innerHTML = "Logging in";
 
 
@@ -185,36 +182,6 @@ function registerFunction(){
         }
         return false; 
         
-}
-
-function adminRegister(email, pword){
-    
-    
-    firebaseRef.createUser({
-      email: email,
-      password: pword
-    }, function(error, userData) {
-      if (error) {
-        switch (error.code) {
-          case "EMAIL_TAKEN":
-            message ="The new user account cannot be created because the email is already in use.";
-            messageDisplay(message);
-            break;
-          case "INVALID_EMAIL":
-            message = "The specified email is not a valid email.";
-            messageDisplay(message);
-            break;
-          default:
-            message ="Error creating user:", error;
-            messageDisplay(message);
-            break;
-        }
-      } else {
-        message = "Successfully created user account with uid: "+  userData.uid;
-          messageDisplay(message);
-          addAdminDataToFirebase(userInfo, userData.uid);
-      }
-    });
 }
 
 function userLogin(e,p){

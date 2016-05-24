@@ -38,7 +38,6 @@ function getUserToolbar(){
         }
         
     }else{
-        console.log("here")
         $("#loginFunction").html("<a href='page_login.php'>Login</a>");
     }
 
