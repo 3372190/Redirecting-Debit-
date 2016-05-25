@@ -1,11 +1,3 @@
-/*
-This file handles everything between firebase and users, such as login, registration, password retreival
-TODO: add password recovery function
-@param firebaseRef is the reference to the firebase users
-*/
-
-
-
 var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 
 var userInfo;
@@ -17,21 +9,20 @@ $(document).ready(function() {
     $("#loader").hide(100);
     
     $("#loginButton").click(loginFunction);
-    $('#registerButton').click(registerFunction); 
-    $('#resetButton').click(resetFuction); 
+    $('#registerButton').click(registerServiceProviderFunction); 
 });
+
 
 function getUserToolbar(){
     var loggedIn = isUserLoggedIn();
     if(loggedIn){
-        if(checkLocalStorageSupport){
+        if(checkLocalStorageSupport()){
             
         
             if(localStorage.getItem("userDetails") != null){
                 var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-                var fullName = userDetails["firstname"] + " " +userDetails["lastname"];
                 
-                $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " + fullName +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
+                $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " + userDetails["name"] +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
             }
         
         
@@ -46,10 +37,12 @@ function getUserToolbar(){
         }
         
     }else{
+        console.log("here")
         $("#loginFunction").html("<a href='page_login.php'>Login</a>");
     }
 
 }
+
 function loginFunction (){
     
         var flag = true;
@@ -97,7 +90,7 @@ function loginFunction (){
         return false;
     
 }
-function registerFunction(){
+function registerServiceProviderFunction(){
             // if flag is false the form will not submit
         var flag = true;
         var e, p;
@@ -114,23 +107,7 @@ function registerFunction(){
             
                 
                          
-                if(formInputName == "postcode"){
-                    
-                    if(listElement.value.length < 1){
-                        listElement.style.borderColor = 'red';
-                        message = formInputName + " needs to be longer than one character";
-                        flag = false;
-                        break;
-                        
-                        
-                    }else if(listElement.value.length > 4){
-                        listElement.style.borderColor = 'red';
-                        message = formInputName + " Must be less than 4 digits";
-                        flag = false;
-                        break;
-                    }
-                        
-                }else if ((formInputName == "emailAddress") ||(formInputName == "password") || formInputName == "confirmEmail" || formInputName == "confirmPassword"){
+                if ((formInputName == "emailAddress") ||(formInputName == "password") || formInputName == "confirmEmail" || formInputName == "confirmPassword"){
                     // create element
                      var checkElement;
                     if(formInputName == "emailAddress"){
@@ -173,8 +150,8 @@ function registerFunction(){
             userInfo = elements;
             $("#loader").show(100);
                 //login and redirect
-            userRegister(e,p);
-            document.getElementById("registerButton").innerHTML = "Logging in";
+            serviceProviderRegister(e, p);
+            document.getElementById("registerButton").innerHTML = "Loading...";
 
 
         }else if(!flag){
@@ -182,6 +159,35 @@ function registerFunction(){
         }
         return false; 
         
+}
+
+
+function serviceProviderRegister(email, pword){
+        firebaseRef.createUser({
+      email: email,
+      password: pword
+    }, function(error, userData) {
+      if (error) {
+        switch (error.code) {
+          case "EMAIL_TAKEN":
+            message ="The new user account cannot be created because the email is already in use.";
+            messageDisplay(message);
+            break;
+          case "INVALID_EMAIL":
+            message = "The specified email is not a valid email.";
+            messageDisplay(message);
+            break;
+          default:
+            message ="Error creating user:", error;
+            messageDisplay(message);
+            break;
+        }
+      } else {
+        message = "Successfully created user account with uid: "+  userData.uid;
+          messageDisplay(message);
+          addServiceProviderToDatabase(userInfo, userData.uid);
+      }
+    });
 }
 
 function userLogin(e,p){
@@ -212,71 +218,23 @@ function userLogin(e,p){
                       message = "Authenticated successfully. <br> Redirecting in 2 seconds";
                       messageDisplay(message);
                           
-                      var authData = firebaseRef.getAuth();
-                      var usersRef = firebaseRef.child("users").child(authData.uid);
+                      
+                      var usersRef = firebaseRef.child("serviceprovider").child(authData.uid);
                       usersRef.once("value", function(snap){
 
                         //because the data doesnt exist in local storage and it is supported, add it to local storage
                         var object = snap.val();
                         localStorage.setItem('userDetails', JSON.stringify(object));
-                
+                        console.log(object)
+                        setTimeout(function () {
+                            window.location.href = "index.php";
+                        }, 2000); //will call the function after 2 secs.
                 
                       });
-                        setTimeout(function () {
-                            window.location.href = "page_profile.php";
-                        }, 2000); //will call the function after 2 secs.
+
                     return true;
                   }
             });
-    
-}
-
-function resetFuction(){
-    var flag = true;
-    var e;
-    
-    var emailAddress = $("#emailAddress").val();
-    
-    if(emailAddress.length > 0){
-        if(validateEmail(emailAddress)){
-            e = emailAddress;
-        }
-    }else{
-        $("#emailAddress").borderColor = 'red';
-        flag = false;
-        message = "Email fields are not valid emails";
-    }
-    
-    if(flag){
-        resetPassword(e);
-    }else{
-        messageDisplay(error);
-    }
-    return false;
-}
-
-function resetPassword(e){
-    
-    
-  
-    firebaseRef.resetPassword({
-      email: e
-    }, function(error) {
-      if (error) {
-        switch (error.code) {
-          case "INVALID_USER":
-            message ="The specified user account does not exist.";
-                messageDisplay(error);
-            break;
-          default:
-            message = "Error resetting password:" + error;
-                messageDisplay(error);
-        }
-      } else {
-        message ="Password reset email sent successfully!";
-          messageDisplay(error);
-      }
-    });
     
 }
 
@@ -292,6 +250,32 @@ function userLogout(){
    }
     
 }
+function isUserLoggedIn(){
+    
+    authData = firebaseRef.getAuth();
+
+    if (authData) {
+        uId = authData.uid;
+        //console.log(authData.uid)
+        return true;
+    } else {
+        //console.log("User is logged out");
+        return false;
+    }
+    
+}
+function getUserLev(){
+    
+    if(isUserLoggedIn()){
+        var userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        return userDetails["userlevel"];
+       
+    }else{
+        return 0;
+    }
+    
+}
+
 function loadUserDetails(){
     
     var isLocalSupported = checkLocalStorageSupport();
@@ -336,93 +320,15 @@ function loadUserDetails(){
         });
     }
 }
-function userRegister(email, pword){
-    
-    
-    firebaseRef.createUser({
-      email: email,
-      password: pword
-    }, function(error, userData) {
-      if (error) {
-        switch (error.code) {
-          case "EMAIL_TAKEN":
-            message ="The new user account cannot be created because the email is already in use.";
-            messageDisplay(message);
-            break;
-          case "INVALID_EMAIL":
-            message = "The specified email is not a valid email.";
-            messageDisplay(message);
-            break;
-          default:
-            message ="Error creating user:", error;
-            messageDisplay(message);
-            break;
-        }
-      } else {
-        message = "Successfully created user account with uid: "+  userData.uid;
-          messageDisplay(message);
-          
-          
-        firebaseRef.authWithPassword({
-            email: email,
-            password : pword
-        },function(error, authData){
-            
-            if(error){
-                switch (error.code) {
-                      case "INVALID_EMAIL":
-                       message = "The specified user account email is invalid.";
-                        messageDisplay(message);
-                        break;
-                      case "INVALID_PASSWORD":
-                        message ="The specified user account password is incorrect.";
-                        messageDisplay(message);
-                        break;
-                      case "INVALID_USER":
-                        message = "The specified user account does not exist.";
-                        messageDisplay(message);
-                        break;
-                      default:
-                        message = "Error logging user in:", error;
-                        messageDisplay(message);
-                }
-            }else{
-                message = "Successfully logged in user account with uid: "+ userData.uid;
-                messageDisplay(message);
-                addUserDataToFirebase(userInfo);
-            }
-        });
-      }
-    });
-}
 
-function isUserLoggedIn(){
-    
-    authData = firebaseRef.getAuth();
 
-    if (authData) {
-        uId = authData.uid;
-        console.log(authData.uid)
-        return true;
-    } else {
-        console.log("User is logged out");
+function checkFieldLength(field){
+    if(field.value.length < 1){
         return false;
     }
-    
+    return true;
 }
-function getUserLev(){
-    
-    if(isUserLoggedIn()){
-        var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-         console.log(userDetails)
-        return userDetails["userlevel"];
-       
-    }else{
-        return 0;
-    }
-    
-}
-    
+
 function validateEmail(email){
     filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if (filter.test(email)) {
@@ -431,40 +337,6 @@ function validateEmail(email){
     }else{
         return false;
     }
-}
-
-function addUserDataToFirebase(elements){
-    
-    //this function can be made universal.
-    if(isUserLoggedIn()){
-        authData = firebaseRef.getAuth();
-    
-        firebaseRef.child("users").child(authData.uid).set({
-            firstname: elements[0].value,
-            lastname: elements[1].value,
-            emailaddress: elements[6].value,
-            address: elements[2].value,
-            state:elements[3].value,
-            postcode:elements[4].value,
-            country:elements[5].value,
-            userlevel: "3",
-            profileimage: "assets/img/team/img32-md.jpg",
-        }, function(error){
-            if (error) {
-                document.getElementById("message").innerHTML = error + "failed";
-            }else {
-                window.location = "page_profile.php";
-            }
-        });
-    }
-    
-}
-
-function checkFieldLength(field){
-    if(field.value.length < 1){
-        return false;
-    }
-    return true;
 }
 
 

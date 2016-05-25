@@ -4,6 +4,7 @@ var providerList = [];
 var uId;
 var providerNames = [];
 var providerids = [];
+var tabs = ["profile", "passwordTab", "settings"];
 
 $(document).ready(function(){
     loadUserDetails();
@@ -17,12 +18,8 @@ $(document).ready(function(){
     $("#saveproviders").click(save);
     $("#submit").click(submitAjaxForm);
     $("#providerBack").click(cancel);
-        
-        $("#cancel").click(function(){
-           //cancel and go back to main profile page. 
-            window.location = "page_profile.php"
-            
-        });
+    
+    $("#cancel").click(cancel);
     
     
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -76,7 +73,7 @@ function saveProvidersToUser(id){
     usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
     pushRef =  usersRef.child(id);
     
-    pushRef.set({'notified': 'pending'});
+    pushRef.set({'notified': 'no'});
 }
 
 function cancel(){

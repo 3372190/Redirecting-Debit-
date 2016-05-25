@@ -4,10 +4,16 @@
 
 					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 						<li class="list-group-item ">
-							<a href="index.php"><i class="fa fa-bar-chart-o"></i> Overall</a>
+							<a href="page_profile.php"><i class="fa fa-bar-chart-o"></i> Overall</a>
 						</li>
                         <li class="list-group-item ">
-							<a href="page_add_service_provider.php"><i class="fa fa-bar-chart-o"></i> View Redirectees</a>
+							<a href="page_add_service_provider.php"><i class="fa fa-bar-chart-o"></i> Add Service Provider</a>
+						</li>
+						<li class="list-group-item ">
+							<a href="page_add_user.php"><i class="fa fa-cog"></i> Add User</a>
+						</li>
+                        <li class="list-group-item ">
+							<a href="page_logs.php"><i class="fa fa-cog"></i> Logs</a>
 						</li>
                         <li class="list-group-item">
 							<a href="Javascript: userLogout();"><i class="fa fa-cog"></i> Logout</a>
