@@ -16,14 +16,13 @@ $(document).ready(function() {
 function getUserToolbar(){
     var loggedIn = isUserLoggedIn();
     if(loggedIn){
-        if(checkLocalStorageSupport){
+        if(checkLocalStorageSupport()){
             
         
             if(localStorage.getItem("userDetails") != null){
                 var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-                var fullName = userDetails["firstname"] + " " +userDetails["lastname"];
                 
-                $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " + fullName +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
+                $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " + userDetails["name"] +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
             }
         
         
@@ -191,60 +190,6 @@ function serviceProviderRegister(email, pword){
     });
 }
 
-function addServiceProviderToDatabase(elements, userId){
-    
-        if(elements.length > 0){
-       
-    
-            firebaseRef.child("serviceprovider").child(userId).set({
-                name: elements[0].value,
-                website: elements[1].value,
-                img: elements[2].value,
-                description: elements[3].value,
-                email:elements[4].value,
-                userlevel: "2",
-            }, function(error){
-                if (error) {
-                    messageDisplay("failed adding user details")
-                }else {
-                    messageDisplay("User Data added To Database")
-                }
-            });
-        }
-    
-    
-}
-
-function adminRegister(email, pword){
-    
-    
-    firebaseRef.createUser({
-      email: email,
-      password: pword
-    }, function(error, userData) {
-      if (error) {
-        switch (error.code) {
-          case "EMAIL_TAKEN":
-            message ="The new user account cannot be created because the email is already in use.";
-            messageDisplay(message);
-            break;
-          case "INVALID_EMAIL":
-            message = "The specified email is not a valid email.";
-            messageDisplay(message);
-            break;
-          default:
-            message ="Error creating user:", error;
-            messageDisplay(message);
-            break;
-        }
-      } else {
-        message = "Successfully created user account with uid: "+  userData.uid;
-          messageDisplay(message);
-          addAdminDataToFirebase(userInfo, userData.uid);
-      }
-    });
-}
-
 function userLogin(e,p){
     
         firebaseRef.authWithPassword({
@@ -274,7 +219,7 @@ function userLogin(e,p){
                       messageDisplay(message);
                           
                       
-                      var usersRef = firebaseRef.child("adminacc").child(authData.uid);
+                      var usersRef = firebaseRef.child("serviceprovider").child(authData.uid);
                       usersRef.once("value", function(snap){
 
                         //because the data doesnt exist in local storage and it is supported, add it to local storage
@@ -282,7 +227,7 @@ function userLogin(e,p){
                         localStorage.setItem('userDetails', JSON.stringify(object));
                         console.log(object)
                         setTimeout(function () {
-                            window.location.href = "page_profile.php";
+                            window.location.href = "index.php";
                         }, 2000); //will call the function after 2 secs.
                 
                       });
@@ -298,7 +243,7 @@ function messageDisplay(msg){
 }
 function userLogout(){
     
-    if (isUserLoggedIn){
+    if (isUserLoggedIn()){
         localStorage.clear();
         firebaseRef.unauth();
        window.location = "index.php";
@@ -311,10 +256,10 @@ function isUserLoggedIn(){
 
     if (authData) {
         uId = authData.uid;
-        console.log(authData.uid)
+        //console.log(authData.uid)
         return true;
     } else {
-        console.log("User is logged out");
+        //console.log("User is logged out");
         return false;
     }
     
@@ -323,38 +268,12 @@ function getUserLev(){
     
     if(isUserLoggedIn()){
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-         console.log(userDetails)
         return userDetails["userlevel"];
        
     }else{
         return 0;
     }
     
-}
-
-function addAdminDataToFirebase(elements, userId){
-    
-        if(elements.length > 0){
-       
-    
-        firebaseRef.child("adminacc").child(userId).set({
-            firstname: elements[0].value,
-            lastname: elements[1].value,
-            emailaddress: elements[6].value,
-            address: elements[2].value,
-            state:elements[3].value,
-            postcode:elements[4].value,
-            country:elements[5].value,
-            userlevel: "1",
-            profileimage: "assets/img/team/img32-md.jpg",
-        }, function(error){
-            if (error) {
-                messageDisplay("failed adding user details")
-            }else {
-                messageDisplay("User Data added To Database")
-            }
-        });
-    }
 }
 
 function loadUserDetails(){

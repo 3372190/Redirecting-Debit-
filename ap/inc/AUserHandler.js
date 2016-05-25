@@ -297,7 +297,7 @@ function messageDisplay(msg){
 }
 function userLogout(){
     
-    if (isUserLoggedIn){
+    if (isUserLoggedIn()){
         localStorage.clear();
         firebaseRef.unauth();
        window.location = "index.php";

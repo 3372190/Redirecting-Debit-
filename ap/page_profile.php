@@ -16,7 +16,8 @@
         <script type="text/javascript" src="inc/AUserHandler.js"></script>
     <script type="text/javascript" src="../inc/firebase/pageoverall.js"></script>
     <script type="text/javascript">
-    if((!isUserLoggedIn()) && (getUserLev() != 1)){
+    if(getUserLev() != 1){
+        userLogout();
         window.location = "page_login.php"
     }
         

@@ -46,7 +46,8 @@
 							<p>Use the search box below to see if we support your bank!</p>
 						</div>
 
-						<input placeholder="Search" type="text" class="form-control margin-bottom-20">
+						        <div class="container content-sm">
+
                     </form>
                 </div>
 			</div>
@@ -90,6 +91,10 @@
 	<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
 	<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    
+	<script type="text/javascript" src="assets/plugins/parallax-slider/js/modernizr.js"></script>
+	<script type="text/javascript" src="assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
+	<script type="text/javascript" src="assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
 	<!-- JS Implementing Plugins -->
 	<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
 	<script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
@@ -97,7 +102,11 @@
 	<script type="text/javascript" src="assets/js/custom.js"></script>
 	<!-- JS Page Level -->
 	<script type="text/javascript" src="assets/js/app.js"></script>
+    
+	<script type="text/javascript" src="assets/js/plugins/owl-carousel.js"></script>
 	<script type="text/javascript" src="assets/js/plugins/style-switcher.js"></script>
+    
+	<script type="text/javascript" src="assets/js/plugins/parallax-slider.js"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
 			App.init();

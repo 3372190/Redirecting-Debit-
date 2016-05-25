@@ -125,10 +125,10 @@
 								<table class="table table-bordered table-striped" id="serviceoverall">
 									<thead>
 										<tr>
-											<th>Image</th>
+											<th>Service Provider</th>
 											<th>About</th>
-											<th>Status</th>
-											<th>Contacts</th>
+											<th>Current Status</th>
+											<th>Contact</th>
 										</tr>
 									</thead>
 									<tbody>

@@ -120,7 +120,7 @@
 												</label>
 											</section>
 										</div>
-										<button type="button" id="cancel" class="btn-u btn-u-default">Cancel</button>
+										<button type="button" id="cancel" name="cancel" class="btn-u btn-u-default">Cancel</button>
 										<button class="btn-u" type="submit" id="submit" name="submit">Next</button>
 										<!--End Checkout-Form-->
 									</form>
