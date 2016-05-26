@@ -359,8 +359,37 @@ function userRegister(email, pword){
       } else {
         message = "Successfully created user account with uid: "+  userData.uid;
           messageDisplay(message);
-          addUserDataToFirebase(userInfo, userData.uid);
-          userLogin(email, pword)
+          
+          
+        firebaseRef.authWithPassword({
+            email: email,
+            password : pword
+        },function(error, authData){
+            
+            if(error){
+                switch (error.code) {
+                      case "INVALID_EMAIL":
+                       message = "The specified user account email is invalid.";
+                        messageDisplay(message);
+                        break;
+                      case "INVALID_PASSWORD":
+                        message ="The specified user account password is incorrect.";
+                        messageDisplay(message);
+                        break;
+                      case "INVALID_USER":
+                        message = "The specified user account does not exist.";
+                        messageDisplay(message);
+                        break;
+                      default:
+                        message = "Error logging user in:", error;
+                        messageDisplay(message);
+                }
+            }else{
+                message = "Successfully logged in user account with uid: "+ userData.uid;
+                messageDisplay(message);
+                addUserDataToFirebase(userInfo, userData.uid);
+            }
+        });
       }
     });
 }
@@ -403,9 +432,9 @@ function validateEmail(email){
 }
 
 function addUserDataToFirebase(elements, uId){
-    
+    console.log(userInfo);
     //this function can be made universal.
-    if(elements.size > 0){
+    if(elements.length > 0){
         firebaseRef.child("users").child(uId).set({
             firstname: elements[0].value,
             lastname: elements[1].value,
@@ -419,9 +448,22 @@ function addUserDataToFirebase(elements, uId){
             profileimage: "assets/img/team/img32-md.jpg",
         }, function(error){
             if (error) {
-                document.getElementById("message").innerHTML = error + "failed";
+                message = "could not add user details to database"
+                messageDisplay(message)
             }else {
-                window.location = "page_profile.php";
+                
+                    var usersRef = firebaseRef.child("users").child(uId);
+                      usersRef.once("value", function(snap){
+
+                        //because the data doesnt exist in local storage and it is supported, add it to local storage
+                        var object = snap.val();
+                        localStorage.setItem('userDetails', JSON.stringify(object));
+                
+                
+                      });
+                        setTimeout(function () {
+                            window.location.href = "page_profile.php";
+                        }, 2000); //will call the function after 2 secs.
             }
         });
     }
