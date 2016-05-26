@@ -15,9 +15,10 @@
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
     <script type="text/javascript" src="inc/firebase/usersettings.js"></script>
     <script type="text/javascript">
-        if(!isUserLoggedIn()){
-            window.location = "page_login.php"
-        }
+        if(getUserLev() != 3){
+        userLogout();
+        window.location = "page_login.php"
+    }
         getUserId();
         
         $(document).ready(function() {
