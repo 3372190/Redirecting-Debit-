@@ -359,37 +359,8 @@ function userRegister(email, pword){
       } else {
         message = "Successfully created user account with uid: "+  userData.uid;
           messageDisplay(message);
-          
-          
-        firebaseRef.authWithPassword({
-            email: email,
-            password : pword
-        },function(error, authData){
-            
-            if(error){
-                switch (error.code) {
-                      case "INVALID_EMAIL":
-                       message = "The specified user account email is invalid.";
-                        messageDisplay(message);
-                        break;
-                      case "INVALID_PASSWORD":
-                        message ="The specified user account password is incorrect.";
-                        messageDisplay(message);
-                        break;
-                      case "INVALID_USER":
-                        message = "The specified user account does not exist.";
-                        messageDisplay(message);
-                        break;
-                      default:
-                        message = "Error logging user in:", error;
-                        messageDisplay(message);
-                }
-            }else{
-                message = "Successfully logged in user account with uid: "+ userData.uid;
-                messageDisplay(message);
-                addUserDataToFirebase(userInfo);
-            }
-        });
+          addUserDataToFirebase(userInfo, userData.uid);
+          userLogin(email, pword)
       }
     });
 }
@@ -431,13 +402,11 @@ function validateEmail(email){
     }
 }
 
-function addUserDataToFirebase(elements){
+function addUserDataToFirebase(elements, uId){
     
     //this function can be made universal.
-    if(isUserLoggedIn()){
-        authData = firebaseRef.getAuth();
-        console.log(elements)
-        firebaseRef.child("users").child(authData.uid).set({
+    if(elements.size > 0){
+        firebaseRef.child("users").child(uId).set({
             firstname: elements[0].value,
             lastname: elements[1].value,
             emailaddress: elements[7].value,
