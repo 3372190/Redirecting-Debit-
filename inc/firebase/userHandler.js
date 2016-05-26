@@ -211,8 +211,6 @@ function userLogin(e,p){
                   }else{
                       message = "Authenticated successfully. <br> Redirecting in 2 seconds";
                       messageDisplay(message);
-                          
-                      var authData = firebaseRef.getAuth();
                       var usersRef = firebaseRef.child("users").child(authData.uid);
                       usersRef.once("value", function(snap){
 
@@ -438,11 +436,12 @@ function addUserDataToFirebase(elements){
     //this function can be made universal.
     if(isUserLoggedIn()){
         authData = firebaseRef.getAuth();
-    
+        console.log(elements)
         firebaseRef.child("users").child(authData.uid).set({
             firstname: elements[0].value,
             lastname: elements[1].value,
-            emailaddress: elements[6].value,
+            emailaddress: elements[7].value,
+            phonenumber: elements[6].value,
             address: elements[2].value,
             state:elements[3].value,
             postcode:elements[4].value,
