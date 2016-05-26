@@ -8,6 +8,7 @@ $(document).ready(function() {
     
     $("#updatePassword").click(changeUserPassword);
     $("#uploadpp").click(changeUserPicture);
+	$("#saveCard").click(updateCard)
 });
 
 
@@ -199,8 +200,36 @@ function updateProfilePicture(uid, path){
     
 }
 
-function changeUserDetails(){
-    
+
+function updateCard()
+{
+	authData = firebaseRef.getAuth()
+	
+	firebaseRef.child("cc").child(authData.uid).set({
+		cardName: document.getElementById("cardname"),
+		card: document.getElementById("cardnum"),
+		cvv: document.getElementById("cvv"),
+		month: document.getElementById("month"),
+		year: document.getElementById("year"),
+		
+	}, function (error){
+		if(error) {
+			message = "Could not update the Credit Card, try again later".
+			messageDisplay(message);
+		} else {
+			message = "Card updated."
+			messageDisplay(message);
+			
+		}
+
+	});
+	
+	
+	return false;
+}
+
+function updateDetails(){
+		
     
     
 }

@@ -400,7 +400,6 @@ function isUserLoggedIn(){
 
     if (authData) {
         uId = authData.uid;
-        console.log(authData.uid)
         return true;
     } else {
         console.log("User is logged out");
