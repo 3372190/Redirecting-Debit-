@@ -135,6 +135,16 @@
 												</a>
 											</span>
 										</dd>
+                                        <hr>
+                                        <dt><strong>Phone Number</strong></dt>
+										<dd>
+											<div id="phonenumber"></div>
+											<span>
+												<a class="pull-right" href="#">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</span>
+										</dd>
 										<hr>
 										<dt><strong>Address </strong></dt>
 										<dd>
