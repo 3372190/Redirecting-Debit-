@@ -37,7 +37,7 @@ function getUserToolbar(){
         }
         
     }else{
-        console.log("here")
+        console.log("here");
         $("#loginFunction").html("<a href='page_login.php'>Login</a>");
     }
 
@@ -225,7 +225,7 @@ function userLogin(e,p){
                         //because the data doesnt exist in local storage and it is supported, add it to local storage
                         var object = snap.val();
                         localStorage.setItem('userDetails', JSON.stringify(object));
-                        console.log(object)
+                        console.log(object);
                         setTimeout(function () {
                             window.location.href = "index.php";
                         }, 2000); //will call the function after 2 secs.

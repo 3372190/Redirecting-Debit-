@@ -93,10 +93,7 @@ function getUserId(){
 
 function showTab(tab){
     $('.nav-tabs a[href="#' + tab + '"]').tab('show');
-};
-
-
-
+}
 function getProviderDetails(child){
     
     //this can be made cleaner
@@ -153,7 +150,7 @@ function getProviderList(){
 function submitAjaxForm(){
     	//get input field values
 		var fileToUpload    = $('#fileToUpload').val(); 
-		var bankNumber    	= $('#bankNumber option:selected').val()
+		var bankNumber    	= $('#bankNumber option:selected').val();
 		var flag = true;
 
 		/********validate all our form fields***********/
