@@ -411,7 +411,7 @@ function getUserLev(){
     
     if(isUserLoggedIn()){
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-         console.log(userDetails)
+         console.log(userDetails);
         return userDetails["userlevel"];
        
     }else{
@@ -447,7 +447,7 @@ function addUserDataToFirebase(elements, uId){
             profileimage: "assets/img/team/img32-md.jpg",
         }, function(error){
             if (error) {
-                message = "could not add user details to database"
+                message = "could not add user details to database";
                 messageDisplay(message)
             }else {
                 

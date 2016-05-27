@@ -67,7 +67,7 @@ function changeUserPassword(){
                             break;
                         }else{
                             np = listElement.value;
-e                        }
+                        }
                     }
         }else if(formInputName == "emailAddress"){
             if(validateEmail(listElement.value)){
@@ -203,7 +203,7 @@ function updateProfilePicture(uid, path){
 
 function updateCard()
 {
-	authData = firebaseRef.getAuth()
+	authData = firebaseRef.getAuth();
     
 	
 	firebaseRef.child("cc").child(authData.uid).set({
