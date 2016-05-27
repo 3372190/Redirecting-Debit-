@@ -203,6 +203,7 @@ function updateProfilePicture(uid, path){
 
 function updateCard()
 {
+<<<<<<< HEAD
 	//authData = firebaseRef.getAuth()
 	
 	if (getUserID())
@@ -228,6 +229,26 @@ function updateCard()
 		message = "Could not fetch user id.";
 		messageDisplay(message);
 	}
+=======
+	authData = firebaseRef.getAuth()
+    
+	
+	firebaseRef.child("cc").child(authData.uid).set({
+		cardName: document.getElementById("cardname").value,
+		card: document.getElementById("cardnum").value,
+		cvv: document.getElementById("cvv").value,
+		month: document.getElementById("month").value,
+		year: document.getElementById("year").value,
+		
+	}, function (error){
+		if(error) {
+			message = "Could not update the Credit Card, try again later.";
+			messageDisplay(message);
+		} else {
+			message = "Card updated.";
+			messageDisplay(message);
+		}
+>>>>>>> 07aae6971840e690b4e7003f1f3b4e630a4846fa
 
 	});
 	
