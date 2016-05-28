@@ -43,6 +43,14 @@ function getUserToolbar(){
 
 }
 
+function getUserId(){
+    if(isUserLoggedIn()){
+        return uId;
+    }
+
+
+}
+
 function loginFunction (){
     
         var flag = true;
@@ -330,7 +338,7 @@ function checkFieldLength(field){
 }
 
 function validateEmail(email){
-    filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if (filter.test(email)) {
         // Yay! valid
         return true;
@@ -341,8 +349,8 @@ function validateEmail(email){
 
 
 function checkFieldsMatch(field1, field2){
-    Element1 = field1;
-    Element2 = field2;
+    var Element1 = field1;
+    var Element2 = field2;
     
     if(Element1.value != Element2.value){
         return false;
