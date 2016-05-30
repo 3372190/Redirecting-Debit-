@@ -22,6 +22,7 @@ function loadUserServiceProviders() {
 
                 var bCallbackId = childSnapshot.key() + "callback";
                 var bCcId = childSnapshot.key() + "cc";
+                var lNotified = childSnapshot.key() + "notifiedLabel";
 
 
                 /*create buttons here according to the firebase dataset*/
@@ -34,7 +35,7 @@ function loadUserServiceProviders() {
                     '<tr><td><img class="rounded-x" src="' + serviceResults.img + '" alt=""><br>' +
                     '<span><a href="#">' + serviceResults.email + '</a></span><br><span><a href="#">' + serviceResults.website + '</a>' +
                     '</span></td><td class="td-width"><p>' + serviceResults.description + '</p></td>' +
-                    '<td>Notified: <span class="label label-success">' + userResults.notified + '</span><br><br></td>' +
+                    '<td>Notified: <span id="' + lNotified + '" class="label label-success">' + userResults.notified + '</span><br><br></td>' +
                     '<td><br><span class="label">' +
                     callBackButtonHTML +
                     '</span><br><br><span class="label">' +
@@ -43,6 +44,7 @@ function loadUserServiceProviders() {
 
                 var callBackButton = $('#' + bCallbackId + '');
                 var ccButton = $('#' + bCcId + '');
+                var lNotifiedob = $('#' + lNotified + '');
 
                 callBackButton.attr('onclick', 'notifyProviders(\'' + childSnapshot.key() + '\',\'' + "callback" + '\',\'' + bCallbackId + '\')');
                 callBackButton.text("Send Callback");
@@ -50,6 +52,7 @@ function loadUserServiceProviders() {
                 ccButton.text("Send CC ");
 
                 if (userResults.notified) {
+                    lNotifiedob.text("Yes");
                     if (userResults.method == "callback") {
 
                         callBackButton.attr('onclick', 'cancelNotify(\'' + childSnapshot.key() + '\',\'' + "callback" + '\',\'' + bCallbackId + '\')');
@@ -58,6 +61,8 @@ function loadUserServiceProviders() {
                         ccButton.attr('onclick', 'cancelNotify(\'' + childSnapshot.key() + '\',\'' + "cc" + '\',\'' + bCcId + '\')');
                         ccButton.text("Cancel Send cc");
                     }
+                } else {
+                    lNotifiedob.text("No");
                 }
 
             });
@@ -104,8 +109,9 @@ function pushMethodToFirebase(providerId, method, button) {
 }
 
 function changeNotifyMethod() {
-
+//TODO change notify method
 }
+
 
 function cancelNotifyFirebase(providerId, method, button) {
 
@@ -131,7 +137,7 @@ function cancelNotifyFirebase(providerId, method, button) {
     });
 }
 function deleteServiceProvider() {
-
+//TODO Create button that will delete service provider with a prompt asking the user if they are sure
 }
 
 
