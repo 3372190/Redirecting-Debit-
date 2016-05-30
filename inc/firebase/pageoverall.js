@@ -19,10 +19,16 @@ function loadUserServiceProviders() {
             firebaseRef.child('serviceprovider').child(childSnapshot.key()).once('value', function (mediaSnap) {
                 var serviceResults = mediaSnap.val();
                 var userResults = childSnapshot.val();
+
                 var bCallbackId = childSnapshot.key() + "callback";
                 var bCcId = childSnapshot.key() + "cc";
 
-                //write method to set cancel button on method button if set.
+
+                /*create buttons here according to the firebase dataset*/
+
+                var callBackButtonHTML = '<a nohref id="' + bCallbackId + '" name=" ' + bCallbackId + '" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs "></a>';
+                var ccButtonHTML = '<a nohref id="' + bCcId + '" name=" ' + bCcId + '" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs "></a>';
+
 
                 $('#serviceoverall > tbody:last-child').append('' +
                     '<tr><td><img class="rounded-x" src="' + serviceResults.img + '" alt=""><br>' +
@@ -30,10 +36,30 @@ function loadUserServiceProviders() {
                     '</span></td><td class="td-width"><p>' + serviceResults.description + '</p></td>' +
                     '<td>Notified: <span class="label label-success">' + userResults.notified + '</span><br><br></td>' +
                     '<td><br><span class="label">' +
-                    '<a id="' + bCallbackId + '" name=" ' + bCallbackId + '" nohref onClick="notifyProviders(\'' + childSnapshot.key() + '\',\'' + "callback" + '\',\'' + bCallbackId + '\');" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs ">Request Callback</a>' +
+                    callBackButtonHTML +
                     '</span><br><br><span class="label">' +
-                    '<a nohref id="' + bCcId + '" name=" ' + bCcId + '" onClick="notifyProviders(\'' + childSnapshot.key() + '\',\'' + "cc" + '\',\'' + bCcId + '\');" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs ">Send Info</a>' +
+                    ccButtonHTML +
                     '</span></td></tr>');
+
+                var callBackButton = $('#' + bCallbackId + '');
+                var ccButton = $('#' + bCcId + '');
+
+                callBackButton.attr('onclick', 'notifyProviders(\'' + childSnapshot.key() + '\',\'' + "callback" + '\',\'' + bCallbackId + '\')');
+                callBackButton.text("Send Callback");
+                ccButton.attr('onclick', 'notifyProviders(\'' + childSnapshot.key() + '\',\'' + "cc" + '\',\'' + bCcId + '\')');
+                ccButton.text("Send CC ");
+
+                if (userResults.notified) {
+                    if (userResults.method == "callback") {
+
+                        callBackButton.attr('onclick', 'cancelNotify(\'' + childSnapshot.key() + '\',\'' + "callback" + '\',\'' + bCallbackId + '\')');
+                        callBackButton.text("Cancel Send CallBack");
+                    } else {
+                        ccButton.attr('onclick', 'cancelNotify(\'' + childSnapshot.key() + '\',\'' + "cc" + '\',\'' + bCcId + '\')');
+                        ccButton.text("Cancel Send cc");
+                    }
+                }
+
             });
         });
     });
@@ -44,6 +70,12 @@ function notifyProviders(providerId, method, buttonId) {
     button.text("please wait");
     pushMethodToFirebase(providerId, method, button);
 
+}
+
+function cancelNotify(providerId, method, buttonId) {
+    var button = $('#' + buttonId + '');
+    button.text("please wait");
+    cancelNotifyFirebase(providerId, method, button);
 }
 
 function pushMethodToFirebase(providerId, method, button) {
@@ -59,16 +91,50 @@ function pushMethodToFirebase(providerId, method, button) {
     }, function (error) {
         if (error) {
             message = "Failed to notify";
-            button.text("request" + method);
+            button.text("Send " + method);
             messageDisplay(message);
         } else {
             message = "Service provider Notified";
-            button.text("cancel");
+            button.text("Cancel Send " + method);
+            button.attr('onclick', 'cancelNotify(\'' + providerId + '\',\'' + method + '\',\'' + button.attr("id") + '\')');
             messageDisplay(message);
         }
 
     });
 }
+
+function changeNotifyMethod() {
+
+}
+
+function cancelNotifyFirebase(providerId, method, button) {
+
+    var usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
+    var pushRef = usersRef.child(providerId);
+
+    pushRef.set({
+        notified: false,
+        timestamp: Math.floor((new Date).getTime() / 1000),
+        responded: false
+    }, function (error) {
+        if (error) {
+            message = "Failed to Cancel";
+            messageDisplay(message);
+        } else {
+            message = "Cancelled Notify" + method;
+            button.text("Send " + method);
+            button.attr('onclick', 'notifyProviders(\'' + providerId + '\',\'' + method + '\',\'' + button.attr("id") + '\')');
+
+            messageDisplay(message);
+        }
+
+    });
+}
+function deleteServiceProvider() {
+
+}
+
+
 function loadProviders() {
     var providersRef = firebaseRef.child("serviceprovider");
     providersRef.limitToFirst(2).once('value', function (providerSnap) {
@@ -81,36 +147,6 @@ function loadProviders() {
 
         });
     });
-
-}
-
-function changeNotifyMethod() {
-
-}
-
-function cancelNotify() {
-
-    var usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
-    var pushRef = usersRef.child(providerId);
-
-    pushRef.update({
-        notified: false,
-        timestamp: Math.floor((new Date).getTime() / 1000),
-        responded: false
-    }, function (error) {
-        if (error) {
-            message = "Failed to Cancel";
-            button.text("request" + method);
-            messageDisplay(message);
-        } else {
-            message = "Service provider Removed";
-            button.text("cancel");
-            messageDisplay(message);
-        }
-
-    });
-}
-function deleteServiceProvider() {
 
 }
 
