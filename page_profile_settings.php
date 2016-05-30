@@ -15,9 +15,10 @@
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
     <script type="text/javascript" src="inc/firebase/usersettings.js"></script>
     <script type="text/javascript">
-        if(!isUserLoggedIn()){
-            window.location = "page_login.php"
-        }
+        if(getUserLev() != 3){
+        userLogout();
+        window.location = "page_login.php"
+    }
         getUserId();
         
         $(document).ready(function() {
@@ -134,6 +135,16 @@
 												</a>
 											</span>
 										</dd>
+                                        <hr>
+                                        <dt><strong>Phone Number</strong></dt>
+										<dd>
+											<div id="phonenumber"></div>
+											<span>
+												<a class="pull-right" href="#">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</span>
+										</dd>
 										<hr>
 										<dt><strong>Address </strong></dt>
 										<dd>
@@ -243,26 +254,25 @@
 									<h2 class="heading-md">Manage your Payment Settings</h2>
 									<p>Below are the payment options for your account.</p>
 									<br>
-									<form class="sky-form" id="sky-form" action="#">
+									<form class="sky-form" id="sky-form" action="#" method="post">
 										<!--Checkout-Form-->
-										<section>
-											<div class="inline-group">
-												<label class="radio"><input type="radio" checked="" name="radio-inline"><i class="rounded-x"></i>Visa</label>
-												<label class="radio"><input type="radio" name="radio-inline"><i class="rounded-x"></i>MasterCard</label>
-												<label class="radio"><input type="radio" name="radio-inline"><i class="rounded-x"></i>PayPal</label>
-											</div>
-										</section>
+									<div class="row">
+                                       <center>
+                                           <h5 id="message" name="message" class="message"></h5>
+                                       </center>
+                                
+                                    </div>
 
 										<section>
 											<label class="input">
-												<input type="text" name="name" placeholder="Name on card">
+												<input type="text" name="cardname" id="cardname" placeholder="Name on card">
 											</label>
 										</section>
 
 										<div class="row">
 											<section class="col col-10">
 												<label class="input">
-													<input type="text" name="card" id="card" placeholder="Card number">
+													<input type="text" name="cardnum" id="cardnum" placeholder="Card number">
 												</label>
 											</section>
 											<section class="col col-2">
@@ -276,7 +286,7 @@
 											<label class="label col col-4">Expiration date</label>
 											<section class="col col-5">
 												<label class="select">
-													<select name="month">
+													<select name="month" id="month">
 														<option disabled="" selected="" value="0">Month</option>
 														<option value="1">January</option>
 														<option value="1">February</option>
@@ -301,7 +311,7 @@
 											</section>
 										</div>
 										<button type="button" class="btn-u btn-u-default">Cancel</button>
-										<button class="btn-u" type="submit">Save Changes</button>
+										<button class="btn-u" name="saveCard" id="saveCard" type="submit">Save Changes</button>
 										<!--End Checkout-Form-->
 									</form>
 								</div>

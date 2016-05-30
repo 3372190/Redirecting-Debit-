@@ -37,9 +37,17 @@ function getUserToolbar(){
         }
         
     }else{
-        console.log("here")
+        console.log("here");
         $("#loginFunction").html("<a href='page_login.php'>Login</a>");
     }
+
+}
+
+function getUserId(){
+    if(isUserLoggedIn()){
+        return uId;
+    }
+
 
 }
 
@@ -225,7 +233,7 @@ function userLogin(e,p){
                         //because the data doesnt exist in local storage and it is supported, add it to local storage
                         var object = snap.val();
                         localStorage.setItem('userDetails', JSON.stringify(object));
-                        console.log(object)
+                        console.log(object);
                         setTimeout(function () {
                             window.location.href = "index.php";
                         }, 2000); //will call the function after 2 secs.
@@ -330,7 +338,7 @@ function checkFieldLength(field){
 }
 
 function validateEmail(email){
-    filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if (filter.test(email)) {
         // Yay! valid
         return true;
@@ -341,8 +349,8 @@ function validateEmail(email){
 
 
 function checkFieldsMatch(field1, field2){
-    Element1 = field1;
-    Element2 = field2;
+    var Element1 = field1;
+    var Element2 = field2;
     
     if(Element1.value != Element2.value){
         return false;

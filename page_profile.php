@@ -16,7 +16,8 @@
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
     <script type="text/javascript" src="inc/firebase/pageoverall.js"></script>
     <script type="text/javascript">
-    if((!isUserLoggedIn()) && (getUserLev() == 3)){
+     if(getUserLev() != 3){
+        userLogout();
         window.location = "page_login.php"
     }
         
@@ -122,6 +123,7 @@
 												<!-- Begin Table Search v2 -->
 						<div class="table-search-v2">
 							<div class="table-responsive">
+                                <h5 id="message" name="message" class="message"></h5>
 								<table class="table table-bordered table-striped" id="serviceoverall">
 									<thead>
 										<tr>

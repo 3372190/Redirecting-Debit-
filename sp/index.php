@@ -13,8 +13,9 @@
     
     <!-- Firebase -->
     <script type="text/javascript" src="../inc/firebase/firebase.js"></script>
-        <script type="text/javascript" src="inc/AUserHandler.js"></script>
-    <script type="text/javascript" src="../inc/firebase/pageoverall.js"></script>
+    <script type="text/javascript" src="inc/SpUserHandler.js"></script>
+    <script type="text/javascript" src="inc/SPPanelOverview.js"></script>
+
     <script type="text/javascript">
     if(getUserLev() != 2){
         userLogout();
@@ -23,8 +24,10 @@
         
         loadUserDetails();
         $(document).ready(function() {
-           getUserToolbar(); 
+            getUserToolbar();
+            loadUserServiceProviders();
         });
+
     </script>
 
 	<!-- Meta -->
@@ -122,14 +125,15 @@
 
 												<!-- Begin Table Search v2 -->
 						<div class="table-search-v2">
+                            <h5 id="message" name="message" class="message"></h5>
 							<div class="table-responsive">
-								<table class="table table-bordered table-striped" id="serviceoverall">
+                                <table class="table table-bordered table-striped" id="serviceOverallTable">
 									<thead>
 										<tr>
-											<th>Image</th>
-											<th>About</th>
+                                            <th>User</th>
+                                            <th>Email</th>
 											<th>Status</th>
-											<th>Contacts</th>
+                                            <th>Contact</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -139,25 +143,6 @@
 							</div>
 						</div>
 						<!-- End Table Search v2 -->
-
-						<hr>
-
-						<!--Profile Blog-->
-						<div class="panel panel-profile">
-							<div class="panel-heading overflow-h">
-
-								<a href="page_profile_users.html" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right">View All</a>
-							</div>
-							<div class="panel-body">
-								<div class="row" id="providerrow">
-									
-								</div>
-							</div>
-						</div>
-						<!--End Profile Blog-->
-
-						<hr>
-
 
 						<hr>
 

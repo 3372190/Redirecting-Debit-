@@ -4,7 +4,8 @@
 					<div class="row">
 						<!-- About -->
 						<div class="col-md-4 md-margin-bottom-40">
-							<a href="index.html"><img id="logo-footer" class="footer-logo" src="assets/img/logo1-default.png" alt=""></a>
+							<a href="index.html"><img id="logo-footer" class="footer-logo"
+													  src="./../assets/img/logo1-default.png" alt=""></a>
 							<p>Redirect Debit is a programming capstone project, in conjunction with Chris Yong, supervised by James Harland.</p>
 							<p>If you like what you see feel free to email info@ridirectdebit.com</p>
 						</div><!--/col-md-3-->

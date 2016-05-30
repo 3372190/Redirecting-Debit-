@@ -81,6 +81,7 @@
                         <input type="text" placeholder="Country" name="country" id="country" class="form-control margin-bottom-20">
                         <hr>
 
+                        <input type="text" placeholder="Contact Number" name="phoneNumber" id="phoneNumber" class="form-control margin-bottom-20">
 
 						<input type="text" placeholder="Email Address" name="emailAddress" id="emailAddress" class="form-control margin-bottom-20">
                         

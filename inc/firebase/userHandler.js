@@ -25,16 +25,16 @@ function getUserToolbar(){
     var loggedIn = isUserLoggedIn();
     if(loggedIn){
         if(checkLocalStorageSupport){
-            
-        
+
+
             if(localStorage.getItem("userDetails") != null){
                 var userDetails = JSON.parse(localStorage.getItem("userDetails"));
                 var fullName = userDetails["firstname"] + " " +userDetails["lastname"];
-                
+
                 $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " + fullName +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
             }
-        
-        
+
+
         }else{
                 var a = firebaseRef.getAuth();
 
@@ -48,6 +48,11 @@ function getUserToolbar(){
     }else{
         $("#loginFunction").html("<a href='page_login.php'>Login</a>");
     }
+
+}
+
+function userSideBar() {
+
 
 }
 function loginFunction (){
@@ -211,8 +216,6 @@ function userLogin(e,p){
                   }else{
                       message = "Authenticated successfully. <br> Redirecting in 2 seconds";
                       messageDisplay(message);
-                          
-                      var authData = firebaseRef.getAuth();
                       var usersRef = firebaseRef.child("users").child(authData.uid);
                       usersRef.once("value", function(snap){
 
@@ -301,7 +304,6 @@ function loadUserDetails(){
         
         
         if(localStorage.getItem("userDetails") != null){
-            //console.log(localStorage.getItem('userdetails'));
             var userDetails = JSON.parse(localStorage.getItem("userDetails"));
             for (var property in userDetails) {
                 if (userDetails.hasOwnProperty(property)) {
@@ -389,7 +391,7 @@ function userRegister(email, pword){
             }else{
                 message = "Successfully logged in user account with uid: "+ userData.uid;
                 messageDisplay(message);
-                addUserDataToFirebase(userInfo);
+                addUserDataToFirebase(userInfo, userData.uid);
             }
         });
       }
@@ -402,7 +404,6 @@ function isUserLoggedIn(){
 
     if (authData) {
         uId = authData.uid;
-        console.log(authData.uid)
         return true;
     } else {
         console.log("User is logged out");
@@ -410,39 +411,32 @@ function isUserLoggedIn(){
     }
     
 }
+// TODO Implement this feature into all user pages
 function getUserLev(){
-    
+
     if(isUserLoggedIn()){
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-         console.log(userDetails)
         return userDetails["userlevel"];
-       
+
     }else{
         return 0;
     }
-    
-}
-    
-function validateEmail(email){
-    filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if (filter.test(email)) {
-        // Yay! valid
-        return true;
-    }else{
-        return false;
-    }
+
 }
 
-function addUserDataToFirebase(elements){
-    
+function validateEmail(email){
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return filter.test(email);
+}
+
+function addUserDataToFirebase(elements, uId){
     //this function can be made universal.
-    if(isUserLoggedIn()){
-        authData = firebaseRef.getAuth();
-    
-        firebaseRef.child("users").child(authData.uid).set({
+    if(elements.length > 0){
+        firebaseRef.child("users").child(uId).set({
             firstname: elements[0].value,
             lastname: elements[1].value,
-            emailaddress: elements[6].value,
+            emailaddress: elements[7].value,
+            phonenumber: elements[6].value,
             address: elements[2].value,
             state:elements[3].value,
             postcode:elements[4].value,
@@ -451,9 +445,22 @@ function addUserDataToFirebase(elements){
             profileimage: "assets/img/team/img32-md.jpg",
         }, function(error){
             if (error) {
-                document.getElementById("message").innerHTML = error + "failed";
+                message = "could not add user details to database";
+                messageDisplay(message)
             }else {
-                window.location = "page_profile.php";
+                
+                    var usersRef = firebaseRef.child("users").child(uId);
+                      usersRef.once("value", function(snap){
+
+                        //because the data doesnt exist in local storage and it is supported, add it to local storage
+                        var object = snap.val();
+                        localStorage.setItem('userDetails', JSON.stringify(object));
+                
+                
+                      });
+                        setTimeout(function () {
+                            window.location.href = "page_profile.php";
+                        }, 2000); //will call the function after 2 secs.
             }
         });
     }
