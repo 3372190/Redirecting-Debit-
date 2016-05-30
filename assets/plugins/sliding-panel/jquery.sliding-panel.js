@@ -14,4 +14,4 @@ $(document).ready(function(){
   $(window).scroll(function() {
     $(".sliding-panel-ini").removeClass("sliding-panel-ini-open");
   });
-})
+});

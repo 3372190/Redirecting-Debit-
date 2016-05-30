@@ -25,16 +25,16 @@ function getUserToolbar(){
     var loggedIn = isUserLoggedIn();
     if(loggedIn){
         if(checkLocalStorageSupport){
-            
-        
+
+
             if(localStorage.getItem("userDetails") != null){
                 var userDetails = JSON.parse(localStorage.getItem("userDetails"));
                 var fullName = userDetails["firstname"] + " " +userDetails["lastname"];
-                
+
                 $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " + fullName +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
             }
-        
-        
+
+
         }else{
                 var a = firebaseRef.getAuth();
 
@@ -48,6 +48,11 @@ function getUserToolbar(){
     }else{
         $("#loginFunction").html("<a href='page_login.php'>Login</a>");
     }
+
+}
+
+function userSideBar() {
+
 
 }
 function loginFunction (){
@@ -299,7 +304,6 @@ function loadUserDetails(){
         
         
         if(localStorage.getItem("userDetails") != null){
-            //console.log(localStorage.getItem('userdetails'));
             var userDetails = JSON.parse(localStorage.getItem("userDetails"));
             for (var property in userDetails) {
                 if (userDetails.hasOwnProperty(property)) {
@@ -407,31 +411,25 @@ function isUserLoggedIn(){
     }
     
 }
+// TODO Implement this feature into all user pages
 function getUserLev(){
-    
+
     if(isUserLoggedIn()){
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-         console.log(userDetails);
         return userDetails["userlevel"];
-       
+
     }else{
         return 0;
     }
-    
+
 }
-    
+
 function validateEmail(email){
-    filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if (filter.test(email)) {
-        // Yay! valid
-        return true;
-    }else{
-        return false;
-    }
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return filter.test(email);
 }
 
 function addUserDataToFirebase(elements, uId){
-    console.log(userInfo);
     //this function can be made universal.
     if(elements.length > 0){
         firebaseRef.child("users").child(uId).set({

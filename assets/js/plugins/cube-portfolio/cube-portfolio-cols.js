@@ -19,7 +19,7 @@ var CubePortfolio = function () {
 				            cols: 1
 				        }]
 				    });
-			    });
+			})
 			});
         }
         

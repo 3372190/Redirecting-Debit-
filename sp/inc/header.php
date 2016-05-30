@@ -2,7 +2,7 @@
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="index.php">
-					<img src="assets/img/logo1-default.png" alt="Logo">
+					<img src="./../assets/img/logo1-default.png" alt="Logo">
 				</a>
 				<!-- End Logo -->
 

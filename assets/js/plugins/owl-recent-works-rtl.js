@@ -27,7 +27,7 @@ var OwlRecentWorks = function () {
             // Custom Navigation Events
             jQuery(".next-v2").click(function(){
                 jQuery(".owl-recent-works-v1").trigger('next.owl.carousel');
-            })
+            });
             jQuery(".prev-v2").click(function(){
                 jQuery(".owl-recent-works-v1").trigger('prev.owl.carousel');
             })
@@ -55,7 +55,7 @@ var OwlRecentWorks = function () {
             // Custom Navigation Events
             jQuery(".next-v2").click(function(){
                 jQuery(".owl-recent-works-v1").trigger('next.owl.carousel');
-            })
+            });
             jQuery(".prev-v2").click(function(){
                 jQuery(".owl-recent-works-v1").trigger('prev.owl.carousel');
             })
@@ -83,7 +83,7 @@ var OwlRecentWorks = function () {
             // Custom Navigation Events
             jQuery(".next-v2").click(function(){
                 jQuery(".owl-recent-works-v1").trigger('next.owl.carousel');
-            })
+            });
             jQuery(".prev-v2").click(function(){
                 jQuery(".owl-recent-works-v1").trigger('prev.owl.carousel');
             })

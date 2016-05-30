@@ -62,18 +62,19 @@ function save(){
         saveProvidersToUser(providerids[i])
     }
     //messageDisplay("updated");
-   document.getElementById("upmessage").innerHTML = "updated <br> Redirecting you in 2 seconds";
-    setTimeout(function () {
-        window.location.href = "page_profile.php";
-    }, 2000); //will call the function after 2 secs.
+    document.getElementById("upmessage").innerHTML = 'updated <br> <a href="page_profile.php">Return Home. </a>';
 }
 
 function saveProvidersToUser(id){
     
     usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
     pushRef =  usersRef.child(id);
-    
-    pushRef.set({'notified': 'no'});
+
+    pushRef.set({
+        notified: false,
+        timestamp: Math.floor((new Date).getTime() / 1000),
+        responded: false
+    });
 }
 
 function cancel(){

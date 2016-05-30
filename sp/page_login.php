@@ -12,7 +12,7 @@
     
     <!-- Firebase -->
     <script type="text/javascript" src="../inc/firebase/firebase.js"></script>
-    <script type="text/javascript" src="inc/AUserHandler.js"></script>
+	<script type="text/javascript" src="inc/SpUserHandler.js"></script>
     <script type="text/javascript">
     if(isUserLoggedIn()){
         window.location = "page_profile.php"
