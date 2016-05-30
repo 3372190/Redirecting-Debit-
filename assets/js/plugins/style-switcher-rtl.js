@@ -44,7 +44,7 @@ var StyleSwitcher = function () {
                     jQuery('.logo img').attr("src", "../assets/img/themes/logo1-" + color + ".png");
                     jQuery('#logo-footer').attr("src", "../assets/img/themes/logo2-" + color + ".png");
                 }
-            }
+            };
 
             //Boxed Layout
             jQuery('.skins-btn').click(function(){

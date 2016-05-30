@@ -123,6 +123,7 @@
 												<!-- Begin Table Search v2 -->
 						<div class="table-search-v2">
 							<div class="table-responsive">
+                                <h5 id="message" name="message" class="message"></h5>
 								<table class="table table-bordered table-striped" id="serviceoverall">
 									<thead>
 										<tr>

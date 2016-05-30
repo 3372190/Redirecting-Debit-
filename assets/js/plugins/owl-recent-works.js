@@ -18,7 +18,7 @@ var OwlRecentWorks = function () {
                 // Custom Navigation Events
                 jQuery(".next-v2").click(function(){
                     owl.trigger('owl.next');
-                })
+                });
                 jQuery(".prev-v2").click(function(){
                     owl.trigger('owl.prev');
                 })
@@ -41,7 +41,7 @@ var OwlRecentWorks = function () {
                 // Custom Navigation Events
                 jQuery(".next-v2").click(function(){
                     owl.trigger('owl.next');
-                })
+                });
                 jQuery(".prev-v2").click(function(){
                     owl.trigger('owl.prev');
                 })
@@ -64,7 +64,7 @@ var OwlRecentWorks = function () {
                 // Custom Navigation Events
                 jQuery(".next-v2").click(function(){
                     owl.trigger('owl.next');
-                })
+                });
                 jQuery(".prev-v2").click(function(){
                     owl.trigger('owl.prev');
                 })

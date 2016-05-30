@@ -809,7 +809,7 @@ function onYouTubePlayerAPIReady() {
 				}
 
 
-				fullScreenBtn.html(jQuery.mbYTPlayer.controls.onlyYT)
+				fullScreenBtn.html(jQuery.mbYTPlayer.controls.onlyYT);
 				YTPlayer.isAlone = false;
 			}
 
@@ -1089,7 +1089,6 @@ function onYouTubePlayerAPIReady() {
 						YTPEnd.time = YTPlayer.player.time;
 						jQuery(YTPlayer).trigger(YTPEnd);
 
-						return;
 
 					} else if (!data.loop) {
 						YTPlayer.player.pauseVideo();

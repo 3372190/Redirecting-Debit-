@@ -48,7 +48,7 @@ jQuery(document).ready(function($){
 				setTimeout(function(){ headline.find('.cd-words-wrapper').addClass('is-loading') }, barWaiting);
 			} else if (headline.hasClass('clip')){
 				var spanWrapper = headline.find('.cd-words-wrapper'),
-					newWidth = spanWrapper.width() + 10
+					newWidth = spanWrapper.width() + 10;
 				spanWrapper.css('width', newWidth);
 			} else if (!headline.hasClass('type') ) {
 				//assign to .cd-words-wrapper the width of its longest word
@@ -59,8 +59,7 @@ jQuery(document).ready(function($){
 				    if (wordWidth > width) width = wordWidth;
 				});
 				headline.find('.cd-words-wrapper').css('width', width);
-			};
-
+			}
 			//trigger animation
 			setTimeout(function(){ hideWord( headline.find('.is-visible').eq(0) ) }, duration);
 		});

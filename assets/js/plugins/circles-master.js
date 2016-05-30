@@ -14,7 +14,7 @@ var CirclesMaster = function () {
 		        text:       '%',
 		        colors:     ['#eee', '#72c02c'],
 		        duration:   2000
-		    })
+			});
 
         	//Circles 2
 		    Circles.create({
@@ -26,7 +26,7 @@ var CirclesMaster = function () {
 		        text:       '%',
 		        colors:     ['#eee', '#72c02c'],
 		        duration:   2000
-		    })
+			});
 
         	//Circles 3
 		    Circles.create({
@@ -38,7 +38,7 @@ var CirclesMaster = function () {
 		        text:       '%',
 		        colors:     ['#eee', '#72c02c'],
 		        duration:   2000
-		    })
+			});
 
 		    //Circles 4
 		    Circles.create({
@@ -50,7 +50,7 @@ var CirclesMaster = function () {
 		        text:       '%',
 		        colors:     ['#eee', '#72c02c'],
 		        duration:   2000
-		    })
+			});
 
 		    //Circles 5
 		    Circles.create({
@@ -62,7 +62,7 @@ var CirclesMaster = function () {
 		        text:       '%',
 		        colors:     ['#eee', '#9B6BCC'],
 		        duration:   2000
-		    })
+			});
 
 		    //Circles 6
 		    Circles.create({
@@ -74,7 +74,7 @@ var CirclesMaster = function () {
 		        text:       '%',
 		        colors:     ['#eee', '#72c02c'],
 		        duration:   2000
-		    })
+			});
 
         	//Circles 7
 		    Circles.create({
@@ -86,7 +86,7 @@ var CirclesMaster = function () {
 		        text:       '%',
 		        colors:     ['#eee', '#72c02c'],
 		        duration:   2000
-		    })
+			});
 
         	//Circles 8
 		    Circles.create({
@@ -98,7 +98,7 @@ var CirclesMaster = function () {
 		        text:       '%',
 		        colors:     ['#eee', '#72c02c'],
 		        duration:   2000
-		    })
+			});
 
 		    //Circles 9
 		    Circles.create({

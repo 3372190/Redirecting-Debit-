@@ -299,7 +299,6 @@ function loadUserDetails(){
         
         
         if(localStorage.getItem("userDetails") != null){
-            //console.log(localStorage.getItem('userdetails'));
             var userDetails = JSON.parse(localStorage.getItem("userDetails"));
             for (var property in userDetails) {
                 if (userDetails.hasOwnProperty(property)) {
@@ -411,7 +410,6 @@ function getUserLev(){
     
     if(isUserLoggedIn()){
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-         console.log(userDetails);
         return userDetails["userlevel"];
        
     }else{
@@ -431,7 +429,6 @@ function validateEmail(email){
 }
 
 function addUserDataToFirebase(elements, uId){
-    console.log(userInfo);
     //this function can be made universal.
     if(elements.length > 0){
         firebaseRef.child("users").child(uId).set({

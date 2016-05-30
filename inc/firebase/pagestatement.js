@@ -72,8 +72,12 @@ function saveProvidersToUser(id){
     
     usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
     pushRef =  usersRef.child(id);
-    
-    pushRef.set({'notified': 'no'});
+
+    pushRef.set({
+        notified: false,
+        timestamp: Math.floor((new Date).getTime() / 1000),
+        responded: false
+    });
 }
 
 function cancel(){

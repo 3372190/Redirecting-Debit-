@@ -29,10 +29,10 @@ var OwlCarousel = function () {
             });
             jQuery(".next-v1").click(function(){
                 owl.trigger('next.owl.carousel');
-            })
+            });
             jQuery(".prev-v1").click(function(){
                 owl.trigger('prev.owl.carousel');
-            })
+            });
 
 
 	        //Owl Slider v2
@@ -60,10 +60,10 @@ var OwlCarousel = function () {
             });
             jQuery(".next-v2").click(function(){
                 owl2.trigger('next.owl.carousel');
-            })
+            });
             jQuery(".prev-v2").click(function(){
                 owl2.trigger('prev.owl.carousel');
-            })
+            });
 
 
 	        //Owl Slider v3
