@@ -277,7 +277,7 @@
 											</section>
 											<section class="col col-2">
 												<label class="input">
-													<input type="text" name="cvv" id="cvv" placeholder="CVV2">
+													<input type="text" name="cvv" id="cvv" placeholder="CVV">
 												</label>
 											</section>
 										</div>

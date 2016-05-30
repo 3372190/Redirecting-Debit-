@@ -206,10 +206,11 @@ function updateCard()
 	//authData = firebaseRef.getAuth()
 	
 	var auth = firebaseRef.getAuth();
-	
+	console.log(auth);
 	if (auth)
 	{
-		firebaseRef.child("cc").child(auth.uid).set(
+		uId = auth.uid
+		firebaseRef.child("cc").child(uId).set(
 		{
 			nameOnCard: document.getElementById("cardname"),
 			card: document.getElementById("cardnum"),
@@ -218,7 +219,7 @@ function updateCard()
 			year: document.getElementById("year"),
 			
 			
-		}), function (error){
+		}, function (error){
 			if(error) {
 				message = "Could not update the Credit Card, try again later.";
 				messageDisplay(message);
@@ -227,7 +228,7 @@ function updateCard()
 				messageDisplay(message);
 				
 			}
-		}
+		})
 	}
 	else{
 		message = "Could not fetch user id.";
