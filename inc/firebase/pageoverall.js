@@ -147,7 +147,7 @@ function loadProviders() {
         providerSnap.forEach(function (childSnapshot) {
             var serviceResults = childSnapshot.val();
 
-            //check if method is set and create button appropriately.
+            //TODO check if method is set and create button appropriately.
 
             $('#providerrow').append('<div class="col-sm-6"><div class="profile-blog blog-border"><img class="rounded-x" src="' + serviceResults.img + '" alt=""><div class="name-location"><strong>' + serviceResults.name + '</strong></div><div class="clearfix margin-bottom-20"></div><p>' + serviceResults.description + '</p><hr><ul class="list-inline share-list"><li><a href="' + serviceResults.email + '">website</a></li><li><i class="fa fa-facebook"></i><a href="#">54 Followers</a></li><li><i class="fa fa-twitter"></i><a href="#">Retweet</a></li></ul></div></div>');
 
