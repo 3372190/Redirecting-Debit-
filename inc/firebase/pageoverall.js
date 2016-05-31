@@ -17,13 +17,6 @@ function loadUserServiceProviders() {
         $("#numofproviders").html(numOfProviders);
 
 
-        $("#serviceoverall > thead").append('<tr>' +
-            '<th>Service Provider</th>' +
-            '<th>About</th>' +
-            '<th>Current Status</th>' +
-            '<th>Contact</th> ' +
-            '</tr>');
-
         if (numOfProviders == 0) {
             $("#serviceoverall > tbody:last-child").append(
                 '<tr><td colspan="4"><h4>You have no service providers. <a href="page_statement.php#profile">Add Some Now</a></h4></td></tr>'
@@ -89,6 +82,8 @@ function loadUserServiceProviders() {
 
             });
         });
+
+        $('#serviceProviderLoader').remove();
     });
 }
 
@@ -179,6 +174,7 @@ function deleteServiceProvider(spKey, spName) {
             message = '' + spName + ' Deleted';
             messageDisplay(message);
             $('#' + spKey + '').remove();
+
         }
     });
 
@@ -194,7 +190,16 @@ function loadProviders() {
 
             //TODO check if method is set and create button appropriately.
 
-            $('#providerrow').append('<div class="col-sm-6"><div class="profile-blog blog-border"><img class="rounded-x" src="' + serviceResults.img + '" alt=""><div class="name-location"><strong>' + serviceResults.name + '</strong></div><div class="clearfix margin-bottom-20"></div><p>' + serviceResults.description + '</p><hr><ul class="list-inline share-list"><li><a href="' + serviceResults.email + '">website</a></li><li><i class="fa fa-facebook"></i><a href="#">54 Followers</a></li><li><i class="fa fa-twitter"></i><a href="#">Retweet</a></li></ul></div></div>');
+            $('#providerrow').append('<div class="col-sm-6">' +
+                '<div class="profile-blog blog-border">' +
+                '<img class="rounded-x" src="' + serviceResults.img + '" alt="">' +
+                '<div class="name-location"><strong>' + serviceResults.name + '</strong></div>' +
+                '<div class="clearfix margin-bottom-20"></div>' +
+                '<p>' + serviceResults.description + '</p><hr>' +
+                '<ul class="list-inline share-list"><li><a href="' + serviceResults.email + '">website</a></li>' +
+                '<li><i class="fa fa-facebook"></i><a href="#">54 Followers</a></li>' +
+                '<li><i class="fa fa-twitter"></i><a href="#">Retweet</a></li></ul>' +
+                '</div></div>');
 
         });
     });
