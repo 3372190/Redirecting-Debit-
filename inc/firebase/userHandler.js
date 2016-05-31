@@ -442,7 +442,7 @@ function addUserDataToFirebase(elements, uId){
             postcode:elements[4].value,
             country:elements[5].value,
             userlevel: "3",
-            profileimage: "assets/img/team/img32-md.jpg",
+            profileimage: "assets/img/user.jpg",
         }, function(error){
             if (error) {
                 message = "could not add user details to database";
