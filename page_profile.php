@@ -122,19 +122,12 @@
 												<!-- Begin Table Search v2 -->
 						<div class="table-search-v2">
 							<div class="table-responsive">
-                                <h5 id="message" name="message" class="message"></h5>
+                                <h5 style="margin:0 auto;" id="message" name="message" class="message"></h5>
 								<table class="table table-bordered table-striped" id="serviceoverall">
 									<thead>
-										<tr>
-											<th>Service Provider</th>
-											<th>About</th>
-											<th>Current Status</th>
-											<th>Contact</th>
-										</tr>
-									</thead>
+                                    </thead>
 									<tbody>
-
-									</tbody>
+                                    </tbody>
 								</table>
 							</div>
 						</div>
