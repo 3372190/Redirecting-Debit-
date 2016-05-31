@@ -32,6 +32,7 @@ function loadUserServiceProviders() {
                 var bCcId = childSnapshot.key() + "cc";
                 var lNotified = childSnapshot.key() + "notifiedLabel";
                 var delLabel = childSnapshot.key() + "del";
+                var lResponded = childSnapshot.key() + "res";
 
 
                 /*create buttons here according to the firebase dataset*/
@@ -45,7 +46,8 @@ function loadUserServiceProviders() {
                     '<td><img class="rounded-x" src="' + serviceResults.img + '" alt=""><br>' +
                     '<span><a href="#">' + serviceResults.email + '</a></span><br><span><a href="#">' + serviceResults.website + '</a>' +
                     '</span></td><td class="td-width"><p>' + serviceResults.description + '</p></td>' +
-                    '<td>Notified: <span id="' + lNotified + '" class="label label-success">' + userResults.notified + '</span><br><br></td>' +
+                    '<td><span id="' + lNotified + '" class="label label-success">Notified: ' + userResults.notified + '</span><br><br>' +
+                    '<span id="' + lResponded + '" class="label label-danger">Responded: ' + userResults.responded + '</span></td>' +
                     '<td><br><span class="label">' +
                     callBackButtonHTML +
                     '</span><br><br><span class="label">' +
@@ -82,13 +84,13 @@ function loadUserServiceProviders() {
 
             });
         });
-
-        $('#serviceProviderLoader').remove();
+        $('#serviceProviderLoader').hide();
     });
 }
 
 function notifyProviders(providerId, method, buttonId) {
     var button = $('#' + buttonId + '');
+    $('#serviceProviderLoader').show();
     button.text("please wait");
     pushMethodToFirebase(providerId, method, button);
 
@@ -96,6 +98,7 @@ function notifyProviders(providerId, method, buttonId) {
 
 function cancelNotify(providerId, method, buttonId) {
     var button = $('#' + buttonId + '');
+    $('#serviceProviderLoader').show();
     button.text("please wait");
     cancelNotifyFirebase(providerId, method, button);
 }
@@ -120,6 +123,7 @@ function pushMethodToFirebase(providerId, method, button) {
             button.text("Cancel Send " + method);
             button.attr('onclick', 'cancelNotify(\'' + providerId + '\',\'' + method + '\',\'' + button.attr("id") + '\')');
             messageDisplay(message);
+            $('#serviceProviderLoader').hide();
         }
 
     });
