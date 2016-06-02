@@ -19,11 +19,13 @@ $(document).ready(function() {
     $("#loginButton").click(loginFunction);
     $('#registerButton').click(registerFunction);
     $('#resetButton').click(resetFuction);
-    getUserSideBar();
+    //TODO Fix This Function
+    // getUserSideBar();
 });
 
 function getUserToolbar(){
     var loggedIn = isUserLoggedIn();
+    console.log(loggedIn);
     if(loggedIn){
         if(checkLocalStorageSupport){
 

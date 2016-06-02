@@ -93,6 +93,7 @@ function loadUserServiceProviders() {
 
             });
         });
+        //TODO Write code here to dynamically update mini dashboard counter and %
         $('#serviceProviderLoader').hide();
     });
 }
@@ -136,19 +137,6 @@ function pushMethodToFirebase(providerId, method, button) {
         }
 
     });
-}
-
-function changeNotifyMethod() {
-//TODO change notify method Use firebase on child add method here.
-    var usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
-    var changeRef = usersRef.child(providerId);
-    if (changeRef != null) {
-        changeRef.on("child_changed", function (error) {
-
-        });
-
-    }
-
 }
 
 function confirmSpRemove(spKey, spName) {
