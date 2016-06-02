@@ -130,7 +130,16 @@ function pushMethodToFirebase(providerId, method, button) {
 }
 
 function changeNotifyMethod() {
-//TODO change notify method
+//TODO change notify method Use firebase on child add method here.
+    var usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
+    var changeRef = usersRef.child(providerId);
+    if (changeRef != null) {
+        changeRef.on("child_changed", function (error) {
+
+        });
+
+    }
+
 }
 
 function confirmSpRemove(spKey, spName) {
@@ -182,7 +191,6 @@ function deleteServiceProvider(spKey, spName) {
         }
     });
 
-//TODO Create button that will delete service provider with a prompt asking the user if they are sure
 }
 
 
