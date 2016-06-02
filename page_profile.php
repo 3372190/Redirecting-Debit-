@@ -122,19 +122,22 @@
 												<!-- Begin Table Search v2 -->
 						<div class="table-search-v2">
 							<div class="table-responsive">
-                                <h5 id="message" name="message" class="message"></h5>
+                                <h5 style="margin:0 auto;" id="message" name="message" class="message"></h5>
 								<table class="table table-bordered table-striped" id="serviceoverall">
 									<thead>
-										<tr>
-											<th>Service Provider</th>
-											<th>About</th>
-											<th>Current Status</th>
-											<th>Contact</th>
-										</tr>
-									</thead>
+                                    <tr>
+                                        <th>Service Provider</th>
+                                        <th>About</th>
+                                        <th>Current Status</th>
+                                        <th>Contact</th>
+                                    </tr>
+                                    </thead>
 									<tbody>
-
-									</tbody>
+                                    <tr id="serviceProviderLoader">
+                                        <td colspan="4"><img id="loadingUserServiceProviders"
+                                                             src="assets/img/loading.gif" alt="Loading..."/></td>
+                                    </tr>
+                                    </tbody>
 								</table>
 							</div>
 						</div>

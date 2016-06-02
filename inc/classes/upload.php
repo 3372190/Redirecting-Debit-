@@ -52,7 +52,8 @@ class upload{
     function setUploadDir($upDir){
         $this->uploadDir = $upDir;
         $this->uploadDir = $this->baseUploadDir.$this->uId.'/'.$this->uploadDir.'/';
-        $this->targetFile = $this->uploadDir.basename($this->fileToUpload['name']);
+        $path_parts = pathinfo($this->fileToUpload['name']);
+        $this->targetFile = $this->uploadDir . basename($path_parts['filename'] . '_' . time() . '.' . $path_parts['extension']);
         
     }
 }
