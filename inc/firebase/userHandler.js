@@ -20,12 +20,11 @@ $(document).ready(function() {
     $('#registerButton').click(registerFunction);
     $('#resetButton').click(resetFuction);
     //TODO Fix This Function
-    // getUserSideBar();
+    getUserSideBar();
 });
 
 function getUserToolbar(){
     var loggedIn = isUserLoggedIn();
-    console.log(loggedIn);
     if(loggedIn){
         if(checkLocalStorageSupport){
 
@@ -55,31 +54,30 @@ function getUserToolbar(){
 
 function getUserSideBar() {
 
-    var serviceRef = firebaseRef.child("users").child(uId).child("serviceproviders");
+    if (isUserLoggedIn()) {
 
-    serviceRef.on('child_changed', function (childSnapshot, prevChildKey) {
+        var serviceRef = firebaseRef.child("users").child(uId).child("serviceproviders");
 
-        var childData = childSnapshot.val();
-        var providerRef = firebaseRef.child("serviceprovider").child(childSnapshot.key());
+        serviceRef.on('child_changed', function (childSnapshot, prevChildKey) {
 
-        providerRef.once('value', function (childSnapShot) {
+            var providerRef = firebaseRef.child("serviceprovider").child(childSnapshot.key());
 
-            var childData = childSnapShot.val();
+            providerRef.once('value', function (childSnapShot) {
 
-            $('#sideBarNotifications ul').append('<li class="notification">' +
-                '<img class="" src="assets/img/profile_serviceproviders/vodafone_logo.png" alt=""> ' +
-                '<div class="overflow-h"> <span>' +
-                '<strong>' + childData.name + '</strong>Updated Details</span>' +
-                ' <small>Two minutes ago</small>' +
-                ' </div> </li>');
+                var childData = childSnapShot.val();
 
+                $('#sideBarNotifications ul').append('<li class="notification">' +
+                    '<img class="" src="assets/img/profile_serviceproviders/vodafone_logo.png" alt=""> ' +
+                    '<div class="overflow-h"> <span>' +
+                    '<strong>' + childData.name + ' </strong>Updated Details</span>' +
+                    ' <small>Two minutes ago</small>' +
+                    ' </div> </li>');
+            });
 
         });
+    }
 
 
-        console.log(childData.responded);
-        console.log(childSnapshot.key());
-    });
 
 }
 function loginFunction (){
@@ -433,7 +431,7 @@ function isUserLoggedIn(){
         uId = authData.uid;
         return true;
     } else {
-        console.log("User is logged out");
+        //console.log("User is logged out");
         return false;
     }
     

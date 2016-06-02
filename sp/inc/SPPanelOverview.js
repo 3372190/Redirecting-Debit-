@@ -28,7 +28,7 @@ function loadUserServiceProviders(){
 
                 if(childDataSP.notified){
                     $('#serviceOverallTable > tbody:last-child')
-                        .append('<tr id="'+ childDataSPKey +'"><td><img src="'+ childData.profileimage +'" alt="./../assets/img/team/img32-md.jpg"/>' +
+                        .append('<tr id="' + childDataSPKey + '"><td><img src="./../' + childData.profileimage + '" alt="./../assets/img/team/img32-md.jpg"/>' +
                             ' <br><h4>'+childData.firstname + " " + childData.lastname+ '</h4></td>' +
                             '<td>' +
                             '<br>' + childData.emailaddress +
