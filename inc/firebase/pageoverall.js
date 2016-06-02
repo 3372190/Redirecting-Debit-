@@ -5,8 +5,13 @@ $(document).ready(function () {
     loadUserDetails();
     loadUserServiceProviders();
     loadProviders();
-});
 
+    var serviceRef = firebaseRef.child("users").child(uId).child("serviceproviders");
+    serviceRef.on('child_changed', function (childSnapshot, prevChildKey) {
+        $('#serviceoverall').empty();
+        loadUserServiceProviders();
+    });
+});
 
 function loadUserServiceProviders() {
 
@@ -149,7 +154,6 @@ function confirmSpRemove(spKey, spName) {
 
 }
 
-
 function cancelNotifyFirebase(providerId, method, button) {
 
     var usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
@@ -163,12 +167,16 @@ function cancelNotifyFirebase(providerId, method, button) {
         if (error) {
             message = "Failed to Cancel";
             messageDisplay(message);
+
+            $('#serviceProviderLoader').hide();
         } else {
             message = "Cancelled Notify" + method;
             button.text("Send " + method);
             button.attr('onclick', 'notifyProviders(\'' + providerId + '\',\'' + method + '\',\'' + button.attr("id") + '\')');
 
             messageDisplay(message);
+
+            $('#serviceProviderLoader').hide();
         }
 
     });
@@ -190,9 +198,7 @@ function deleteServiceProvider(spKey, spName) {
 
         }
     });
-
 }
-
 
 function loadProviders() {
     var providersRef = firebaseRef.child("serviceprovider");
