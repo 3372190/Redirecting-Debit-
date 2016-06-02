@@ -8,7 +8,8 @@ $(document).ready(function () {
 
     var serviceRef = firebaseRef.child("users").child(uId).child("serviceproviders");
     serviceRef.on('child_changed', function (childSnapshot, prevChildKey) {
-        $('#serviceoverall').empty();
+        $("#serviceoverall").find("tr:gt(0)").remove();
+        $('#serviceProviderLoader').show();
         loadUserServiceProviders();
     });
 });
