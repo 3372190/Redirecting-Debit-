@@ -50,25 +50,22 @@ class rdaspa{
 			if (strcmp($iList[$i]->getAmount(), " ") == 0)
 			{
 				
-			}
-			else
-			{
-				for ($j = $i + 1; $j < count($iList); $j++)
-				{
-					
-					$newDate = strtotime($iList[$j]->getDate());						//Date to check against reference
+			} else {
+				for ($j = $i + 1; $j < count($iList); $j++) {
+
+					$newDate = strtotime($iList[$j]->getDate());                        //Date to check against reference
 					//var_dump($newDate);
-					
-					if($newDate > $startDate && $newDate < $endDate)					//1 month +- 3 days
+
+					if ($newDate > $startDate && $newDate < $endDate)                    //1 month +- 3 days
 					{
-						
-						if ($this->checkTokens($j))			//If dates are a go, check if token in description exists in SP database.
+
+						if ($this->checkTokens($j))            //If dates are a go, check if token in description exists in SP database.
 						{
-							array_push($this->spList, $iList[$j]);	
+							array_push($this->spList, $iList[$j]);
 						}
 					}
 				}
-			
+			}
 		}
     }
 	
@@ -184,8 +181,7 @@ class rdaspa{
         //var_dump($providerList);
 		$this->providerList = $providerList;
 	}
-	
-	
- 
+
+
 }
 ?>
