@@ -35,6 +35,7 @@ function loadUserServiceProviders() {
                 var serviceResults = mediaSnap.val();
                 var userResults = childSnapshot.val();
 
+                //These are used to create unique labels for every table row.
                 var bCallbackId = childSnapshot.key() + "callback";
                 var bCcId = childSnapshot.key() + "cc";
                 var lNotified = childSnapshot.key() + "notifiedLabel";
@@ -42,12 +43,13 @@ function loadUserServiceProviders() {
                 var lResponded = childSnapshot.key() + "res";
 
 
-                /*create buttons here according to the firebase dataset*/
+                //create the html string to display the button in the table
 
                 var callBackButtonHTML = '<a nohref id="' + bCallbackId + '" name=" ' + bCallbackId + '" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs "></a>';
                 var ccButtonHTML = '<a nohref id="' + bCcId + '" name=" ' + bCcId + '" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs "></a>';
                 var delButtonHTML = '<a id="' + delLabel + '" name="' + delLabel + '" nohref onclick="" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs ">Delete ' + serviceResults.name + ' </a> ';
 
+                //adding the table row and all its appropriate fields and data.
                 $('#serviceoverall > tbody:last-child').append('' +
                     '<tr id="' + childSnapshot.key() + '" name="' + childSnapshot.key() + '">' +
                     '<td><img class="rounded-x" src="' + serviceResults.img + '" alt=""><br>' +
@@ -64,12 +66,14 @@ function loadUserServiceProviders() {
                     delButtonHTML +
                     '</span></td></tr>');
 
+                // grabing html elements and turning them into jquery objects
                 var callBackButton = $('#' + bCallbackId + '');
                 var ccButton = $('#' + bCcId + '');
                 var lNotifiedob = $('#' + lNotified + '');
                 var lRespondedob = $('#' + lResponded + '');
                 var delButton = $('#' + delLabel + '');
 
+                //add the relevant attributes and text to jquery elements from above
                 delButton.attr('onclick', 'confirmSpRemove(\'' + childSnapshot.key() + '\', \' ' + serviceResults.name + '\')');
                 callBackButton.attr('onclick', 'notifyProviders(\'' + childSnapshot.key() + '\',\'' + "callback" + '\',\'' + bCallbackId + '\')');
                 callBackButton.text("Send Callback");
@@ -101,6 +105,8 @@ function loadUserServiceProviders() {
                 } else {
                     lNotifiedob.text("No");
                     lNotifiedob.attr('class', 'label label-danger');
+                    lRespondedob.text("No");
+                    lRespondedob.attr('class', 'label label-danger');
                 }
 
             });

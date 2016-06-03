@@ -9,7 +9,8 @@ $(document).ready(function() {
     $("#loader").hide(100);
     
     $("#loginButton").click(loginFunction);
-    $('#registerButton').click(registerServiceProviderFunction); 
+    $('#registerButton').click(registerServiceProviderFunction);
+    $('#registerAdminButton').click();
 });
 
 
