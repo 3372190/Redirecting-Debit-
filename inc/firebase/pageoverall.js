@@ -75,6 +75,8 @@ function loadUserServiceProviders() {
                 ccButton.attr('onclick', 'notifyProviders(\'' + childSnapshot.key() + '\',\'' + "cc" + '\',\'' + bCcId + '\')');
                 ccButton.text("Send CC ");
 
+                //Todo write function to handle responded boolean and change the buttons to the default value, tidy this function up
+
                 if (userResults.notified) {
                     lNotifiedob.text("Yes");
                     lNotifiedob.attr('class', 'label label-success');
