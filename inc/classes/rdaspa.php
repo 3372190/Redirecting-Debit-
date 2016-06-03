@@ -12,6 +12,7 @@ class rdaspa{
     // this will take in the list from processor
     function __construct($iList, $providers)
 	{
+		//@param $providers: Holds list of Service Provider names signed up with RedirectDebit.
 		$this->providerList = $providers;
 		$this->iList = $iList;
 		$checkdate1;
@@ -125,7 +126,6 @@ class rdaspa{
 	
 	function checkExistence($token)			//Check to see if $token already assigned to name in spList
 	{
-		
 		$i;
 		if (count($this->spList) == 0)
 		{
