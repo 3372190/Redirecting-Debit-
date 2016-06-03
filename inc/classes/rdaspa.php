@@ -39,20 +39,16 @@ class rdaspa{
 			if (strcmp($iList[$i]->getAmount(), " ") == 0)
 			{
 				
-			}
-			else
-			{
-				for ($j = $i + 1; $j < count($iList); $j++)
-				{
+			} else {
+				for ($j = $i + 1; $j < count($iList); $j++) {
+
+					$newDate = strtotime($iList[$j]->getDate());                        //Date to check against reference
 					
-					$newDate = strtotime($iList[$j]->getDate());						//Date to check against reference
-					//var_dump($newDate);
-					
-					if($newDate > $startDate && $newDate < $endDate)					//1 month +- 3 days
+					if ($newDate > $startDate && $newDate < $endDate)                    //1 month +- 3 days
 					{
 						if ($this->checkTokens($j))			//If dates are a go, check if token in description exists in SP database.
 						{
-							array_push($this->spList, $iList[$j]);	
+							array_push($this->spList, $iList[$j]);
 						}
 					}
 				}
@@ -76,7 +72,6 @@ class rdaspa{
 				
 				if(strcmp($token, $this->providerList[$n]) == 0)				//If token in description matches SP database
 				{
-					//$this->iList[$k]->setName($token);
 					if ($this->checkExistence($token))					//Check if we already found that provider.
 					{
 						$this->iList[$k]->setName($token);
@@ -103,7 +98,6 @@ class rdaspa{
 			{
 				if (strcmp($token, $this->spList[$i]->getName() == 0))
 				{
-					//echo("here");
 					return false;
 					//array_push($this->spList, $this->foundList[$i]);			//Add object to found list/
 				}
@@ -169,9 +163,8 @@ class rdaspa{
         //var_dump($providerList);
 		$this->providerList = $providerList;
 	}
-	
-	
- 
+
+
 }
 
 ?>

@@ -29,7 +29,7 @@ $(document).ready(function(){
         
         if(tab == "#passwordTab"){
             for(var i = 0 ; i <  providerNames.length; i ++){
-                getProviderDetails(providerNames[i].toUpperCase());
+                getProviderDetails(providerNames[i].toLowerCase());
             }
         }else if(tab == "#settings"){
             for(var i = 0 ; i <  providerids.length; i ++){
