@@ -5,8 +5,15 @@ $(document).ready(function () {
     loadUserDetails();
     loadUserServiceProviders();
     loadProviders();
-});
 
+    //TODO Turn this into a method that also updates the user red panel in real time, and notifications.
+    var serviceRef = firebaseRef.child("users").child(uId).child("serviceproviders");
+    serviceRef.on('child_changed', function (childSnapshot, prevChildKey) {
+        $("#serviceoverall").find("tr:gt(0)").remove();
+        $('#serviceProviderLoader').show();
+        loadUserServiceProviders();
+    });
+});
 
 function loadUserServiceProviders() {
 
@@ -46,8 +53,8 @@ function loadUserServiceProviders() {
                     '<td><img class="rounded-x" src="' + serviceResults.img + '" alt=""><br>' +
                     '<span><a href="#">' + serviceResults.email + '</a></span><br><span><a href="#">' + serviceResults.website + '</a>' +
                     '</span></td><td class="td-width"><p>' + serviceResults.description + '</p></td>' +
-                    '<td><span id="' + lNotified + '" class="label label-success">Notified: ' + userResults.notified + '</span><br><br>' +
-                    '<span id="' + lResponded + '" class="label label-danger">Responded: ' + userResults.responded + '</span></td>' +
+                    '<td>Notified <br> <span id="' + lNotified + '" >' + userResults.notified + '</span><br><br>' +
+                    'Responded <br> <span id="' + lResponded + '" class="label label-danger">' + userResults.responded + '</span></td>' +
                     '<td><br><span class="label">' +
                     callBackButtonHTML +
                     '</span><br><br><span class="label">' +
@@ -70,6 +77,7 @@ function loadUserServiceProviders() {
 
                 if (userResults.notified) {
                     lNotifiedob.text("Yes");
+                    lNotifiedob.attr('class', 'label label-success');
                     if (userResults.method == "callback") {
 
                         callBackButton.attr('onclick', 'cancelNotify(\'' + childSnapshot.key() + '\',\'' + "callback" + '\',\'' + bCallbackId + '\')');
@@ -80,10 +88,12 @@ function loadUserServiceProviders() {
                     }
                 } else {
                     lNotifiedob.text("No");
+                    lNotifiedob.attr('class', 'label label-danger');
                 }
 
             });
         });
+        //TODO Write code here to dynamically update mini dashboard counter and %
         $('#serviceProviderLoader').hide();
     });
 }
@@ -129,17 +139,12 @@ function pushMethodToFirebase(providerId, method, button) {
     });
 }
 
-function changeNotifyMethod() {
-//TODO change notify method
-}
-
 function confirmSpRemove(spKey, spName) {
     if (confirm("Are You Sure?") == true) {
         deleteServiceProvider(spKey, spName);
     }
 
 }
-
 
 function cancelNotifyFirebase(providerId, method, button) {
 
@@ -154,12 +159,16 @@ function cancelNotifyFirebase(providerId, method, button) {
         if (error) {
             message = "Failed to Cancel";
             messageDisplay(message);
+
+            $('#serviceProviderLoader').hide();
         } else {
             message = "Cancelled Notify" + method;
             button.text("Send " + method);
             button.attr('onclick', 'notifyProviders(\'' + providerId + '\',\'' + method + '\',\'' + button.attr("id") + '\')');
 
             messageDisplay(message);
+
+            $('#serviceProviderLoader').hide();
         }
 
     });
@@ -181,10 +190,7 @@ function deleteServiceProvider(spKey, spName) {
 
         }
     });
-
-//TODO Create button that will delete service provider with a prompt asking the user if they are sure
 }
-
 
 function loadProviders() {
     var providersRef = firebaseRef.child("serviceprovider");
