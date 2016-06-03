@@ -67,6 +67,7 @@ function loadUserServiceProviders() {
                 var callBackButton = $('#' + bCallbackId + '');
                 var ccButton = $('#' + bCcId + '');
                 var lNotifiedob = $('#' + lNotified + '');
+                var lRespondedob = $('#' + lResponded + '');
                 var delButton = $('#' + delLabel + '');
 
                 delButton.attr('onclick', 'confirmSpRemove(\'' + childSnapshot.key() + '\', \' ' + serviceResults.name + '\')');
@@ -74,20 +75,29 @@ function loadUserServiceProviders() {
                 callBackButton.text("Send Callback");
                 ccButton.attr('onclick', 'notifyProviders(\'' + childSnapshot.key() + '\',\'' + "cc" + '\',\'' + bCcId + '\')');
                 ccButton.text("Send CC ");
-
-                //Todo write function to handle responded boolean and change the buttons to the default value, tidy this function up
-
+                
                 if (userResults.notified) {
                     lNotifiedob.text("Yes");
                     lNotifiedob.attr('class', 'label label-success');
-                    if (userResults.method == "callback") {
 
-                        callBackButton.attr('onclick', 'cancelNotify(\'' + childSnapshot.key() + '\',\'' + "callback" + '\',\'' + bCallbackId + '\')');
-                        callBackButton.text("Cancel Send CallBack");
+                    if (userResults.responded) {
+                        lRespondedob.text("Yes");
+                        lRespondedob.attr('class', 'label label-success');
+
                     } else {
-                        ccButton.attr('onclick', 'cancelNotify(\'' + childSnapshot.key() + '\',\'' + "cc" + '\',\'' + bCcId + '\')');
-                        ccButton.text("Cancel Send cc");
+                        lRespondedob.text("No");
+                        lRespondedob.attr('class', 'label label-danger');
+                        if (userResults.method == "callback") {
+
+                            callBackButton.attr('onclick', 'cancelNotify(\'' + childSnapshot.key() + '\',\'' + "callback" + '\',\'' + bCallbackId + '\')');
+                            callBackButton.text("Cancel Send CallBack");
+                        } else {
+                            ccButton.attr('onclick', 'cancelNotify(\'' + childSnapshot.key() + '\',\'' + "cc" + '\',\'' + bCcId + '\')');
+                            ccButton.text("Cancel Send cc");
+                        }
+
                     }
+
                 } else {
                     lNotifiedob.text("No");
                     lNotifiedob.attr('class', 'label label-danger');
