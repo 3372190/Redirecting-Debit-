@@ -99,8 +99,8 @@ class rdaspa{
 		for ($n = 0; $n < count($this->providerList); $n++)
 		{	
 			$token = strtok($this->iList[$k]->getTitle(), " ");	
-			$token = strtoupper($token);
-			$this->providerList[$n] = strtoupper($this->providerList[$n]);
+			$token = strtolower($token);
+			$this->providerList[$n] = strtolower($this->providerList[$n]);
 			
 			while ($token != NULL)
 			{
@@ -177,8 +177,8 @@ class rdaspa{
 			$token = strtok($this->foundList[$i]->getTitle(), " "); 		//Tokenize description
             while($token != NULL)
 			{
-                $token  = strtoupper($token);
-                $this->providerList[$j] = strtoupper($this->providerList[$j]);
+                $token  = strtolower($token);
+                $this->providerList[$j] = strtolower($this->providerList[$j]);
 				//var_dump($this->providerList[$j]);
 				if (strcmp($token, $this->providerList[$j]) == 0)				//If token == name of provider in database
 				{
