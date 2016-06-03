@@ -2,8 +2,6 @@
 class rdaspa{
     
     private $foundList = array();
-    private $initialList = array();
-	private $iListCopy = array();
 	private $providerList = array();
     private $spList = array();
 	private $iList = array();
@@ -15,30 +13,21 @@ class rdaspa{
 		//@param $providers: Holds list of Service Provider names signed up with RedirectDebit.
 		$this->providerList = $providers;
 		$this->iList = $iList;
-		$checkdate1;
-		$checkdate2;
 		$i = 0;
-		$j;
 		$startDate;
 		$endDate;
 		$currDate;
 		$newDate;
-		$i = 0;
 		$j;
 
 		if(!ini_get('date.timezone') )
         {
             date_default_timezone_set('GMT');
-        }	
-		$checkdate;
-		
-        $this->initialList = $this->iList;
-        $this->iListCopy = $this->iList;
+        }
         
 		/* Service Provider Criteria
 			- Recurring payments every month (+- 3 days)
-			- MUST CHECK DIRECTION OF FUNDS.
-			
+			- 
 		*/
 		
 		for ($i = 0; $i < count($iList); $i++)		
@@ -61,14 +50,13 @@ class rdaspa{
 					
 					if($newDate > $startDate && $newDate < $endDate)					//1 month +- 3 days
 					{
-						
 						if ($this->checkTokens($j))			//If dates are a go, check if token in description exists in SP database.
 						{
 							array_push($this->spList, $iList[$j]);	
 						}
 					}
 				}
-			
+			}
 		}
     }
 	
@@ -94,9 +82,6 @@ class rdaspa{
 						$this->iList[$k]->setName($token);
 						return true;
 					}
-					//Set name to token
-					//var_dump($token);
-					//return true;
 				}
 				$token = strtok(" ");
 			}
@@ -188,4 +173,5 @@ class rdaspa{
 	
  
 }
+
 ?>
