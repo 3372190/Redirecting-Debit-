@@ -51,8 +51,8 @@ class rdaspa{
 			{
 				
 			}*/
-			else
-			{
+			/*else
+			{*/
 				for ($j = $i + 1; $j < count($iList); $j++)
 				{
 					
@@ -87,7 +87,7 @@ class rdaspa{
 						}*/
 					}
 				}
-			}
+			
 		}
     }
 	
