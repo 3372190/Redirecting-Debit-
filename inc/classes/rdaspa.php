@@ -47,12 +47,12 @@ class rdaspa{
 			$startDate = strtotime('-3 days', $currDate);							//3 days prior to 1 month reference
 			$endDate = strtotime('+3 days', $currDate);								//3 days after 1 month reference
 			
-			/*if (strcmp($iList[$i]->getAmount(), " ") == 0)
+			if (strcmp($iList[$i]->getAmount(), " ") == 0)
 			{
 				
-			}*/
-			/*else
-			{*/
+			}
+			else
+			{
 				for ($j = $i + 1; $j < count($iList); $j++)
 				{
 					
@@ -66,25 +66,6 @@ class rdaspa{
 						{
 							array_push($this->spList, $iList[$j]);	
 						}
-						//var_dump($newDate);
-						/*
-						if (strcmp($iList[$i]->getTitle(), $iList[$j]->getTitle()) == 0)	//If matching desciptions.
-						{	
-                            array_push($this->foundList, $iList[$i]);	
-						}
-                        */ 
-						
-							/*if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable.... */
-							
-						/*
-						if($this->checkTokens($j))
-						{
-							//var_dump($iList[$j]->getTitle());
-							array_push($this->spList, $iList[$j]);	
-						}
-						else{
-							break;
-						}*/
 					}
 				}
 			
@@ -156,8 +137,6 @@ class rdaspa{
 	}
 	
 	
-	function compareProvider()
-	{
 		/*Tokenise descriptions in foundlist.
 			- Run each token against each index of provider name array
 			- On match: set the matched objects name to be the provider
@@ -165,6 +144,8 @@ class rdaspa{
 		*/
 	
 	//Starting westpac, commbank currently just has identifier.
+/*	function compareProvider()
+	{
 	
 	$i;
 	$j;
@@ -192,7 +173,7 @@ class rdaspa{
 			$j++;
 		}
 	}		
-	}
+	}*/
 	
 	function getspList()
 	{
