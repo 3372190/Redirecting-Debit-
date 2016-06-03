@@ -8,7 +8,8 @@ $(document).ready(function() {
     
     $("#updatePassword").click(changeUserPassword);
     $("#uploadpp").click(changeUserPicture);
-	$("#saveCard").click(updateCard)
+	$("#saveCard").click(updateCard);
+	$("update").click(updateDetails);
 });
 
 
@@ -21,6 +22,13 @@ function getUserId(){
     }else{
         return false;
     }
+}
+
+function editField(divId){
+	console.log(divId);
+	$('#'+divId+'').replaceWith('<input type="text" id="'+divId+'" />');
+	
+	
 }
 
 function changeUserPassword(){
@@ -206,7 +214,7 @@ function updateCard()
 	//authData = firebaseRef.getAuth()
 	
 	var auth = firebaseRef.getAuth();
-	console.log(auth);
+	//console.log(auth);
 	if (auth)
 	{
 		uId = auth.uid
@@ -237,9 +245,32 @@ function updateCard()
 	};
 
 function updateDetails(){
-		
+	var auth = firebaseRef.getAuth();
+	
+	if (auth)
+	{
+		uId = auth.uid
+		firebaseRef.child(uId).child(uId).set(
+		{
+			nameOnCard: document.getElementById("cardname").value,
+			card: document.getElementById("cardnum").value,
+			cvv: document.getElementById("cvv").value,
+			month: document.getElementById("month").value,
+			year: document.getElementById("year").value,
+			
+			
+		}, function (error){
+			if(error) {
+				message = "Could not update the Credit Card, try again later.";
+				messageDisplay(message);
+			} else {
+				message = "Card updated.";
+				messageDisplay(message);
+				
+			}
+		})
     
     
-}
+}}
                   
                   

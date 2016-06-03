@@ -180,15 +180,14 @@
 										<dd>
 											<div id="country"></div>
 											<span>
-												<a class="pull-right" href="#">
+												<a class="pull-right" nohref onclick="editField('country')">
 													<i class="fa fa-pencil"></i>
 												</a>
 											</span>
 										</dd>
 										<hr>
 									</dl>
-									<button type="button" class="btn-u btn-u-default">Cancel</button>
-									<button type="button" class="btn-u">Save Changes</button>
+									<button type="button" id="update" class="btn-u">Save Changes</button>
 								</div>
 
 								<div id="passwordTab" class="profile-edit tab-pane fade">
