@@ -191,8 +191,8 @@ function updateProfilePicture(uid, path){
     profilepictureRef.update({ profileimage: path });
     $("#profileimage").attr("src", path);
     $("#profilepreview").attr("src", path);
-    if(localStorage){
-        
+    
+	if(localStorage){
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
         userDetails['profileimage'] = path;
         localStorage.setItem("userDetails", JSON.stringify(userDetails));
@@ -212,11 +212,11 @@ function updateCard()
 		uId = auth.uid
 		firebaseRef.child("cc").child(uId).set(
 		{
-			nameOnCard: document.getElementById("cardname"),
-			card: document.getElementById("cardnum"),
-			cvv: document.getElementById("cvv"),
-			month: document.getElementById("month"),
-			year: document.getElementById("year"),
+			nameOnCard: document.getElementById("cardname").value,
+			card: document.getElementById("cardnum").value,
+			cvv: document.getElementById("cvv").value,
+			month: document.getElementById("month").value,
+			year: document.getElementById("year").value,
 			
 			
 		}, function (error){

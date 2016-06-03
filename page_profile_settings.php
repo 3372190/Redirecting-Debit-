@@ -265,19 +265,19 @@
 
 										<section>
 											<label class="input">
-												<input type="text" name="cardname" id="cardname" placeholder="Name on card">
+												<input type="text" name="cardname1" id="cardname" placeholder="Name on card">
 											</label>
 										</section>
 
 										<div class="row">
 											<section class="col col-10">
 												<label class="input">
-													<input type="text" name="cardnum" id="cardnum" placeholder="Card number">
+													<input type="text" name="cardnum1" id="cardnum" placeholder="Card number">
 												</label>
 											</section>
 											<section class="col col-2">
 												<label class="input">
-													<input type="text" name="cvv" id="cvv" placeholder="CVV">
+													<input type="text" name="cvv1" id="cvv" placeholder="CVV">
 												</label>
 											</section>
 										</div>
@@ -286,7 +286,7 @@
 											<label class="label col col-4">Expiration date</label>
 											<section class="col col-5">
 												<label class="select">
-													<select name="month" id="month">
+													<select name="month1" id="month">
 														<option disabled="" selected="" value="0">Month</option>
 														<option value="1">January</option>
 														<option value="1">February</option>
@@ -306,7 +306,7 @@
 											</section>
 											<section class="col col-3">
 												<label class="input">
-													<input type="text" placeholder="Year" id="year" name="year">
+													<input type="text" placeholder="Year" id="year" name="year1">
 												</label>
 											</section>
 										</div>
