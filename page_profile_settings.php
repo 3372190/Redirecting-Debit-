@@ -13,13 +13,12 @@
         <!-- Firebase -->
     <script type="text/javascript" src="inc/firebase/firebase.js"></script>
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
-    <script type="text/javascript" src="inc/firebase/usersettings.js"></script>
     <script type="text/javascript">
         if(getUserLev() != 3){
         userLogout();
         window.location = "page_login.php"
     }
-        getUserId();
+        //getUserId();
         
         $(document).ready(function() {
            getUserToolbar(); 
@@ -364,6 +363,8 @@
 	<script type="text/javascript" src="assets/js/forms/checkout.js"></script>
 	<script type="text/javascript" src="assets/js/plugins/datepicker.js"></script>
 	<script type="text/javascript" src="assets/js/plugins/style-switcher.js"></script>
+	
+    
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
 			App.init();
@@ -386,4 +387,5 @@
 	<![endif]-->
 
 </body>
+<script type="text/javascript" src="inc/firebase/usersettings.js"></script>
 </html>

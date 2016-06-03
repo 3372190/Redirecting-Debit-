@@ -25,7 +25,7 @@ class rdaspa{
 		$i = 0;
 		$j;
 
-		if( ! ini_get('date.timezone') )
+		if(!ini_get('date.timezone') )
         {
             date_default_timezone_set('GMT');
         }	
@@ -46,10 +46,10 @@ class rdaspa{
 			$startDate = strtotime('-3 days', $currDate);							//3 days prior to 1 month reference
 			$endDate = strtotime('+3 days', $currDate);								//3 days after 1 month reference
 			
-			if (strcmp($iList[$i]->getAmount(), " ") == 0)
+			/*if (strcmp($iList[$i]->getAmount(), " ") == 0)
 			{
 				
-			}
+			}*/
 			else
 			{
 				for ($j = $i + 1; $j < count($iList); $j++)

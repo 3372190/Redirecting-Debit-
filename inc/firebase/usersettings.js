@@ -1,5 +1,5 @@
 var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
-var uId;
+//var uId;
 var message;
 
 $(document).ready(function() {
@@ -13,7 +13,7 @@ $(document).ready(function() {
 });
 
 
-function getUserId(){
+/*function getUserId(){
     var auth = firebaseRef.getAuth();
     
     if(auth){
@@ -22,11 +22,14 @@ function getUserId(){
     }else{
         return false;
     }
-}
+}*/
 
 function editField(divId){
 	console.log(divId);
-	$('#'+divId+'').replaceWith('<input type="text" id="'+divId+'" />');
+	$(document).ready(function() {
+	document.getElementById('country').innerHTML = '<input type="text" id="'+divId+'" />';
+	});
+	//$('#'+divId+'').replaceWith('<input type="text" id="'+divId+'" />');
 	
 	
 }
@@ -41,9 +44,6 @@ function changeUserPassword(){
         listElement = elements[i];
         var checkElement;
         formInputName = listElement.getAttribute("name");
-        
-        
-        
         
         if(formInputName == "oldPassword"){
                     
