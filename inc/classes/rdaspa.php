@@ -12,6 +12,7 @@ class rdaspa{
     // this will take in the list from processor
     function __construct($iList, $providers)
 	{
+		//@param $providers: Holds list of Service Provider names signed up with RedirectDebit.
 		$this->providerList = $providers;
 		$this->iList = $iList;
 		$checkdate1;
@@ -25,7 +26,7 @@ class rdaspa{
 		$i = 0;
 		$j;
 
-		if( ! ini_get('date.timezone') )
+		if(!ini_get('date.timezone') )
         {
             date_default_timezone_set('GMT');
         }	
@@ -65,28 +66,9 @@ class rdaspa{
 						{
 							array_push($this->spList, $iList[$j]);	
 						}
-						//var_dump($newDate);
-						/*
-						if (strcmp($iList[$i]->getTitle(), $iList[$j]->getTitle()) == 0)	//If matching desciptions.
-						{	
-                            array_push($this->foundList, $iList[$i]);	
-						}
-                        */ 
-						
-							/*if($iList[$i]->getAmount() == $iList[$j]->getAmount())		//This line is questionable.... */
-							
-						/*
-						if($this->checkTokens($j))
-						{
-							//var_dump($iList[$j]->getTitle());
-							array_push($this->spList, $iList[$j]);	
-						}
-						else{
-							break;
-						}*/
 					}
 				}
-			}
+			
 		}
     }
 	
@@ -98,8 +80,8 @@ class rdaspa{
 		for ($n = 0; $n < count($this->providerList); $n++)
 		{	
 			$token = strtok($this->iList[$k]->getTitle(), " ");	
-			$token = strtoupper($token);
-			$this->providerList[$n] = strtoupper($this->providerList[$n]);
+			$token = strtolower($token);
+			$this->providerList[$n] = strtolower($this->providerList[$n]);
 			
 			while ($token != NULL)
 			{
@@ -125,7 +107,6 @@ class rdaspa{
 	
 	function checkExistence($token)			//Check to see if $token already assigned to name in spList
 	{
-		
 		$i;
 		if (count($this->spList) == 0)
 		{
@@ -156,8 +137,6 @@ class rdaspa{
 	}
 	
 	
-	function compareProvider()
-	{
 		/*Tokenise descriptions in foundlist.
 			- Run each token against each index of provider name array
 			- On match: set the matched objects name to be the provider
@@ -165,6 +144,8 @@ class rdaspa{
 		*/
 	
 	//Starting westpac, commbank currently just has identifier.
+/*	function compareProvider()
+	{
 	
 	$i;
 	$j;
@@ -177,8 +158,8 @@ class rdaspa{
 			$token = strtok($this->foundList[$i]->getTitle(), " "); 		//Tokenize description
             while($token != NULL)
 			{
-                $token  = strtoupper($token);
-                $this->providerList[$j] = strtoupper($this->providerList[$j]);
+                $token  = strtolower($token);
+                $this->providerList[$j] = strtolower($this->providerList[$j]);
 				//var_dump($this->providerList[$j]);
 				if (strcmp($token, $this->providerList[$j]) == 0)				//If token == name of provider in database
 				{
@@ -192,7 +173,7 @@ class rdaspa{
 			$j++;
 		}
 	}		
-	}
+	}*/
 	
 	function getspList()
 	{
