@@ -66,14 +66,33 @@ function save(){
 }
 
 function saveProvidersToUser(id){
-    
-    usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
-    pushRef =  usersRef.child(id);
+
+    var usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
+    var pushRef = usersRef.child(id);
+    var redirecteesRef = new Firebase("https://redirectdebit.firebaseio.com/redirectees");
+    var newRedirecteeRef = redirecteesRef.push();
+
+    //this attaches service providers to the user.
 
     pushRef.set({
-        notified: false,
         timestamp: Math.floor((new Date).getTime() / 1000),
-        responded: false
+    });
+
+    //this is used to track all redirectees
+    newRedirecteeRef.set({
+        userkey: uId,
+        serviceproviderkey: id,
+        notified: false,
+        notifieddatetime: null,
+        responded: false,
+        respondeddatetime: null
+    }, function (error) {
+        if (!error) {
+            console.log(error);
+        } else {
+            console.log(error);
+        }
+
     });
 }
 

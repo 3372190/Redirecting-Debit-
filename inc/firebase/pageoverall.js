@@ -7,138 +7,144 @@ $(document).ready(function () {
     loadProviders();
 
     //TODO Turn this into a method that also updates the user red panel in real time, and notifications.
-    var serviceRef = firebaseRef.child("users").child(uId).child("serviceproviders");
-    serviceRef.on('child_changed', function (childSnapshot, prevChildKey) {
+    var redirecteesRef = firebaseRef.child("redirectees");
+
+    redirecteesRef.on("child_changed", function (snapshot) {
         $("#serviceoverall").find("tr:gt(0)").remove();
         $('#serviceProviderLoader').show();
         loadUserServiceProviders();
     });
 });
 
+
 function loadUserServiceProviders() {
+    //top level json tree
+    firebaseRef.child("redirectees").once('value', function (redirecteesSnapShot) {
+        var redirecteesKey = redirecteesSnapShot.key();
 
-    firebaseRef.child('users').child(uId).child("serviceproviders").once('value', function (userSnap) {
-        var numOfProviders = userSnap.numChildren();
+        //loop through each child in the redirectees table
+        redirecteesSnapShot.forEach(function (redirecteesChild) {
+            var redirecteeKey = redirecteesChild.key();
 
+            var redirectChildData = redirecteesChild.val();
 
-        $("#numofproviders").html(numOfProviders);
+            //inner joing the service providers
+            firebaseRef.child("serviceprovider").child(redirectChildData.serviceproviderkey).once('value', function (spReference) {
+                //innner joining the user table
 
-
-        if (numOfProviders == 0) {
-            $("#serviceoverall > tbody:last-child").append(
-                '<tr><td colspan="4"><h4>You have no service providers. <a href="page_statement.php#profile">Add Some Now</a></h4></td></tr>'
-            );
-        }
-
-        userSnap.forEach(function (childSnapshot) {
-            firebaseRef.child('serviceprovider').child(childSnapshot.key()).once('value', function (mediaSnap) {
-                var serviceResults = mediaSnap.val();
-                var userResults = childSnapshot.val();
-
-                //These are used to create unique labels for every table row.
-                var bCallbackId = childSnapshot.key() + "callback";
-                var bCcId = childSnapshot.key() + "cc";
-                var lNotified = childSnapshot.key() + "notifiedLabel";
-                var delLabel = childSnapshot.key() + "del";
-                var lResponded = childSnapshot.key() + "res";
+                firebaseRef.child("users").child(uId).once('value', function (userReference) {
+                    var serviceResults = spReference.val();
+                    var userResults = userReference.val();
 
 
-                //create the html string to display the button in the table
+                    //These are used to create unique labels for every table row.
+                    var bCallbackId = redirecteeKey + "callback";
+                    var bCcId = redirecteeKey + "cc";
+                    var lNotified = redirecteeKey + "notifiedLabel";
+                    var delLabel = redirecteeKey + "del";
+                    var lResponded = redirecteeKey + "res";
 
-                var callBackButtonHTML = '<a nohref id="' + bCallbackId + '" name=" ' + bCallbackId + '" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs "></a>';
-                var ccButtonHTML = '<a nohref id="' + bCcId + '" name=" ' + bCcId + '" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs "></a>';
-                var delButtonHTML = '<a id="' + delLabel + '" name="' + delLabel + '" nohref onclick="" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs ">Delete ' + serviceResults.name + ' </a> ';
 
-                //adding the table row and all its appropriate fields and data.
-                $('#serviceoverall > tbody:last-child').append('' +
-                    '<tr id="' + childSnapshot.key() + '" name="' + childSnapshot.key() + '">' +
-                    '<td><img class="rounded-x" src="' + serviceResults.img + '" alt=""><br>' +
-                    '<span><a href="#">' + serviceResults.email + '</a></span><br><span><a href="#">' + serviceResults.website + '</a>' +
-                    '</span></td><td class="td-width"><p>' + serviceResults.description + '</p></td>' +
-                    '<td>Notified <br> <span id="' + lNotified + '" >' + userResults.notified + '</span><br><br>' +
-                    'Responded <br> <span id="' + lResponded + '" class="label label-danger">' + userResults.responded + '</span></td>' +
-                    '<td><br><span class="label">' +
-                    callBackButtonHTML +
-                    '</span><br><br><span class="label">' +
-                    ccButtonHTML +
-                    '</span><br><br>' +
-                    '<span class="label">' +
-                    delButtonHTML +
-                    '</span></td></tr>');
+                    //create the html string to display the button in the table
 
-                // grabing html elements and turning them into jquery objects
-                var callBackButton = $('#' + bCallbackId + '');
-                var ccButton = $('#' + bCcId + '');
-                var lNotifiedob = $('#' + lNotified + '');
-                var lRespondedob = $('#' + lResponded + '');
-                var delButton = $('#' + delLabel + '');
+                    var callBackButtonHTML = '<a nohref id="' + bCallbackId + '" name=" ' + bCallbackId + '" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs "></a>';
+                    var ccButtonHTML = '<a nohref id="' + bCcId + '" name=" ' + bCcId + '" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs "></a>';
+                    var delButtonHTML = '<a id="' + delLabel + '" name="' + delLabel + '" nohref onclick="" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs ">Delete ' + serviceResults.name + ' </a> ';
 
-                //add the relevant attributes and text to jquery elements from above
-                delButton.attr('onclick', 'confirmSpRemove(\'' + childSnapshot.key() + '\', \' ' + serviceResults.name + '\')');
-                callBackButton.attr('onclick', 'notifyProviders(\'' + childSnapshot.key() + '\',\'' + "callback" + '\',\'' + bCallbackId + '\')');
-                callBackButton.text("Send Callback");
-                ccButton.attr('onclick', 'notifyProviders(\'' + childSnapshot.key() + '\',\'' + "cc" + '\',\'' + bCcId + '\')');
-                ccButton.text("Send CC ");
-                
-                if (userResults.notified) {
-                    lNotifiedob.text("Yes");
-                    lNotifiedob.attr('class', 'label label-success');
+                    //adding the table row and all its appropriate fields and data.
+                    $('#serviceoverall > tbody:last-child').append('' +
+                        '<tr id="' + redirecteeKey + '" name="' + redirecteeKey + '">' +
+                        '<td><img class="rounded-x" src="' + serviceResults.img + '" alt=""><br>' +
+                        '<span><a href="#">' + serviceResults.email + '</a></span><br><span><a href="#">' + serviceResults.website + '</a>' +
+                        '</span></td><td class="td-width"><p>' + serviceResults.description + '</p></td>' +
+                        '<td>Notified <br> <span id="' + lNotified + '" >' + redirectChildData.notified + '</span><br><br>' +
+                        'Responded <br> <span id="' + lResponded + '" class="label label-danger">' + redirectChildData.responded + '</span></td>' +
+                        '<td><br><span class="label">' +
+                        callBackButtonHTML +
+                        '</span><br><br><span class="label">' +
+                        ccButtonHTML +
+                        '</span><br><br>' +
+                        '<span class="label">' +
+                        delButtonHTML +
+                        '</span></td></tr>');
 
-                    if (userResults.responded) {
-                        lRespondedob.text("Yes");
-                        lRespondedob.attr('class', 'label label-success');
+                    // grabing html elements and turning them into jquery objects
+                    var callBackButton = $('#' + bCallbackId + '');
+                    var ccButton = $('#' + bCcId + '');
+                    var lNotifiedob = $('#' + lNotified + '');
+                    var lRespondedob = $('#' + lResponded + '');
+                    var delButton = $('#' + delLabel + '');
 
-                    } else {
-                        lRespondedob.text("No");
-                        lRespondedob.attr('class', 'label label-danger');
-                        if (userResults.method == "callback") {
+                    //add the relevant attributes and text to jquery elements from above
+                    delButton.attr('onclick', 'confirmSpRemove(\'' + redirecteeKey + '\', \' ' + serviceResults.name + '\')');
+                    callBackButton.attr('onclick', 'notifyProviders(\'' + redirecteeKey + '\',\'' + "callback" + '\',\'' + bCallbackId + '\')');
+                    callBackButton.text("Send Callback");
+                    ccButton.attr('onclick', 'notifyProviders(\'' + redirecteeKey + '\',\'' + "cc" + '\',\'' + bCcId + '\')');
+                    ccButton.text("Send CC ");
 
-                            callBackButton.attr('onclick', 'cancelNotify(\'' + childSnapshot.key() + '\',\'' + "callback" + '\',\'' + bCallbackId + '\')');
-                            callBackButton.text("Cancel Send CallBack");
+                    if (redirectChildData.notified) {
+                        lNotifiedob.text("Yes");
+                        lNotifiedob.attr('class', 'label label-success');
+
+                        if (redirectChildData.responded) {
+                            lRespondedob.text("Yes");
+                            lRespondedob.attr('class', 'label label-success');
+
                         } else {
-                            ccButton.attr('onclick', 'cancelNotify(\'' + childSnapshot.key() + '\',\'' + "cc" + '\',\'' + bCcId + '\')');
-                            ccButton.text("Cancel Send cc");
+                            lRespondedob.text("No");
+                            lRespondedob.attr('class', 'label label-danger');
+                            if (redirectChildData.method == "callback") {
+
+                                callBackButton.attr('onclick', 'cancelNotify(\'' + redirecteeKey + '\',\'' + bCallbackId + '\')');
+                                callBackButton.text("Cancel Send CallBack");
+                            } else {
+                                ccButton.attr('onclick', 'cancelNotify(\'' + redirecteeKey + '\',\'' + bCcId + '\')');
+                                ccButton.text("Cancel Send cc");
+                            }
+
                         }
 
+                    } else {
+                        lNotifiedob.text("No");
+                        lNotifiedob.attr('class', 'label label-danger');
+                        lRespondedob.text("No");
+                        lRespondedob.attr('class', 'label label-danger');
                     }
 
-                } else {
-                    lNotifiedob.text("No");
-                    lNotifiedob.attr('class', 'label label-danger');
-                    lRespondedob.text("No");
-                    lRespondedob.attr('class', 'label label-danger');
-                }
 
+                });
+                //TODO Write code here to dynamically update mini dashboard counter and %
+                $('#serviceProviderLoader').hide();
             });
         });
-        //TODO Write code here to dynamically update mini dashboard counter and %
-        $('#serviceProviderLoader').hide();
     });
+
+
 }
 
-function notifyProviders(providerId, method, buttonId) {
+
+function notifyProviders(redirecteeId, method, buttonId) {
     var button = $('#' + buttonId + '');
     $('#serviceProviderLoader').show();
     button.text("please wait");
-    pushMethodToFirebase(providerId, method, button);
+    pushMethodToFirebase(redirecteeId, method, button);
 
 }
 
-function cancelNotify(providerId, method, buttonId) {
-    var button = $('#' + buttonId + '');
+function cancelNotify(redirecteeId, buttonId) {
     $('#serviceProviderLoader').show();
+    var button = $('#' + buttonId + '');
     button.text("please wait");
-    cancelNotifyFirebase(providerId, method, button);
+    cancelNotifyFirebase(redirecteeId, button);
 }
 
-function pushMethodToFirebase(providerId, method, button) {
+function pushMethodToFirebase(redirecteeId, method, button) {
 
-    var usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
-    var pushRef = usersRef.child(providerId);
+    var redirecteeRef = firebaseRef.child("redirectees").child(redirecteeId);
 
-    pushRef.update({
+    redirecteeRef.update({
         notified: true,
-        timestamp: Math.floor((new Date).getTime() / 1000),
+        notifiedtimestamp: Math.floor((new Date).getTime() / 1000),
         responded: false,
         method: method
     }, function (error) {
@@ -146,10 +152,11 @@ function pushMethodToFirebase(providerId, method, button) {
             message = "Failed to notify";
             button.text("Send " + method);
             messageDisplay(message);
+            $('#serviceProviderLoader').hide();
         } else {
             message = "Service provider Notified";
             button.text("Cancel Send " + method);
-            button.attr('onclick', 'cancelNotify(\'' + providerId + '\',\'' + method + '\',\'' + button.attr("id") + '\')');
+            button.attr('onclick', 'cancelNotify(\'' + redirecteeId + '\',\'' + button.attr("id") + '\')');
             messageDisplay(message);
             $('#serviceProviderLoader').hide();
         }
@@ -164,14 +171,13 @@ function confirmSpRemove(spKey, spName) {
 
 }
 
-function cancelNotifyFirebase(providerId, method, button) {
+function cancelNotifyFirebase(redirecteeId, button) {
 
-    var usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
-    var pushRef = usersRef.child(providerId);
+    var redirecteeRef = firebaseRef.child("redirectees").child(redirecteeId);
 
-    pushRef.set({
+    redirecteeRef.update({
         notified: false,
-        timestamp: Math.floor((new Date).getTime() / 1000),
+        notifiedtimestamp: null,
         responded: false
     }, function (error) {
         if (error) {
@@ -182,7 +188,7 @@ function cancelNotifyFirebase(providerId, method, button) {
         } else {
             message = "Cancelled Notify" + method;
             button.text("Send " + method);
-            button.attr('onclick', 'notifyProviders(\'' + providerId + '\',\'' + method + '\',\'' + button.attr("id") + '\')');
+            button.attr('onclick', 'notifyProviders(\'' + redirecteeId + '\',\'' + method + '\',\'' + button.attr("id") + '\')');
 
             messageDisplay(message);
 
@@ -191,12 +197,11 @@ function cancelNotifyFirebase(providerId, method, button) {
 
     });
 }
-function deleteServiceProvider(spKey, spName) {
+function deleteServiceProvider(redirecteeId, spName) {
 
-    var usersRef = firebaseRef.child("users").child(uId).child("serviceproviders");
-    var removeRef = usersRef.child(spKey);
+    var redirecteeRef = firebaseRef.child("redirectees").child(redirecteeId);
 
-    removeRef.remove(function (error) {
+    redirecteeRef.remove(function (error) {
 
         if (error) {
             message = 'Unable to Delete ' + spName + ' ';

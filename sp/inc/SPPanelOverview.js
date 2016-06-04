@@ -40,8 +40,6 @@ function loadUserServiceProviders(){
                                 '<br>' + childData.country +
                                 '</td><td>' + method + '</td>' +
                                 '<td style="text-align: center;"><input type="image" width="40" height="40" src="./../assets/img/tick_unselected.png" onclick="confirmComplete(\'' + childDataSPKey + '\',\'' + userKey + '\')" /></td></tr>');
-
-
                     }
                 }
 
