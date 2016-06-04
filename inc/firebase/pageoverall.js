@@ -28,13 +28,11 @@ function loadUserServiceProviders() {
 
             var redirectChildData = redirecteesChild.val();
 
-            //inner joing the service providers
-            firebaseRef.child("serviceprovider").child(redirectChildData.serviceproviderkey).once('value', function (spReference) {
-                //innner joining the user table
+            if (redirectChildData.userkey == uId) {
 
-                firebaseRef.child("users").child(uId).once('value', function (userReference) {
+                firebaseRef.child("serviceprovider").child(redirectChildData.serviceproviderkey).once('value', function (spReference) {
+                    //innner joining the user table
                     var serviceResults = spReference.val();
-                    var userResults = userReference.val();
 
 
                     //These are used to create unique labels for every table row.
@@ -90,7 +88,7 @@ function loadUserServiceProviders() {
                             lRespondedob.text("Yes");
                             lRespondedob.attr('class', 'label label-success');
 
-                        } else {
+                            } else {
                             lRespondedob.text("No");
                             lRespondedob.attr('class', 'label label-danger');
                             if (redirectChildData.method == "callback") {
@@ -102,20 +100,21 @@ function loadUserServiceProviders() {
                                 ccButton.text("Cancel Send cc");
                             }
 
-                        }
+                            }
 
                     } else {
                         lNotifiedob.text("No");
                         lNotifiedob.attr('class', 'label label-danger');
                         lRespondedob.text("No");
                         lRespondedob.attr('class', 'label label-danger');
-                    }
+                        }
 
 
+                    //TODO Write code here to dynamically update mini dashboard counter and %
+                    $('#serviceProviderLoader').hide();
                 });
-                //TODO Write code here to dynamically update mini dashboard counter and %
-                $('#serviceProviderLoader').hide();
-            });
+            }
+
         });
     });
 
@@ -124,8 +123,8 @@ function loadUserServiceProviders() {
 
 
 function notifyProviders(redirecteeId, method, buttonId) {
-    var button = $('#' + buttonId + '');
     $('#serviceProviderLoader').show();
+    var button = $('#' + buttonId + '');
     button.text("please wait");
     pushMethodToFirebase(redirecteeId, method, button);
 
