@@ -84,7 +84,7 @@
 				<div class="col-md-9">
 					<div class="profile-body">
 						<!--Service Block v3-->
-
+						<h2>Overall log of users and service providers</h2>
 
 						<hr>
 
@@ -98,8 +98,8 @@
 										<th>Notified</th>
 										<th>Notified Date/ Time</th>
 										<th>Service Provider</th>
-										<th>Service Provider Date / Time</th>
 										<th>Service Provider Responded</th>
+										<th>Service Provider Date / Time</th>
 									</tr>
 									</thead>
 									<tbody>
@@ -107,9 +107,11 @@
 										<td colspan="6"><img id="loadingUserServiceProviders"
 															 src="../assets/img/loading.gif" alt="Loading..."/></td>
 									</tr>
+
 									</tbody>
 								</table>
 							</div>
+							<a nohref><h5>Download this data as csv</h5></a>
 						</div>
 
 
