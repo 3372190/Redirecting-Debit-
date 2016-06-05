@@ -19,8 +19,9 @@ $(document).ready(function () {
 
 function loadUserServiceProviders() {
     //top level json tree
-    firebaseRef.child("redirectees").once('value', function (redirecteesSnapShot) {
+    firebaseRef.child("redirectees").orderByChild("userkey").equalTo(uId).once('value', function (redirecteesSnapShot) {
         var redirecteesKey = redirecteesSnapShot.key();
+        console.log(redirecteesSnapShot.numChildren());
 
         //loop through each child in the redirectees table
         redirecteesSnapShot.forEach(function (redirecteesChild) {
@@ -28,7 +29,7 @@ function loadUserServiceProviders() {
 
             var redirectChildData = redirecteesChild.val();
 
-            if (redirectChildData.userkey == uId) {
+
 
                 firebaseRef.child("serviceprovider").child(redirectChildData.serviceproviderkey).once('value', function (spReference) {
                     //innner joining the user table
@@ -113,7 +114,7 @@ function loadUserServiceProviders() {
                     //TODO Write code here to dynamically update mini dashboard counter and %
                     $('#serviceProviderLoader').hide();
                 });
-            }
+
 
         });
     });
