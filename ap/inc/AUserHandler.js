@@ -280,7 +280,6 @@ function userLogin(e,p){
                         //because the data doesnt exist in local storage and it is supported, add it to local storage
                         var object = snap.val();
                         localStorage.setItem('userDetails', JSON.stringify(object));
-                        console.log(object);
                         setTimeout(function () {
                             window.location.href = "page_profile.php";
                         }, 2000); //will call the function after 2 secs.
@@ -311,10 +310,10 @@ function isUserLoggedIn(){
 
     if (authData) {
         uId = authData.uid;
-        console.log(authData.uid);
+        //console.log(authData.uid);
         return true;
     } else {
-        console.log("User is logged out");
+        //console.log("User is logged out");
         return false;
     }
     
@@ -323,7 +322,6 @@ function getUserLev(){
     
     if(isUserLoggedIn()){
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-         console.log(userDetails);
         return userDetails["userlevel"];
        
     }else{
