@@ -14,7 +14,6 @@ function loadUserServiceProviders() {
         //loop through its children
         snapshot.forEach(function (redirecteeChild) {
             var redirecteeKey = redirecteeChild.key();
-
             var redirectChildData = redirecteeChild.val();
 
             firebaseRef.child("users").child(redirectChildData.userkey).once('value', function (userReference) {
@@ -61,7 +60,7 @@ function confirmComplete(redirecteeKey) {
 
 function updateUser(redirecteeKey) {
 
-    var redirecteeRef = firebaseRef.child("redirectees").child(redirecteeId);
+    var redirecteeRef = firebaseRef.child("redirectees").child(redirecteeKey);
 
     redirecteeRef.update({
         respondedtimestamp: Math.floor((new Date).getTime() / 1000),

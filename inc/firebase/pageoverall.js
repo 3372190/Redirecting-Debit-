@@ -21,7 +21,6 @@ function loadUserServiceProviders() {
     //top level json tree
     firebaseRef.child("redirectees").orderByChild("userkey").equalTo(uId).once('value', function (redirecteesSnapShot) {
         var redirecteesKey = redirecteesSnapShot.key();
-        console.log(redirecteesSnapShot.numChildren());
 
         //loop through each child in the redirectees table
         redirecteesSnapShot.forEach(function (redirecteesChild) {
