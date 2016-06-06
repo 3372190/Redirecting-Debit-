@@ -4,7 +4,6 @@
 var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 var message;
 var logObjects = [];
-var csvContent = '';
 
 
 $(document).ready(function () {
@@ -63,10 +62,7 @@ function loadUserServiceProviders() {
                         '<td>' + new Date(respondedTimeStamp.getTime() + respondedTimeStamp.getTimezoneOffset() * 60000) + '</td>' +
                         '</tr>');
                 });
-
             });
-
-
         });
         $('#serviceProviderLoader').hide();
     });
@@ -74,7 +70,8 @@ function loadUserServiceProviders() {
 
 function downloadCsv(fileName, mimeType) {
 
-
+    var topRow = 'Username,Notified,notified Date,Service Provider, Responded, Responded Date\n';
+    var csvContent = topRow;
     for (var i = 0; i < logObjects.length; i++) {
 
         csvContent += logObjects[i].uName + ',' + logObjects[i].notified + ',' + logObjects[i].notifiedDate +
