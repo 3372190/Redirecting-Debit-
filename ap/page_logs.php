@@ -95,7 +95,6 @@
 									<thead>
 									<tr>
 										<th>User</th>
-										<th>Notified</th>
 										<th>Notified Date/ Time</th>
 										<th>Service Provider</th>
 										<th>Service Provider Responded</th>
@@ -111,7 +110,8 @@
 									</tbody>
 								</table>
 							</div>
-							<a nohref><h5>Download this data as csv</h5></a>
+							<a nohref onclick="downloadCsv('csv file.csv', 'text/csv')"><h5>Download this data as
+									csv</h5></a>
 						</div>
 
 

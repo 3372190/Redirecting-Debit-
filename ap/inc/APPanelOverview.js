@@ -3,6 +3,8 @@
  */
 var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 var message;
+var logObjects = [];
+var csvContent = '';
 
 
 $(document).ready(function () {
@@ -21,7 +23,7 @@ $(document).ready(function () {
 
 function loadUserServiceProviders() {
     //top level json tree
-    firebaseRef.child("redirectees").once('value', function (redirecteesSnapShot) {
+    firebaseRef.child("redirectees").orderByChild("notified").equalTo(true).once('value', function (redirecteesSnapShot) {
         var redirecteesKey = redirecteesSnapShot.key();
 
         //loop through each child in the redirectees table
@@ -36,23 +38,29 @@ function loadUserServiceProviders() {
 
 
                 firebaseRef.child("users").child(redirectChildData.userkey).once('value', function (userReference) {
+
                     var serviceResults = spReference.val();
                     var userResults = userReference.val();
                     var notifiedTimeStamp = new Date(0);
                     var respondedTimeStamp = new Date(0);
-                    notifiedTimeStamp.setUTCSeconds(redirectChildData.notifiedtimestamp);
-                    respondedTimeStamp.setUTCSeconds(redirectChildData.respondedtimestamp);
+                    notifiedTimeStamp.setTime(redirectChildData.notifiedtimestamp * 1000);
+                    respondedTimeStamp.setTime(redirectChildData.respondedtimestamp * 1000);
+
+                    var logObj = new LogObject(redirecteeKey, userResults.firstname + ' ' + userResults.lastname, redirectChildData.notified, redirectChildData.notifiedtimestamp,
+                        serviceResults.name, redirectChildData.responded, redirectChildData.respondedtimestamp);
+                    logObjects.push(logObj);
 
 
                     //adding the table row and all its appropriate fields and data.
                     $('#serviceoverall > tbody:last-child').append('' +
                         '<tr id="' + redirecteeKey + '" name="' + redirecteeKey + '">' +
-                        '<td>' + userResults.firstname + ' ' + userResults.lastname + '</td>' +
-                        '<td>' + redirectChildData.notified + '</td>' +
-                        '<td>' + notifiedTimeStamp.getTimezoneOffset() + notifiedTimeStamp.getDay() + ' / ' + notifiedTimeStamp.getMonth() + ' / ' + notifiedTimeStamp.getFullYear() + '</td>' +
-                        '<td>' + serviceResults.name + '</td>' +
+                        '<td><img src="./../' + userResults.profileimage + '" alt="./../assets/img/team/img32-md.jpg"/>' +
+                        '' + userResults.firstname + ' ' + userResults.lastname + '</td>' +
+                        '<td>' + new Date(notifiedTimeStamp.getTime() + notifiedTimeStamp.getTimezoneOffset() * 60000) + '</td>' +
+                        '<td><img src="' + serviceResults.img + '" alt="./../assets/img/team/img32-md.jpg"/>' +
+                        serviceResults.name + '</td>' +
                         '<td>' + redirectChildData.responded + '</td>' +
-                        '<td>' + respondedTimeStamp.getFullYear() + '</td>' +
+                        '<td>' + new Date(respondedTimeStamp.getTime() + respondedTimeStamp.getTimezoneOffset() * 60000) + '</td>' +
                         '</tr>');
                 });
 
@@ -62,6 +70,53 @@ function loadUserServiceProviders() {
         });
         $('#serviceProviderLoader').hide();
     });
+}
+
+function downloadCsv(fileName, mimeType) {
+
+
+    for (var i = 0; i < logObjects.length; i++) {
+
+        csvContent += logObjects[i].uName + ',' + logObjects[i].notified + ',' + logObjects[i].notifiedDate +
+            ',' + logObjects[i].spName + ',' + logObjects[i].responded + ',' + logObjects[i].respondedDate + '\n';
+    }
+
+    var a = document.createElement('a');
+    mimeType = mimeType || 'application/octet-stream';
+
+    if (navigator.msSaveBlob) { // IE10
+        return navigator.msSaveBlob(new Blob([csvContent], {type: mimeType}), fileName);
+    } else if ('download' in a) { //html5 A[download]
+        a.href = 'data:' + mimeType + ',' + encodeURIComponent(csvContent);
+        a.setAttribute('download', fileName);
+        document.body.appendChild(a);
+        setTimeout(function () {
+            a.click();
+            document.body.removeChild(a);
+        }, 66);
+        return true;
+    } else { //do iframe dataURL download (old ch+FF):
+        var f = document.createElement('iframe');
+        document.body.appendChild(f);
+        f.src = 'data:' + mimeType + ',' + encodeURIComponent(csvContent);
+
+        setTimeout(function () {
+            document.body.removeChild(f);
+        }, 333);
+        return true;
+    }
 
 
 }
+function LogObject(redirecteeKey, uName, notified, notifiedDate, spName, responded, respondedDate) {
+
+    this.rKey = redirecteeKey;
+    this.uName = uName;
+    this.notified = notified;
+    this.notifiedDate = notifiedDate;
+    this.spName = spName;
+    this.responded = responded;
+    this.respondedDate = respondedDate;
+
+}
+
