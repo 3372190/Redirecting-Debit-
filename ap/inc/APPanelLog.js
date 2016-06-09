@@ -34,44 +34,39 @@ function loadUserServiceProviders() {
 
             firebaseRef.child("serviceprovider").child(redirectChildData.serviceproviderkey).once('value', function (spReference) {
                 //innner joining the user table
-
+                var y = "yes";
+                var n = "no";
 
                 firebaseRef.child("users").child(redirectChildData.userkey).once('value', function (userReference) {
 
                     var serviceResults = spReference.val();
                     var userResults = userReference.val();
-                    var notifiedTimeStamp = new Date(0);
-                    var respondedTimeStamp = new Date(0);
-                    notifiedTimeStamp.setTime(redirectChildData.notifiedtimestamp * 1000);
-                    respondedTimeStamp.setTime(redirectChildData.respondedtimestamp * 1000);
 
-                    var logObj = new LogObject(redirecteeKey, userResults.firstname + ' ' + userResults.lastname, redirectChildData.notified, redirectChildData.notifiedtimestamp,
-                        serviceResults.name, redirectChildData.responded, redirectChildData.respondedtimestamp);
+                    var logObj = new LogObject(redirecteeKey, userResults.firstname + ' ' + userResults.lastname, boolToYN(redirectChildData.notified), getDateString(redirectChildData.notifiedtimestamp),
+                        serviceResults.name, boolToYN(redirectChildData.responded), getDateString(redirectChildData.respondedtimestamp));
                     logObjects.push(logObj);
 
-
-                    //adding the table row and all its appropriate fields and data.
-                    $('#serviceoverall > tbody:last-child').append('' +
-                        '<tr id="' + redirecteeKey + '" name="' + redirecteeKey + '">' +
+                    var row = '<tr id="' + redirecteeKey + '" name="' + redirecteeKey + '">' +
                         '<td><img src="./../' + userResults.profileimage + '" alt="./../assets/img/team/img32-md.jpg"/>' +
                         '' + userResults.firstname + ' ' + userResults.lastname + '</td>' +
-                        '<td>' + new Date(notifiedTimeStamp.getTime() + notifiedTimeStamp.getTimezoneOffset() * 60000) + '</td>' +
+                        '<td>' + getDateString(redirectChildData.notifiedtimestamp) + '</td>' +
                         '<td><img src="' + serviceResults.img + '" alt="./../assets/img/team/img32-md.jpg"/>' +
                         serviceResults.name + '</td>' +
-                        '<td>' + redirectChildData.responded + '</td>' +
-                        '<td>' + new Date(respondedTimeStamp.getTime() + respondedTimeStamp.getTimezoneOffset() * 60000) + '</td>' +
-                        '</tr>');
+                        '<td>' + boolToYN(redirectChildData.responded) + '</td>' +
+                        '<td>' + getDateString(redirectChildData.respondedtimestamp) + '</td>' +
+                        '</tr>';
+                    //adding the table row and all its appropriate fields and data.
+                    $('#serviceoverall > tbody:last-child').append(row);
                 });
             });
         });
-        $('#serviceProviderLoader').hide();
+        $('#serviceProviderLoader').fadeOut(500);
     });
 }
 
 function downloadCsv(fileName, mimeType) {
 
-    var topRow = 'Username,Notified,notified Date,Service Provider, Responded, Responded Date\n';
-    var csvContent = topRow;
+    var csvContent = 'Username,Notified,notified Date,Service Provider, Responded, Responded Date\n';
     for (var i = 0; i < logObjects.length; i++) {
 
         csvContent += logObjects[i].uName + ',' + logObjects[i].notified + ',' + logObjects[i].notifiedDate +
@@ -116,4 +111,27 @@ function LogObject(redirecteeKey, uName, notified, notifiedDate, spName, respond
     this.respondedDate = respondedDate;
 
 }
+
+function getDateString(dateSeconds) {
+
+    if (dateSeconds != null) {
+        var dateVal = dateSeconds * 1000;
+        var date = new Date(parseFloat(dateVal));
+        var day = date.getDate();
+        var month = (date.getMonth() + 1);
+        var year = date.getFullYear();
+        return day + "/" + month + "/" + year;
+    }
+    return "Service Provider Has Not Responded";
+
+}
+
+function boolToYN(bool) {
+    if (bool) {
+        return "yes";
+    }
+    return "no";
+}
+
+
 
