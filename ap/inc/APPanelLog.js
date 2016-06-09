@@ -7,7 +7,6 @@ var logObjects = [];
 
 
 $(document).ready(function () {
-    loadUserDetails();
     loadUserServiceProviders();
 
     //TODO Turn this into a method that also updates the user red panel in real time, and notifications.

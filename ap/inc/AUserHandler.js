@@ -23,8 +23,8 @@ function getUserToolbar(){
             if(localStorage.getItem("userDetails") != null){
                 var userDetails = JSON.parse(localStorage.getItem("userDetails"));
                 var fullName = userDetails["firstname"] + " " +userDetails["lastname"];
-                
-                $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " + fullName +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
+
+                $("#loginFunction").html("<b><a href='index.php'>Welcome: " + fullName + "</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
             }
         
         
@@ -34,7 +34,7 @@ function getUserToolbar(){
                 firebaseRef.child("users").child(a.uid).once('value', function(snap){
                     var id  = snap.val();
                     var fullName = id.firstName + " " + id.lastName;
-                    $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " +id.firstname +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
+                    $("#loginFunction").html("<b><a href='index.php'>Welcome: " + id.firstname + "</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
                 });
         }
         
@@ -281,7 +281,7 @@ function userLogin(e,p){
                         var object = snap.val();
                         localStorage.setItem('userDetails', JSON.stringify(object));
                         setTimeout(function () {
-                            window.location.href = "page_profile.php";
+                            window.location.href = "index.php";
                         }, 2000); //will call the function after 2 secs.
                 
                       });

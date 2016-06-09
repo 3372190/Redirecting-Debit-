@@ -3,7 +3,7 @@
 
 					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 						<li class="list-group-item ">
-							<a href="page_profile.php"><i class="fa fa-bar-chart-o"></i> Overall</a>
+							<a href="index.php"><i class="fa fa-bar-chart-o"></i> Overall</a>
 						</li>
                         <li class="list-group-item ">
 							<a href="page_add_service_provider.php"><i class="fa fa-bar-chart-o"></i> Add Service Provider</a>
