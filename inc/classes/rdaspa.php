@@ -2,8 +2,14 @@
 class rdaspa{
     
     private $foundList = array();
+	
+	//ProviderList contains all known Service Providers in RedirectDebit database.
 	private $providerList = array();
+	
+	//The final array of service providers as found by this function.
     private $spList = array();
+	
+	//The uploaded CSV.
 	private $iList = array();
 
 
@@ -13,7 +19,7 @@ class rdaspa{
 		//@param $providers: Holds list of Service Provider names signed up with RedirectDebit.
 		$this->providerList = $providers;
 		$this->iList = $iList;
-		$i = 0;
+		$i;
 		$startDate;
 		$endDate;
 		$currDate;
@@ -24,12 +30,7 @@ class rdaspa{
         {
             date_default_timezone_set('GMT');
         }
-
-		/* Service Provider Criteria
-			- Recurring payments every month (+- 3 days)
-			- 
-		*/
-
+		
 		for ($i = 0; $i < count($iList); $i++)		
 		{
 			$currDate = strtotime('1 month ago', strtotime($iList[$i]->getDate()));	//Reference date (1 month before original)
@@ -60,16 +61,23 @@ class rdaspa{
 	function checkTokens($k)                //Here only if entry $k passes date test.
 	{
 		$n;
-
+		//Check every word in description string against database of provider names.
+		
 		for ($n = 0; $n < count($this->providerList); $n++) {
+			//Tokenize
 			$token = strtok($this->iList[$k]->getTitle(), " ");
+			//Lowercase
 			$token = strtolower($token);
+			//Compare to names in providerList
 			$this->providerList[$n] = strtolower($this->providerList[$n]);
 
-			while ($token != NULL) {
-
+			//Every token except first token was upper case -_-
+			
+			while ($token != NULL) 
+			{
 				if (strcmp($token, $this->providerList[$n]) == 0)                //If token in description matches SP database
 				{
+					//When there's a match. Check to see if this provider has already been found.
 					if ($this->checkExistence($token))                    //Check if we already found that provider.
 					{
 						$this->iList[$k]->setName($token);
@@ -77,6 +85,8 @@ class rdaspa{
 					}
 				}
 				$token = strtok(" ");
+				$token = strtolower($token);
+
 			}
 		}
 
@@ -99,53 +109,12 @@ class rdaspa{
 
 		return true;
 
-
 	}
-	
 	
 	function getFoundList()
 	{
 		return $this->foundList;
 	}
-
-
-	/*Tokenise descriptions in foundlist.
-        - Run each token against each index of provider name array
-        - On match: set the matched objects name to be the provider
-        - add the object it to list.	
-    */
-
-	//Starting westpac, commbank currently just has identifier.
-	/*	function compareProvider()
-        {
-        
-        $i;
-        $j;
-        
-        for ($i = 0; $i < count($this->foundList); $i++)
-        {
-            $j = 0;		
-            while($j < count($this->providerList))
-            {
-                $token = strtok($this->foundList[$i]->getTitle(), " "); 		//Tokenize description
-                while($token != NULL)
-                {
-                    $token  = strtolower($token);
-                    $this->providerList[$j] = strtolower($this->providerList[$j]);
-                    //var_dump($this->providerList[$j]);
-                    if (strcmp($token, $this->providerList[$j]) == 0)				//If token == name of provider in database
-                    {
-                        $this->foundList[$i]->setName($token);				//Set object name = matched token
-                        checkExistence($token);
-                        
-                    }
-                    $token = strtok(" ");							//Next token
-                }
-                
-                $j++;
-            }
-        }		
-        }*/
 	
 	function getspList()
 	{
