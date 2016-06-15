@@ -3,3 +3,8 @@
  */
 var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 var message;
+
+function loadProviderSummaries() {
+
+
+}
