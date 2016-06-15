@@ -3,6 +3,7 @@ var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 var providerList = [];
 var uId;
 var providerNames = [];
+var JSONParse = [];
 var providerids = [];
 var tabs = ["profile", "passwordTab", "settings"];
 
@@ -221,12 +222,12 @@ function submitAjaxForm(){
                         var output = '<div class="error">' + data.text + '</div>';
                         
 					}else{
-                        
-                        console.log(data);
-                        providerNames = JSON.parse(data);
-                        
-                        if(providerNames['Type'] == "Error"){
-                            messageDisplay(providerNames['Message']);
+                        JSONParse = JSON.parse(data);
+                        providerNames = JSONParse['Message'][0];
+
+
+                        if (JSONParse['Type'] == "Error") {
+                            messageDisplay(JSONParse['Type']);
                         }else{
                             showTab('passwordTab');
                         }

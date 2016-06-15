@@ -36,9 +36,13 @@ if(isset($_FILES["fileToUpload"]) && isset($_POST["bankNumber"])) {
             $rdaspa = new rdaspa($processor->getServiceList(), $providers);
 
             if (sizeof($rdaspa->getspList()) > 0) {
+                $serviceProviders = array();
                 foreach ($rdaspa->getSpList() as $obj) {
-                    echo json_encode(array($obj->getName()), JSON_PRETTY_PRINT);
+                    array_push($serviceProviders, $obj->getName());
                 }
+                
+                echo json_encode(array("Type" => "Success", "Message" => array($serviceProviders)), JSON_PRETTY_PRINT);
+
             } else {
                 echo json_encode(array("Type" => "Error", "Message" => "No Service Providers found in bank statement"), JSON_PRETTY_PRINT);
             }
