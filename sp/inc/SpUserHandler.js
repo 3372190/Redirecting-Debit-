@@ -21,6 +21,7 @@ function getUserToolbar(){
         
             if(localStorage.getItem("userDetails") != null){
                 var userDetails = JSON.parse(localStorage.getItem("userDetails"));
+                $("#profileimage").attr('src', '' + userDetails["img"] + '');
                 
                 $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " + userDetails["name"] +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
             }
@@ -351,11 +352,9 @@ function validateEmail(email){
 function checkFieldsMatch(field1, field2){
     var Element1 = field1;
     var Element2 = field2;
-    
-    if(Element1.value != Element2.value){
-        return false;
-    }
-    return true;
+
+    return Element1.value == Element2.value;
+
 }
 
 function checkLocalStorageSupport(){
