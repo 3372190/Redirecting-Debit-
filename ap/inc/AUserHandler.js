@@ -10,7 +10,7 @@ $(document).ready(function() {
     
     $("#loginButton").click(loginFunction);
     $('#registerButton').click(registerServiceProviderFunction);
-    $('#registerAdminButton').click();
+    $('#adminRegisterButton').click(registerFunction);
 });
 
 
@@ -150,7 +150,7 @@ function registerServiceProviderFunction(){
         if(flag){
             userInfo = elements;
             $("#loader").show(100);
-                //login and redirect
+            //login and redirect
             serviceProviderRegister(e, p);
             document.getElementById("registerButton").innerHTML = "Loading...";
 
@@ -160,6 +160,92 @@ function registerServiceProviderFunction(){
         }
         return false; 
         
+}
+//TODO This Function can be deleted on deployment!!
+function registerFunction() {
+    // if flag is false the form will not submit
+    var flag = true;
+    var e, p;
+
+    //  grab and Loop through all available elements in the list
+    var elements = document.getElementsByTagName("input");
+
+
+    for (var i = 0; i < elements.length; i++) {
+
+        //Grab Current Node
+        listElement = elements[i];
+        var formInputName = listElement.getAttribute("name");
+
+
+        if (formInputName == "postcode") {
+
+            if (listElement.value.length < 1) {
+                listElement.style.borderColor = 'red';
+                message = formInputName + " needs to be longer than one character";
+                flag = false;
+                break;
+
+
+            } else if (listElement.value.length > 4) {
+                listElement.style.borderColor = 'red';
+                message = formInputName + " Must be less than 4 digits";
+                flag = false;
+                break;
+            }
+
+        } else if ((formInputName == "emailAddress") || (formInputName == "password") || formInputName == "confirmEmail" || formInputName == "confirmPassword") {
+            // create element
+            var checkElement;
+            if (formInputName == "emailAddress") {
+                checkElement = searchForElement(elements, "confirmEmail");
+
+                if (validateEmail(listElement.value) && validateEmail(checkElement.value)) {
+                    e = checkElement.value;
+                } else {
+                    listElement.style.borderColor = 'red';
+                    flag = false;
+                    message = "Email fields are not valid emails";
+                    break;
+                }
+
+            } else if (formInputName == "password") {
+                checkElement = searchForElement(elements, "confirmPassword");
+                p = checkElement.value;
+            }
+
+            if (checkFieldLength(listElement) && checkFieldLength(checkElement)) {
+                if (!checkFieldsMatch(listElement, checkElement)) {
+                    listElement.style.borderColor = 'red';
+                    checkElement.style.borderColor = 'red';
+                    message = formInputName + checkElement.getAttribute("name") + " Fields Must Match";
+                    flag = false;
+                    break;
+                }
+            }
+        } else {
+            if (!checkFieldLength(listElement)) {
+                listElement.style.borderColor = 'red';
+                message = formInputName + " Must not be blank";
+                flag = false;
+                break;
+            }
+        }
+    }
+
+    if (flag) {
+        userInfo = elements;
+        $("#loader").show(100);
+        //login and redirect
+        adminRegister(e, p);
+        document.getElementById("adminRegisterButton").innerHTML = "Logging in";
+
+
+    } else if (!flag) {
+        messageDisplay(message);
+    }
+    return false;
+
 }
 
 
@@ -377,8 +463,6 @@ function loadUserDetails(){
                 
                 }
             }
-            
-            
         }
         }else{
         var authData = firebaseRef.getAuth();
