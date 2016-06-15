@@ -17,8 +17,10 @@ $(document).ready(function() {
     $("#loader").hide(100);
     
     $("#loginButton").click(loginFunction);
-    $('#registerButton').click(registerFunction); 
-    $('#resetButton').click(resetFuction); 
+    $('#registerButton').click(registerFunction);
+    $('#resetButton').click(resetFuction);
+    //TODO Fix This Function
+    getUserSideBar();
 });
 
 function getUserToolbar(){
@@ -48,10 +50,33 @@ function getUserToolbar(){
     }else{
         $("#loginFunction").html("<a href='page_login.php'>Login</a>");
     }
-
 }
 
-function userSideBar() {
+function getUserSideBar() {
+
+    if (isUserLoggedIn()) {
+
+        var serviceRef = firebaseRef.child("users").child(uId).child("serviceproviders");
+
+        serviceRef.on('child_changed', function (childSnapshot, prevChildKey) {
+
+            var providerRef = firebaseRef.child("serviceprovider").child(childSnapshot.key());
+
+            providerRef.once('value', function (childSnapShot) {
+
+                var childData = childSnapShot.val();
+
+                $('#sideBarNotifications ul').append('<li class="notification">' +
+                    '<img class="" src="assets/img/profile_serviceproviders/vodafone_logo.png" alt=""> ' +
+                    '<div class="overflow-h"> <span>' +
+                    '<strong>' + childData.name + ' </strong>Updated Details</span>' +
+                    ' <small>Two minutes ago</small>' +
+                    ' </div> </li>');
+            });
+
+        });
+    }
+
 
 
 }
@@ -63,7 +88,7 @@ function loginFunction (){
         var elements = document.getElementsByTagName("input");
         
         for(var i = 0; i < elements.length -1; i++ ){
-            listElement = elements[i];
+            var listElement = elements[i];
             var formInputName = listElement.getAttribute("name");
 
             if(formInputName == "emailAddress"){  
@@ -406,7 +431,7 @@ function isUserLoggedIn(){
         uId = authData.uid;
         return true;
     } else {
-        console.log("User is logged out");
+        //console.log("User is logged out");
         return false;
     }
     

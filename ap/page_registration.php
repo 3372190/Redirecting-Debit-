@@ -107,7 +107,9 @@
 							</div>
 							<div class="col-lg-6 text-right">
                                 <img width="50px" height="50px" id="loader" name="loader" src="./assets/img/loading.gif"/>
-								<button class="btn-u" type="submit" name="registerButton" id="registerButton">Register</button>
+								<button class="btn-u" type="submit" name="adminRegisterButton" id="adminRegisterButton">
+									Register
+								</button>
                                 
 							</div>
 						</div>

@@ -1,5 +1,5 @@
 var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
-var uId;
+//var uId;
 var message;
 
 $(document).ready(function() {
@@ -8,11 +8,12 @@ $(document).ready(function() {
     
     $("#updatePassword").click(changeUserPassword);
     $("#uploadpp").click(changeUserPicture);
-	$("#saveCard").click(updateCard)
+	$("#saveCard").click(updateCard);
+	$("update").click(updateDetails);
 });
 
 
-function getUserId(){
+/*function getUserId(){
     var auth = firebaseRef.getAuth();
     
     if(auth){
@@ -21,6 +22,16 @@ function getUserId(){
     }else{
         return false;
     }
+}*/
+
+function editField(divId){
+	console.log(divId);
+	$(document).ready(function() {
+	document.getElementById('country').innerHTML = '<input type="text" id="'+divId+'" />';
+	});
+	//$('#'+divId+'').replaceWith('<input type="text" id="'+divId+'" />');
+	
+	
 }
 
 function changeUserPassword(){
@@ -33,9 +44,6 @@ function changeUserPassword(){
         listElement = elements[i];
         var checkElement;
         formInputName = listElement.getAttribute("name");
-        
-        
-        
         
         if(formInputName == "oldPassword"){
                     
@@ -191,8 +199,8 @@ function updateProfilePicture(uid, path){
     profilepictureRef.update({ profileimage: path });
     $("#profileimage").attr("src", path);
     $("#profilepreview").attr("src", path);
-    if(localStorage){
-        
+    
+	if(localStorage){
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
         userDetails['profileimage'] = path;
         localStorage.setItem("userDetails", JSON.stringify(userDetails));
@@ -203,35 +211,66 @@ function updateProfilePicture(uid, path){
 
 function updateCard()
 {
-	authData = firebaseRef.getAuth();
-    
+	//authData = firebaseRef.getAuth()
 	
-	firebaseRef.child("cc").child(authData.uid).set({
-		cardName: document.getElementById("cardname").value,
-		card: document.getElementById("cardnum").value,
-		cvv: document.getElementById("cvv").value,
-		month: document.getElementById("month").value,
-		year: document.getElementById("year").value,
-		
-	}, function (error){
-		if(error) {
-			message = "Could not update the Credit Card, try again later.";
-			messageDisplay(message);
-		} else {
-			message = "Card updated.";
-			messageDisplay(message);
-		}
-
-	});
-	
-	
-	return false;
-}
+	var auth = firebaseRef.getAuth();
+	//console.log(auth);
+	if (auth)
+	{
+		uId = auth.uid
+		firebaseRef.child("cc").child(uId).set(
+		{
+			nameOnCard: document.getElementById("cardname").value,
+			card: document.getElementById("cardnum").value,
+			cvv: document.getElementById("cvv").value,
+			month: document.getElementById("month").value,
+			year: document.getElementById("year").value,
+			
+			
+		}, function (error){
+			if(error) {
+				message = "Could not update the Credit Card, try again later.";
+				messageDisplay(message);
+			} else {
+				message = "Card updated.";
+				messageDisplay(message);
+				
+			}
+		})
+	}
+	else{
+		message = "Could not fetch user id.";
+		messageDisplay(message);
+	}
+	};
 
 function updateDetails(){
-		
+	var auth = firebaseRef.getAuth();
+	
+	if (auth)
+	{
+		uId = auth.uid
+		firebaseRef.child(uId).child(uId).set(
+		{
+			nameOnCard: document.getElementById("cardname").value,
+			card: document.getElementById("cardnum").value,
+			cvv: document.getElementById("cvv").value,
+			month: document.getElementById("month").value,
+			year: document.getElementById("year").value,
+			
+			
+		}, function (error){
+			if(error) {
+				message = "Could not update the Credit Card, try again later.";
+				messageDisplay(message);
+			} else {
+				message = "Card updated.";
+				messageDisplay(message);
+				
+			}
+		})
     
     
-}
+}}
                   
                   

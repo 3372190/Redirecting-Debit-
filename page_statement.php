@@ -116,6 +116,7 @@
 														<option disabled="" selected="" value="0" >Select Bank</option>
 														<option value="1">Westpac Australia</option>
 														<option value="2">Commonwealth Bank</option>
+														<option value="4">ANZ Bank</option>
 													</select>
 													<i></i>
 												</label>

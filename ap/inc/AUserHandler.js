@@ -9,7 +9,8 @@ $(document).ready(function() {
     $("#loader").hide(100);
     
     $("#loginButton").click(loginFunction);
-    $('#registerButton').click(registerServiceProviderFunction); 
+    $('#registerButton').click(registerServiceProviderFunction);
+    $('#adminRegisterButton').click(registerFunction);
 });
 
 
@@ -22,8 +23,8 @@ function getUserToolbar(){
             if(localStorage.getItem("userDetails") != null){
                 var userDetails = JSON.parse(localStorage.getItem("userDetails"));
                 var fullName = userDetails["firstname"] + " " +userDetails["lastname"];
-                
-                $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " + fullName +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
+
+                $("#loginFunction").html("<b><a href='index.php'>Welcome: " + fullName + "</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
             }
         
         
@@ -33,7 +34,7 @@ function getUserToolbar(){
                 firebaseRef.child("users").child(a.uid).once('value', function(snap){
                     var id  = snap.val();
                     var fullName = id.firstName + " " + id.lastName;
-                    $("#loginFunction").html("<b><a href='page_profile.php'>Welcome: " +id.firstname +"</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
+                    $("#loginFunction").html("<b><a href='index.php'>Welcome: " + id.firstname + "</a> | <a onClick='userLogout(); return false;' href='index.php'>Logout</a></b>");
                 });
         }
         
@@ -149,7 +150,7 @@ function registerServiceProviderFunction(){
         if(flag){
             userInfo = elements;
             $("#loader").show(100);
-                //login and redirect
+            //login and redirect
             serviceProviderRegister(e, p);
             document.getElementById("registerButton").innerHTML = "Loading...";
 
@@ -159,6 +160,92 @@ function registerServiceProviderFunction(){
         }
         return false; 
         
+}
+//TODO This Function can be deleted on deployment!!
+function registerFunction() {
+    // if flag is false the form will not submit
+    var flag = true;
+    var e, p;
+
+    //  grab and Loop through all available elements in the list
+    var elements = document.getElementsByTagName("input");
+
+
+    for (var i = 0; i < elements.length; i++) {
+
+        //Grab Current Node
+        listElement = elements[i];
+        var formInputName = listElement.getAttribute("name");
+
+
+        if (formInputName == "postcode") {
+
+            if (listElement.value.length < 1) {
+                listElement.style.borderColor = 'red';
+                message = formInputName + " needs to be longer than one character";
+                flag = false;
+                break;
+
+
+            } else if (listElement.value.length > 4) {
+                listElement.style.borderColor = 'red';
+                message = formInputName + " Must be less than 4 digits";
+                flag = false;
+                break;
+            }
+
+        } else if ((formInputName == "emailAddress") || (formInputName == "password") || formInputName == "confirmEmail" || formInputName == "confirmPassword") {
+            // create element
+            var checkElement;
+            if (formInputName == "emailAddress") {
+                checkElement = searchForElement(elements, "confirmEmail");
+
+                if (validateEmail(listElement.value) && validateEmail(checkElement.value)) {
+                    e = checkElement.value;
+                } else {
+                    listElement.style.borderColor = 'red';
+                    flag = false;
+                    message = "Email fields are not valid emails";
+                    break;
+                }
+
+            } else if (formInputName == "password") {
+                checkElement = searchForElement(elements, "confirmPassword");
+                p = checkElement.value;
+            }
+
+            if (checkFieldLength(listElement) && checkFieldLength(checkElement)) {
+                if (!checkFieldsMatch(listElement, checkElement)) {
+                    listElement.style.borderColor = 'red';
+                    checkElement.style.borderColor = 'red';
+                    message = formInputName + checkElement.getAttribute("name") + " Fields Must Match";
+                    flag = false;
+                    break;
+                }
+            }
+        } else {
+            if (!checkFieldLength(listElement)) {
+                listElement.style.borderColor = 'red';
+                message = formInputName + " Must not be blank";
+                flag = false;
+                break;
+            }
+        }
+    }
+
+    if (flag) {
+        userInfo = elements;
+        $("#loader").show(100);
+        //login and redirect
+        adminRegister(e, p);
+        document.getElementById("adminRegisterButton").innerHTML = "Logging in";
+
+
+    } else if (!flag) {
+        messageDisplay(message);
+    }
+    return false;
+
 }
 
 
@@ -279,9 +366,8 @@ function userLogin(e,p){
                         //because the data doesnt exist in local storage and it is supported, add it to local storage
                         var object = snap.val();
                         localStorage.setItem('userDetails', JSON.stringify(object));
-                        console.log(object);
                         setTimeout(function () {
-                            window.location.href = "page_profile.php";
+                            window.location.href = "index.php";
                         }, 2000); //will call the function after 2 secs.
                 
                       });
@@ -310,10 +396,10 @@ function isUserLoggedIn(){
 
     if (authData) {
         uId = authData.uid;
-        console.log(authData.uid);
+        //console.log(authData.uid);
         return true;
     } else {
-        console.log("User is logged out");
+        //console.log("User is logged out");
         return false;
     }
     
@@ -322,7 +408,6 @@ function getUserLev(){
     
     if(isUserLoggedIn()){
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-         console.log(userDetails);
         return userDetails["userlevel"];
        
     }else{
@@ -378,8 +463,6 @@ function loadUserDetails(){
                 
                 }
             }
-            
-            
         }
         }else{
         var authData = firebaseRef.getAuth();
