@@ -92,10 +92,10 @@
 								<table class="table table-bordered table-striped" id="serviceoverall">
 									<thead>
 										<tr>
-											<th>Image</th>
-											<th>About</th>
-											<th>Status</th>
-											<th>Contacts</th>
+											<th>Service Provider</th>
+											<th>Redirectees Who Notified</th>
+											<th>Redirectees Responded To</th>
+											<th>Redirectee Total</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -106,7 +106,6 @@
 						</div>
 						<!-- End Table Search v2 -->
 
-						<hr>
 						<hr>
 
 

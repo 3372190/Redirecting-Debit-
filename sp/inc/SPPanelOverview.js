@@ -5,73 +5,71 @@ var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 var message;
 
 
+function loadUserServiceProviders() {
 
-function loadUserServiceProviders(){
 
+    //get redirectees json tree
+    firebaseRef.child("redirectees").orderByChild("serviceproviderkey").equalTo(uId).once('value', function (snapshot) {
 
-    firebaseRef.child('users').once("value", function(snapshot) {
-        // The callback function will get called twice, once for "fred" and once for "barney"
-        snapshot.forEach(function(childSnapshot) {
-            // key will be "fred" the first time and "barney" the second time
-            var userKey = childSnapshot.key();
-            // childData will be the actual contents of the child
-            if(childSnapshot.child("serviceproviders").child(getUserId()).val() != null){
-                var childDataSP = childSnapshot.child("serviceproviders").child(getUserId()).val();
-                var childDataSPKey = childSnapshot.child("serviceproviders").child(getUserId()).key();
-                var childData = childSnapshot.val();
-                var method;
+        //loop through its children
+        snapshot.forEach(function (redirecteeChild) {
+            var redirecteeKey = redirecteeChild.key();
+            var redirectChildData = redirecteeChild.val();
 
-                if (!childDataSP.responded) {
+            firebaseRef.child("users").child(redirectChildData.userkey).once('value', function (userReference) {
+                var userResults = userReference.val();
 
-                    if (childDataSP.method == "callback") {
-                        method = "Callback requested " + childData.phonenumber;
+                if (!redirectChildData.responded) {
+
+                    if (redirectChildData.method == "callback") {
+                        var method = "Callback requested " + userResults.phonenumber;
                     } else {
-                        method = '<a href="google.com.au">Click Here</a>';
+                        var method = '<a href="google.com.au">Click Here</a>';
                     }
 
-                    if (childDataSP.notified) {
+                    if (redirectChildData.notified) {
                         $('#serviceOverallTable > tbody:last-child')
-                            .append('<tr id="' + userKey + '"><td><img src="./../' + childData.profileimage + '" alt="./../assets/img/team/img32-md.jpg"/>' +
-                                ' <br><h4>' + childData.firstname + " " + childData.lastname + '</h4></td>' +
+                            .append('<tr id="' + redirecteeKey + '"><td><img src="./../' + userResults.profileimage + '" alt="./../assets/img/team/img32-md.jpg"/>' +
+                                ' <br><h4>' + userResults.firstname + " " + userResults.lastname + '</h4></td>' +
                                 '<td>' +
-                                '<br>' + childData.emailaddress +
-                                '<br>' + childData.address +
-                                '<br>' + childData.state + ", " + childData.postcode +
-                                '<br>' + childData.country +
+                                '<br>' + userResults.emailaddress +
+                                '<br>' + userResults.address +
+                                '<br>' + userResults.state + ", " + userResults.postcode +
+                                '<br>' + userResults.country +
                                 '</td><td>' + method + '</td>' +
-                                '<td style="text-align: center;"><input type="image" width="40" height="40" src="./../assets/img/tick_unselected.png" onclick="confirmComplete(\'' + childDataSPKey + '\',\'' + userKey + '\')" /></td></tr>');
-
-
+                                '<td style="text-align: center;"><input type="image" width="40" height="40" src="./../assets/img/tick_unselected.png" onclick="confirmComplete(\'' + redirecteeKey + '\')" /></td></tr>');
                     }
                 }
+            });
 
-            }
         });
     });
 }
 
-function confirmComplete(spKey, uKey){
+function confirmComplete(redirecteeKey) {
 
-        var x;
-        if (confirm("Are You Sure?") == true) {
-            updateUser(spKey, uKey);
-            $('#' + uKey + '').remove();
-        } else {
-            x = "You pressed Cancel!";
-            console.log(x);
-        }
+    var x;
+    if (confirm("Are You Sure?") == true) {
+        updateUser(redirecteeKey);
+        $('#' + redirecteeKey + '').remove();
+    } else {
+        x = "You pressed Cancel!";
+        console.log(x);
+    }
 }
 
-function updateUser(spKey, uKey){
+function updateUser(redirecteeKey) {
 
-    firebaseRef.child("users").child(uKey).child("serviceproviders").child(spKey).update({
-        timestamp: Math.floor((new Date).getTime()/1000),
+    var redirecteeRef = firebaseRef.child("redirectees").child(redirecteeKey);
+
+    redirecteeRef.update({
+        respondedtimestamp: Math.floor((new Date).getTime() / 1000),
         responded: true
-    }, function(error){
-        if(error){
+    }, function (error) {
+        if (error) {
             message = "Notify Failed";
             messageDisplay(message)
-        }else{
+        } else {
             message = "User Notified";
             messageDisplay(message);
         }
