@@ -1,1 +1,11 @@
 .DS_Store
+.idea/Redirecting-Debit-.iml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+assets/img/clients2/
+assets/img/error.png
+assets/img/tick_selected.png
+assets/img/tick_unselected.png
+inc/statements/
+users/
