@@ -63,54 +63,62 @@ class rdaspa{
     }
 
 
-	function checkTokens($k)                //Here only if entry $k passes date test.
+	//Once the Kth entry passes date test. Checks if Kth entry is a SP by checking tokens in description vs database.
+	function checkTokens($k)          
 	{
 		$n;
-		//Check every word in description string against database of provider names.
 		
+		//Check every word in description string against database of provider names.
 		for ($n = 0; $n < count($this->providerList); $n++) {
-			//Tokenize
+			
+			//Tokenize descrption
 			$token = strtok($this->iList[$k]->getTitle(), " ");
+			
 			//Lowercase
 			$token = strtolower($token);
-			//Compare to names in providerList
+			
+			//Compare to nth name in providerList
 			$this->providerList[$n] = strtolower($this->providerList[$n]);
 			
 			while ($token != NULL) 
 			{
+				//Check for a match
 				if (strcmp($token, $this->providerList[$n]) == 0)                //If token in description matches SP database
 				{
+					//when a match is found, see if already detected.
 					if ($this->checkExistence($token))                    //Check if we already found that provider.
 					{
+						//Each unique entry gets provider as name.
 						$this->iList[$k]->setName($token);
 						return true;
 					}
 				}
+				//Next token
 				$token = strtok(" ");
 				$token = strtolower($token);
-
 			}
 		}
-
 		return false;
 	}
 
 	function checkExistence($token)            //Check to see if $token already assigned to name in spList
 	{		
 		$g;
+		
+		//First detected SP.
 		if (count($this->spList) == 0) {
 			return true;
 		} else {
-			
+			//Check provider token against the already detected providers.
 			for ($g = 0; $g < count($this->spList); $g++) {
 				if (strcmp($token, $this->spList[$g]->getName()) == 0) {
-					
+					//If not unique, do not add.
 					return false;
-					
 				}
 			}
 		}
 
+		//If unique, add.
 		return true; 
 
 	}
