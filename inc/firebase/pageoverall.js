@@ -208,7 +208,7 @@ function deleteServiceProvider(redirecteeId, spName) {
         } else {
             message = '' + spName + ' Deleted';
             messageDisplay(message);
-            $('#' + spKey + '').remove();
+            $('#' + redirecteeId + '').remove();
 
         }
     });
