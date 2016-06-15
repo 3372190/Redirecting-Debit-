@@ -218,7 +218,7 @@ function submitAjaxForm(){
 				{
 					if(data.type == 'error')
 					{
-						output = '<div class="error">'+data.text+'</div>';
+                        var output = '<div class="error">' + data.text + '</div>';
                         
 					}else{
                         

@@ -88,7 +88,7 @@ function loginFunction (){
         var elements = document.getElementsByTagName("input");
         
         for(var i = 0; i < elements.length -1; i++ ){
-            listElement = elements[i];
+            var listElement = elements[i];
             var formInputName = listElement.getAttribute("name");
 
             if(formInputName == "emailAddress"){  
