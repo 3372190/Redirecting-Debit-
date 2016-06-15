@@ -85,7 +85,7 @@
 							<ul class="nav nav-justified nav-tabs">
 								<li class="active"><a data-toggle="tab" href="#profile">Edit Profile</a></li>
 								<li><a data-toggle="tab" href="#passwordTab">Change Password</a></li>
-								<li><a data-toggle="tab" href="#payment">Payment Options</a></li>
+								<li><a data-toggle="tab" href="#payment">Credit Card Details</a></li>
 								<li><a data-toggle="tab" href="#settings">Notification Settings</a></li>
 							</ul>
 							<div class="tab-content">
@@ -249,8 +249,9 @@
 								</div>
 
 								<div id="payment" class="profile-edit tab-pane fade">
-									<h2 class="heading-md">Manage your Payment Settings</h2>
-									<p>Below are the payment options for your account.</p>
+									<h2 class="heading-md">Manage your Credit Card details</h2>
+									<p>Below you can update your credit card details, we will never show you old card
+										details for secuirty reasons</p>
 									<br>
 									<form class="sky-form" id="sky-form" action="#" method="post">
 										<!--Checkout-Form-->
