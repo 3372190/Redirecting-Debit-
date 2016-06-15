@@ -13,7 +13,7 @@ class rdaspa{
 		//@param $providers: Holds list of Service Provider names signed up with RedirectDebit.
 		$this->providerList = $providers;
 		$this->iList = $iList;
-		$i = 0;
+		$i;
 		$startDate;
 		$endDate;
 		$currDate;
