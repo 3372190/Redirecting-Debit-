@@ -3,13 +3,13 @@
 					<img class="img-responsive profile-img margin-bottom-20" id="profileimage" name="profileimage" src="assets/img/team/img32-md.jpg" alt="">
 
 					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
-						<li class="list-group-item active">
+						<li class="list-group-item ">
 							<a href="page_profile.php"><i class="fa fa-bar-chart-o"></i> Overall</a>
 						</li>
                         <li class="list-group-item ">
 							<a href="page_statement.php"><i class="fa fa-bar-chart-o"></i> Upload Statement</a>
 						</li>
-						<li class="list-group-item active">
+						<li class="list-group-item">
 							<a href="page_profile_settings.php"><i class="fa fa-cog"></i> Settings</a>
 						</li>
                         <li class="list-group-item">
