@@ -14,7 +14,7 @@
     <!-- Firebase -->
     <script type="text/javascript" src="../inc/firebase/firebase.js"></script>
         <script type="text/javascript" src="inc/AUserHandler.js"></script>
-    <script type="text/javascript" src="../inc/firebase/pageoverall.js"></script>
+	<script type="text/javascript" src="inc/APPanelSummary.js"></script>
     <script type="text/javascript">
     if(getUserLev() != 1){
         userLogout();
@@ -85,6 +85,9 @@
 				<div class="col-md-9">
 					<div class="profile-body">
 
+						<h2>Service Provider Summaries</h2>
+
+						<hr>
 
 												<!-- Begin Table Search v2 -->
 						<div class="table-search-v2">
@@ -100,6 +103,10 @@
 									</thead>
 									<tbody>
 
+									<tr id="serviceProviderLoader">
+										<td colspan="6"><img id="loadingUserServiceProviders"
+															 src="../assets/img/loading.gif" alt="Loading..."/></td>
+									</tr>
 									</tbody>
 								</table>
 							</div>
