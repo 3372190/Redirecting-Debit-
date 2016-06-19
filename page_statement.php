@@ -15,14 +15,15 @@
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
     <script type="text/javascript" src="inc/firebase/pagestatement.js"></script>
     <script type="text/javascript">
-     if(getUserLev() != 3){
-        userLogout();
-        window.location = "page_login.php"
-    }
-        
-        getUserId();
-        getProviderList();
+
     $(document).ready(function() {
+		if (getUserLev() != 3) {
+			userLogout();
+			window.location = "page_login.php"
+		}
+
+		getUserId();
+		getProviderList();
         getUserToolbar(); 
     });
     </script>

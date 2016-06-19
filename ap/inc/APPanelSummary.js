@@ -26,7 +26,6 @@ function loadSummary() {
     firebaseRef.child("serviceprovider").once('value', function (spSnapshot) {
         //number of service providers
         var totalSp = spSnapshot.numChildren();
-        console.log(totalSp);
         spSnapshot.forEach(function (spSnapshotChild) {
             var spSnapshotChildData = spSnapshotChild.val();
 
@@ -34,6 +33,7 @@ function loadSummary() {
             firebaseRef.child("redirectees").orderByChild("serviceproviderkey").equalTo(spSnapshotChild.key()).once('value', function (spRedirectee) {
 
                 var totalRedirectees = spRedirectee.numChildren();
+
                 totalNotified = 0;
                 totalResponded = 0;
 
@@ -41,12 +41,10 @@ function loadSummary() {
                 spRedirectee.forEach(function (redirecteeSnapShot) {
                     var redirectChildData = redirecteeSnapShot.val();
 
-                    if (redirectChildData.notified) {
-                        console.log(redirectChildData.notified + "Notified");
+                    if ((redirectChildData.notified = !null) && (redirectChildData.notified == true)) {
                         totalNotified++;
                     }
-                    if (redirectChildData.responded) {
-                        console.log(spSnapshotChildData.val() + "responded");
+                    if ((redirectChildData.responded != null) && (redirectChildData.responded == true)) {
                         totalResponded++;
                     }
                 });

@@ -421,7 +421,7 @@ function userRegister(email, pword) {
 
 function isUserLoggedIn() {
 
-    authData = firebaseRef.getAuth();
+    var authData = firebaseRef.getAuth();
 
     if (authData) {
         uId = authData.uid;
@@ -489,21 +489,11 @@ function addUserDataToFirebase(elements, uId) {
 }
 
 function checkFieldLength(field) {
-    if (field.value.length < 1) {
-        return false;
-    }
-    return true;
+    return field.value.length >= 1;
+
 }
-
-
 function checkFieldsMatch(field1, field2) {
-    Element1 = field1;
-    Element2 = field2;
-
-    if (Element1.value != Element2.value) {
-        return false;
-    }
-    return true;
+    return field1.value == field2.value;
 }
 
 function checkLocalStorageSupport() {
