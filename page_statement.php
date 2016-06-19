@@ -155,7 +155,8 @@
                                         </div>
                                     </div>
                                 <button type="button" id="providerBack" name="providerBack" class="btn-u btn-u-default">Back</button>
-								<button class="btn-u"  id="saveproviders" name="saveproviders" type="submit">Save And notify</button>
+									<button class="btn-u" id="saveproviders" name="saveproviders" type="submit">Save
+									</button>
 								</div>
 							</div>
 						</div>

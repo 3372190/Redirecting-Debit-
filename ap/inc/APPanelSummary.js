@@ -42,7 +42,7 @@ function loadSummary() {
                     var redirectChildData = redirecteeSnapShot.val();
 
                     if (redirectChildData.notified) {
-                        console.log(spSnapshotChildData + "Notified");
+                        console.log(redirectChildData.notified + "Notified");
                         totalNotified++;
                     }
                     if (redirectChildData.responded) {
