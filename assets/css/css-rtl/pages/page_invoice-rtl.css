@@ -2,13 +2,13 @@
 ------------------------------------*/
 @media print {
 	* { -webkit-print-color-adjust: exact; }
-	
+
 	.btn-u,
 	.header,
-	.footer-v1, 
+	.footer-v1,
 	.breadcrumbs,
 	#topcontrol {
-		display: none; 
+		display: none;
 	}
 
 	.panel {
@@ -60,5 +60,5 @@ address {
 .invoice-total-info li {
 	font-size: 14px;
 	margin-bottom: 5px;
-	font-family: 'Open Sans'; 
+	font-family: 'Open Sans';
 }

@@ -25,7 +25,7 @@ Sequence.js and its dependencies are (c) Ian Lunn Design 2012 unless otherwise s
 
 .sequence-inner {
   background: #fff;
-  border-bottom: solid 2px #e8e7e7; 
+  border-bottom: solid 2px #e8e7e7;
   background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fff), to(#defce7));
   background: -webkit-linear-gradient(#fff, #defce7);
   background: -moz-linear-gradient(#fff, #defce7);

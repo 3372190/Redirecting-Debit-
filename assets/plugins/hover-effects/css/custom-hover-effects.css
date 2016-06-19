@@ -39,16 +39,16 @@
   border-radius: 1em !important;
 }
 
-.bubble-float-top, 
-.bubble-float-right, 
-.bubble-float-left, 
+.bubble-float-top,
+.bubble-float-right,
+.bubble-float-left,
 .bubble-float-bottom {
   transform: inherit;
 }
 
-.bubble-float-top, 
-.bubble-float-right, 
-.bubble-float-left, 
+.bubble-float-top,
+.bubble-float-right,
+.bubble-float-left,
 .bubble-float-bottom:hover {
   color: #555 !important;
 }

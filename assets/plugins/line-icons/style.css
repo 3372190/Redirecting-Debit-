@@ -45,8 +45,8 @@
 	background-color: rgba(0, 0, 0, 0.6);
 }
 
-section, 
-header, 
+section,
+header,
 footer {
 	display: block;
 	position: relative;
@@ -138,7 +138,7 @@ section header:after {
 	text-transform: uppercase;
 }
 
-.glyphs, 
+.glyphs,
 .classes {
 	margin-left: -1.5em;
 	padding: 4.5em 3em;
@@ -204,19 +204,19 @@ h2 code {
 .glyph:hover .glyph-item {
 	background-color: #0e8a65;
 	color: #fff;
-} 
+}
 
 .mega {
 	font-size: 3em;
 }
 
-a, 
+a,
 a:visited {
 	color: #74f3c8;
 	text-decoration: none;
 }
 
-a:hover, 
+a:hover,
 a:focus {
 		color: #0e8a65;
 }
@@ -286,7 +286,7 @@ a:focus {
 		font-size: 4.5em;
 	}
 
-	.glyphs, 
+	.glyphs,
 	.classes {
 		padding: 9em 6em;
 	}
@@ -307,16 +307,15 @@ a:focus {
 		font-size: 6em;
 	}
 
-    
-    .glyph {
+	.glyph {
 		width: 16.66666666666667%;
     }
 
     .item-box {
 		width: 33.333%;
     }
-    
-    .colophon .group {
+
+	.colophon .group {
     	padding: 6em;
     }
 }

@@ -10,7 +10,7 @@
 .job-img .job-banner {
 	padding: 20px;
 	max-width: 450px;
-	margin: 60px auto 100px;	
+	margin: 60px auto 100px;
 	background: rgba(255,255,255,0.8);
 }
 
@@ -24,7 +24,7 @@
 @media (max-width: 768px) {
 	.job-img .job-banner {
 		padding: 10px;
-		margin: 30px auto 100px;	
+		margin: 30px auto 100px;
 	}
 }
 

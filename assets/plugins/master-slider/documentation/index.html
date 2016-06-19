@@ -3,17 +3,17 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Master Slider jQuery Version Documentation</title>
-		
+
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
 		<link rel="stylesheet" type="text/css" href="syntax-highlighter/styles/shCore.css" media="all">
 		<link rel="stylesheet" type="text/css" href="syntax-highlighter/styles/shThemeDefault.css" media="all">
 		<link rel="stylesheet" href="assets/css/main.css" type="text/css" media="screen"/>
-		
+
 		<link rel="icon" type="image/png" href="assets/images/fav.png" />
 	</head>
-	
+
 	<body>
-		
+
 		<header class="header">
 			<img src="assets/images/ms-logo.gif" class="logo"/>
 			<nav class="navbar mainnav" >
@@ -25,15 +25,15 @@
 				</ul>
 			</nav>
 		</header>
-		
+
 		<div id="loading">
 			Loading data ...
 		</div>
-		
+
 		<div id="main-container" role="main">
 			<aside id="sidebar">
 				<nav class="toc">
-					
+
 					<ul class="nav nav-list">
 						<li class="nav-header">
 							Table of Contents
@@ -116,7 +116,7 @@
 				<div class="toggle"> </div>
 			</aside><!-- sidebar -->
 			<section class="container" id="content">
-				
+
 				<article class="content-section float" id="intro" style="opacity: 1; position: relative; top: 0px; left: 0px; -webkit-transform: translateX(0px);">
 					<h4>Thank you</h4>
 					<p>At first we would like to say thank you for choosing Master Slider jQuery. In this documentation you will find everything you need to use Master Slider.
@@ -463,7 +463,8 @@
 					<h3><strong>Using Master Slider jQuery Plugin</strong></h3>
 					<p>
 						Since version 2.0, you can setup slider by using Master Slider jQuery Plugin.
-						There is no difference between js pure slider setup and jQuery plugin setup you can use all options in both of them. 
+						There is no difference between js pure slider setup and jQuery plugin setup you can use all
+						options in both of them.
 					</p>
 					<pre class="brush: js">
 						$('#slider').masterslider({
@@ -680,8 +681,11 @@
 								<strong>Slide Background Image</strong>
 							</p>
 							<p>
-								The first &lt;img&gt; element in the slide specifies the slider background image. 	
-								<div class="alert alert-info"><strong>Note:</strong> This slider supports preloading feature (It helps slider to load faster). For using this feature you need to specify image path as "data-src" instead of "src".</div>							
+								The first &lt;img&gt; element in the slide specifies the slider background image.
+							<div class="alert alert-info"><strong>Note:</strong> This slider supports preloading feature
+								(It helps slider to load faster). For using this feature you need to specify image path
+								as "data-src" instead of "src".
+							</div>
 								<pre class="brush: html">
 						&lt;!-- new slide --&gt;
 						&lt;div class="ms-slide"&gt;
@@ -847,7 +851,7 @@
 										</ul>
 										<p><span class="label label-info">Note</span> Fixed layers in IE causes links on other layers with defferent type not working.</p>
 									</td>
-								</tr>		
+					</tr>
 								<tr>
 									<td>data-origin</td>
 									<td>"tl"</td>
@@ -865,7 +869,7 @@
 											<li>"br": Bottom right</li>
 										</ul>
 									</td>
-								</tr>						
+								</tr>
 								<tr>
 									<td>data-widthlimit</td>
 									<td>-1</td>
@@ -929,7 +933,8 @@
 								<tr>
 									<td>data-action</td>
 									<td>null</td>
-									<td><em>Since V1.7.2</em><br>Specifies the action type of layer with will be called when user clicks layer. It accepts below values: <br> 
+									<td><em>Since V1.7.2</em><br>Specifies the action type of layer with will be called
+										when user clicks layer. It accepts below values: <br>
 										<ol>
 											<li>"next": Goto next slide.</li>
 											<li>"previous": Goto previous slide.</li>
@@ -1008,7 +1013,10 @@
 							</p>
 							<p>
 								<div class="alert alert-info"><strong>Note:</strong> It's important to add data-type = "image" attribute the layer element. </div>
-								<div class="alert alert-info"><strong>Note:</strong> This slider supports preloading feature (It helps slider to load faster). For using this feature you need to specify image path as "data-src" instead of "src".</div>		
+							<div class="alert alert-info"><strong>Note:</strong> This slider supports preloading feature
+								(It helps slider to load faster). For using this feature you need to specify image path
+								as "data-src" instead of "src".
+							</div>
 							<pre class="brush: html">
 							&lt;!-- slide image layer --&gt;
 							&lt;img class="ms-layer" alt="lorem ipsum dolor sit"
@@ -1032,7 +1040,9 @@
 								<strong>Button Layer</strong>
 							</p>
 							<p>
-								<div class="alert alert-info"><strong>Note:</strong> It's important to add data-type = "button" attribute the layer element. </div>	
+							<div class="alert alert-info"><strong>Note:</strong> It's important to add data-type =
+								"button" attribute the layer element.
+							</div>
 							<pre class="brush: html">
 							&lt;!-- slide button layer --&gt;
 							&lt;a class="ms-layer ms-btn myCustomBtn"
@@ -1126,12 +1136,12 @@
 
 								<div class="alert alert-info"><strong>Note:</strong> It's important to add data-type = "hotspot" attribute the layer element.</div>
 							<pre class="brush: html">
-								<div class="ms-layer" 
-									data-offset-x		= "250"
-								 	data-offset-y 		= "115"
-						        	data-delay			= "500"
-						        	data-type			= "hotspot"
-						        	data-align			= "bottom"
+								<div class="ms-layer"
+									 data-offset-x		= "250"
+									 data-offset-y 		= "115"
+									 data-delay			= "500"
+									 data-type			= "hotspot"
+									 data-align			= "bottom"
 						        >
 							    	<div class="product-tt">
 							    		<h3>LOREM IPSUM DOLOR</h3>
@@ -1214,7 +1224,7 @@
 									<td>-</td>
 									<td>The Flickr api key.(required)</td>
 								</tr>
-								
+
 								<tr>
 									<td>imgSize</td>
 									<td>c</td>
@@ -1264,25 +1274,22 @@
 									<td>authorEff</td>
 									<td>fade</td>
 									<td>This option determine the effect of author on slider, please refer to <a href="#layer-effects" title="Master Slider transition effects" >Layer Transition Effects</a> for more information about the variety of effects.</td>
-								</tr>				
-								
-								
+								</tr>
+
+
 								<tr>
 									<td>descEff</td>
 									<td>fade</td>
 									<td>This option determine the effect of description on slider, please refer to <a href="#layer-effects" title="Master Slider transition effects" >Layer Transition Effects</a> for more information about the variety of effects.</td>
 								</tr>
-								
-								
-								
-							  
-								
+
+
 							</tbody>
 						</table>
 						Note: to achieve user's ID you can use this <a href="http://idgettr.com/" title="get flickr id" target="_blank"> Flickr get ID </a> and to achieve photoset's ID you can take it from photoset page url.
 					</p>
-				
-					
+
+
 					<hr/>
 				</article>
 				<article class="content-section" id="scroll-parallax">
@@ -1327,12 +1334,12 @@
 									<td>Background Parallax Depth</td>
 									<td>40</td>
 									<td>The intensity of slide background parallax effect, higher values makes the background image more sensitive. Negative values are allowed.</td>
-								</tr>						  
+								</tr>
 								<tr>
 									<td>Fade Layers</td>
 									<td>false</td>
 									<td>Whether fade layers while scrolling or not.</td>
-								</tr>		
+								</tr>
 							</tbody>
 						</table>
 						<p><span class="label label-info">Note</span> If you are using <a href="#jq-plugin">Master Slider jQuery Plugin</a> setup you can access to the slider instance object with:</p>
@@ -1594,7 +1601,7 @@
 					var slider = new MasterSlider();
 					slider.setup('masterslider' , {width:800, height:350});
 					slider.control('arrows'); // here we've added arrow control to the slider.
-					</pre>																				
+					</pre>
  				<h4>UI Controls:</h4>
 					<ol>
 						<li>
@@ -1627,7 +1634,7 @@
 											<td>hideUnder</td>
 											<td>null</td>
 											<td>Hides the control if width of slider comes less than specified.</td>
-										</tr>		
+										</tr>
 									</tbody>
 								</table>
 							</p>
@@ -1667,7 +1674,7 @@
 											<td>overVideo</td>
 											<td>true</td>
 											<td>Whether the control visible over slide video while playing.</td>
-										</tr>	
+										</tr>
 										<tr>
 											<td>dir</td>
 											<td>"h"</td>
@@ -1682,7 +1689,7 @@
 											<td>align</td>
 											<td>"bottom"</td>
 											<td>Aligns the control to in or out of slider. It accepts "top" and "bottom" values.</td>
-										</tr>	
+										</tr>
 										<tr>
 											<td>margin</td>
 											<td>10</td>
@@ -1741,7 +1748,7 @@
 											<td>overVideo</td>
 											<td>true</td>
 											<td>Whether the control visible over slide video while playing.</td>
-										</tr>	
+										</tr>
 										<tr>
 											<td>width</td>
 											<td>100</td>
@@ -1776,7 +1783,7 @@
 											<td>align</td>
 											<td>"bottom"</td>
 											<td>Aligns the control to in or out of slider. It accepts "top", "bottom", "left" and "right" values.</td>
-										</tr>	
+										</tr>
 										<tr>
 											<td>hover</td>
 											<td>false</td>
@@ -1842,7 +1849,7 @@
 											<td>overVideo</td>
 											<td>true</td>
 											<td>Whether the control visible over slide video while playing.</td>
-										</tr>									
+										</tr>
 										<tr>
 											<td>dir</td>
 											<td>"h"</td>
@@ -1867,7 +1874,7 @@
 											<td>align</td>
 											<td>"bottom"</td>
 											<td>Aligns the control to in or out of slider. It accepts "top", "bottom", "left" and "right" values.</td>
-										</tr>	
+										</tr>
 										<tr>
 											<td>inset</td>
 											<td>false</td>
@@ -1918,7 +1925,7 @@
 											<td>overVideo</td>
 											<td>true</td>
 											<td>Whether the control visible over slide video while playing.</td>
-										</tr>	
+										</tr>
 										<tr>
 											<td>color</td>
 											<td>"#A2A2A2"</td>
@@ -1994,7 +2001,7 @@
 											<td>align</td>
 											<td>"bottom"</td>
 											<td>Aligns the control to in or out of slider. It accepts "top" and "bottom"  values.</td>
-										</tr>	
+										</tr>
 										<tr>
 											<td>inset</td>
 											<td>false</td>
@@ -2004,7 +2011,7 @@
 											<td>margin</td>
 											<td>0</td>
 											<td>Specifies the space between the control and slider in pixel.</td>
-										</tr>	
+										</tr>
 									</tbody>
 								</table>
 							</p>
@@ -2063,7 +2070,7 @@
 											<td>align</td>
 											<td>"bottom"</td>
 											<td>Aligns the control to in or out of slider. It accepts "top", "bottom", "left" and "right" values.</td>
-										</tr>	
+										</tr>
 										<tr>
 											<td>inset</td>
 											<td>false</td>
@@ -2073,7 +2080,7 @@
 											<td>margin</td>
 											<td>10</td>
 											<td>Specifies the space between the control and slider in pixel.</td>
-										</tr>		
+										</tr>
 									</tbody>
 								</table>
 							</p>
@@ -2578,7 +2585,7 @@
 					  <li>Support for third party software and plug-ins</li>
 					</ul>
 					<br>
-					
+
 					<p><span class="label label-info">Important Note</span> We <strong>CAN NOT</strong> provide support via email.
 					Please ask your support related questions only in our <a href="http://support.averta.net/envato/support/" target="_blank">support forum</a>.</p>
 					<br>
@@ -2600,7 +2607,7 @@
 				</article>
 			</section>
 		</div><!-- end div .container -->
-		
+
 		<script src="assets/js/jquery-1.8.2.js"></script>
 		<script src="assets/js/jquery.easing.min.js"></script>
 		<script src="assets/js/averta.csstweener.min.js"></script>

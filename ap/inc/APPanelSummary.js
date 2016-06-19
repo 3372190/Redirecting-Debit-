@@ -34,13 +34,19 @@ function loadSummary() {
             firebaseRef.child("redirectees").orderByChild("serviceproviderkey").equalTo(spSnapshotChild.key()).once('value', function (spRedirectee) {
 
                 var totalRedirectees = spRedirectee.numChildren();
+                totalNotified = 0;
+                totalResponded = 0;
+
 
                 spRedirectee.forEach(function (redirecteeSnapShot) {
                     var redirectChildData = redirecteeSnapShot.val();
 
                     if (redirectChildData.notified) {
+                        console.log(spSnapshotChildData + "Notified");
                         totalNotified++;
-                    } else if (redirectChildData.responded) {
+                    }
+                    if (redirectChildData.responded) {
+                        console.log(spSnapshotChildData.val() + "responded");
                         totalResponded++;
                     }
                 });
@@ -49,6 +55,4 @@ function loadSummary() {
             });
         });
     });
-
-
 }

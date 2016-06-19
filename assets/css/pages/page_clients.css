@@ -4,7 +4,7 @@
 	margin-top: 10px;
 	margin-bottom: 50px;
 	padding-bottom: 30px;
-	border-bottom: solid 1px #eee; 
+	border-bottom: solid 1px #eee;
 }
 
 .clients-page ul {
@@ -22,7 +22,7 @@
 
 .clients-page img {
 	padding: 4px;
-	margin: 5px 0; 
+	margin: 5px 0;
 	border: solid 1px #eee;
 	background: #fafafa;
 }
@@ -31,7 +31,7 @@
 	border-color: #bbb;
 }
 
-@media (max-width: 992px) { 
+@media (max-width: 992px) {
 	.clients-page {
 		text-align: center;
 	}

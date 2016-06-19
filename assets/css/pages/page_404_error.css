@@ -2,7 +2,7 @@
 ------------------------------------*/
 .error-v1 {
 	padding-bottom: 30px;
-	text-align: center;	
+	text-align: center;
 }
 
 .error-v1 p {
@@ -18,17 +18,17 @@
 }
 
 .error-v1 span.error-v1-title {
-	color: #777;	
+	color: #777;
 	font-size: 180px;
 	line-height: 200px;
 	padding-bottom: 20px;
 }
 
 /*For Mobile Devices*/
-@media (max-width: 500px) { 
+@media (max-width: 500px) {
 	.error-v1 p {
 		font-size: 12px;
-	}	
+	}
 
 	.error-v1 span {
 		font-size: 25px;
