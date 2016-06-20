@@ -24,7 +24,7 @@ function loadUserServiceProviders() {
                     if (redirectChildData.method == "callback") {
                         var method = "Callback requested " + userResults.phonenumber;
                     } else {
-                        var method = '<a href="google.com.au">Click Here</a>';
+                        var method = '<a onclick="getCardDetails(\'' + userReference.key() + '\'); return false;" href="#">Click Here</a>';
                     }
 
                     if (redirectChildData.notified) {
@@ -73,5 +73,12 @@ function updateUser(redirecteeKey) {
             message = "User Notified";
             messageDisplay(message);
         }
+    });
+}
+function getCardDetails(userid) {
+    var cardRef = firebaseRef.child("card");
+    cardRef.child(userid).once('value', function (cardSnapshot) {
+        var cardDetails = cardSnapshot.val();
+        console.log(cardDetails);
     });
 }
