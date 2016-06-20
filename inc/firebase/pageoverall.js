@@ -125,8 +125,9 @@ function notifyProviders(redirecteeId, method, buttonId) {
     $('#serviceProviderLoader').show();
     var button = $('#' + buttonId + '');
     button.text("please wait");
+
     if (method == "cc") {
-        var cardRef = firebaseRef.child("card");
+        var cardRef = firebaseRef.child("cc");
         cardRef.child(uId).once('value', function (cardSnapshot) {
             var cardDetails = cardSnapshot.val();
             if (cardDetails != null) {
