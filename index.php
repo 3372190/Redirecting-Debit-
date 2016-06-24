@@ -168,7 +168,7 @@
 					<div class="thumbnails thumbnail-style thumbnail-kenburn">
 						<div class="thumbnail-img">
 							<div class="overflow-hidden">
-								<img class="img-responsive" src="assets/img/main/img12.jpg" alt="">
+								<img class="img-responsive" src="assets/img/main/solution4.png" alt="">
 							</div>
 							<a class="btn-more hover-effect" href="#">read more +</a>
 						</div>
@@ -182,7 +182,7 @@
 					<div class="thumbnails thumbnail-style thumbnail-kenburn">
 						<div class="thumbnail-img">
 							<div class="overflow-hidden">
-								<img class="img-responsive" src="assets/img/main/img3.jpg" alt="">
+								<img class="img-responsive" src="assets/img/main/solution2.png" alt="">
 							</div>
 							<a class="btn-more hover-effect" href="#">read more +</a>
 						</div>
@@ -196,7 +196,7 @@
 					<div class="thumbnails thumbnail-style thumbnail-kenburn">
 						<div class="thumbnail-img">
 							<div class="overflow-hidden">
-								<img class="img-responsive" src="assets/img/main/img17.jpg" alt="">
+								<img class="img-responsive" src="assets/img/main/solution3.png" alt="">
 							</div>
 							<a class="btn-more hover-effect" href="#">read more +</a>
 						</div>
