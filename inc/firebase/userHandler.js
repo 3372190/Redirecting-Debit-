@@ -202,7 +202,6 @@ function registerFunction() {
         $("#loader").show(100);
         //login and redirect
         userRegister(e, p);
-        document.getElementById("registerButton").innerHTML = "Logging in";
 
 
     } else if (!flag) {
