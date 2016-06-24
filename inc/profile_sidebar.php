@@ -20,6 +20,7 @@
 					<hr>
 
 					<!--Notification-->
+					<!-- Implement at a later date
 					<div class="panel-heading-v2 overflow-h">
 						<h2 class="heading-xs pull-left"><i class="fa fa-bell-o"></i> Notification</h2>
 						<a href="#"><i class="fa fa-cog pull-right"></i></a>
@@ -28,6 +29,7 @@
 					<ul class="list-unstyled mCustomScrollbar margin-bottom-20" data-mcs-theme="minimal-dark">
 					</ul>
 					</div>
+					-->
 					<!--End Notification-->
 
 					<div class="margin-bottom-50"></div>

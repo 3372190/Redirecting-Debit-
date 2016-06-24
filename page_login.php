@@ -74,12 +74,13 @@
 						</div>
 
 						<div class="row">
-							<div class="col-md-6 checkbox">
-								<label><input type="checkbox" name="staySignedIn" id="staySignedIn"> Stay signed in</label>
-							</div>
 							<div class="col-md-6">
 								<button class="btn-u pull-right" id="loginButton" name="loginButton">Login</button>
 							</div>
+							<div class="col-md-6 checkbox" style="display: none">
+								<label><input type="checkbox" name="staySignedIn" id="staySignedIn"> Stay signed in</label>
+							</div>
+
 						</div>
                         <hr>
 

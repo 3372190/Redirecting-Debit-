@@ -91,25 +91,18 @@
 								<div class="service-block-v3 service-block-u">
 									<i class="icon-users"></i>
 									<span class="service-heading">Number Of Services</span>
-									<span id="numofproviders" class="counter"></span>
+									<span id="totalProviders" class="counter"></span>
 
 									<div class="clearfix margin-bottom-10"></div>
 
 									<div class="row margin-bottom-20">
 										<div class="col-xs-6 service-in">
 											<small>Notified</small>
-                                            <h4 class="counter">0</h4>
+											<h4 id="notifiedCount" class="counter">0</h4>
 										</div>
 										<div class="col-xs-6 text-right service-in">
                                             <small>Responded</small>
-                                            <h4 class="counter">0</h4>
-										</div>
-									</div>
-									<div class="statistics">
-                                        <h3 class="heading-xs">Completion Level <span class="pull-right">67%</span></h3>
-										<div class="progress progress-u progress-xxs">
-											<div style="width: 67%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="67" role="progressbar" class="progress-bar progress-bar-light">
-											</div>
+											<h4 id="respondedCount" class="counter">0</h4>
 										</div>
 									</div>
 								</div>

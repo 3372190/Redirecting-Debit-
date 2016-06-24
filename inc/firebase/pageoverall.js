@@ -1,6 +1,9 @@
 var firebaseRef = new Firebase("https://redirectdebit.firebaseio.com");
 var uId;
 var message;
+var notifiedCount = 0;
+var respondedCount = 0;
+var totalCount = 0;
 $(document).ready(function () {
     loadUserDetails();
     loadUserServiceProviders();
@@ -24,6 +27,7 @@ function loadUserServiceProviders() {
 
         //loop through each child in the redirectees table
         redirecteesSnapShot.forEach(function (redirecteesChild) {
+            totalCount++;
             var redirecteeKey = redirecteesChild.key();
 
             var redirectChildData = redirecteesChild.val();
@@ -80,10 +84,12 @@ function loadUserServiceProviders() {
                 ccButton.text("Send CC ");
 
                 if (redirectChildData.notified) {
+                    notifiedCount++;
                     lNotifiedob.text("Yes");
                     lNotifiedob.attr('class', 'label label-success');
 
                     if (redirectChildData.responded) {
+                        respondedCount++;
                         lRespondedob.text("Yes");
                         lRespondedob.attr('class', 'label label-success');
 
@@ -110,15 +116,23 @@ function loadUserServiceProviders() {
 
 
                 //TODO Write code here to dynamically update mini dashboard counter and %
-                $('#serviceProviderLoader').hide();
+                updateDash();
             });
 
 
         });
+        $('#serviceProviderLoader').hide();
     });
 
 
 }
+
+function updateDash() {
+    $('#totalProviders').html(totalCount);
+    $('#respondedCount').html(respondedCount);
+    $('#notifiedCount').html(notifiedCount);
+}
+
 
 
 function notifyProviders(redirecteeId, method, buttonId) {
@@ -179,6 +193,8 @@ function pushMethodToFirebase(redirecteeId, method, button) {
 
 function confirmSpRemove(spKey, spName) {
     if (confirm("Are You Sure?") == true) {
+        totalCount--;
+        updateDash();
         deleteServiceProvider(spKey, spName);
     }
 

@@ -29,7 +29,7 @@
 				<div class="container">
 					<ul class="nav navbar-nav">
 						<!-- Home -->
-						<li id="home" class="active">
+						<li id="home">
 							<a href="index.php" >
 								Home
 							</a>
