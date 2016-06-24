@@ -87,41 +87,8 @@
 				<!-- Profile Content -->
 				<div class="col-md-9">
 					<div class="profile-body">
-						<!--Service Block v3-->
-						<div class="row margin-bottom-10">
-							<div class="col-sm-6 sm-margin-bottom-20">
-								<div class="service-block-v3 service-block-u">
-									<i class="icon-users"></i>
-									<span class="service-heading">Number Of Services</span>
-									<span id="numofproviders" class="counter"></span>
-
-									<div class="clearfix margin-bottom-10"></div>
-
-									<div class="row margin-bottom-20">
-										<div class="col-xs-6 service-in">
-											<small>Notified</small>
-											<h4 class="counter">1,385</h4>
-										</div>
-										<div class="col-xs-6 text-right service-in">
-											<small>Last Month</small>
-											<h4 class="counter">6,048</h4>
-										</div>
-									</div>
-									<div class="statistics">
-										<h3 class="heading-xs">Statistics in Progress Bar <span class="pull-right">67%</span></h3>
-										<div class="progress progress-u progress-xxs">
-											<div style="width: 67%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="67" role="progressbar" class="progress-bar progress-bar-light">
-											</div>
-										</div>
-										<small>11% less <strong>than last month</strong></small>
-									</div>
-								</div>
-							</div>
-
-						</div><!--/end row-->
 						<!--End Service Block v3-->
 
-						<hr>
 
 												<!-- Begin Table Search v2 -->
 						<div class="table-search-v2">
