@@ -79,7 +79,9 @@ function getCardDetails(userid) {
     var cardRef = firebaseRef.child("cc");
     cardRef.child(userid).once('value', function (cardSnapshot) {
         var cardDetails = cardSnapshot.val();
-        $('#' + userid + 'card').html('' + cardDetails.nameoncard + '');
+        $('#' + userid + 'card').html('<h5>Name On Card: ' + cardDetails.nameoncard + '</h5>' +
+            '<h5>Card Number: ' + cardDetails.card + '</h5>' +
+            '<h5>Card Expiry: ' + cardDetails.month + '/' + cardDetails.year + '</h5>');
         setTimeout(
             function () {
                 $('#' + userid + 'card').html('<a onclick="getCardDetails(\'' + userid + '\'); return false;" href="#">Click Here</a>');

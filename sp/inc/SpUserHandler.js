@@ -157,10 +157,10 @@ function registerServiceProviderFunction(){
         
         if(flag){
             userInfo = elements;
-            $("#loader").show(100);
-                //login and redirect
+            $('#message').html('<img id="loadingUserServiceProviders"' +
+                'src="./../assets/img/loading.gif" width="75" height="75" alt="Loading..."/>');
+            //login and redirect
             serviceProviderRegister(e, p);
-            document.getElementById("registerButton").innerHTML = "Loading...";
 
 
         }else if(!flag){

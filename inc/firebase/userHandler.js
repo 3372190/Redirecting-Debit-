@@ -117,7 +117,8 @@ function loginFunction() {
     }
 
     if (flag) {
-        document.getElementById("loginButton").innerHTML = "Logging in";
+        $('#message').html('<img id="loadingUserServiceProviders"' +
+            'src="assets/img/loading.gif" width="75" height="75" alt="Loading..."/>');
         userLogin(e, p);
     } else {
         messageDisplay(message);
