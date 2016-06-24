@@ -50,7 +50,7 @@
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-										1. Put a bird on it squid single-origin coffee nulla?
+										1. What if the bank I am with is not supported?
 									</a>
 								</h4>
 							</div>
@@ -65,7 +65,7 @@
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-										2. Oliva pariatur cliche reprehenderit high life accusamus?
+										2. What if my service provider is not listed?
 									</a>
 								</h4>
 							</div>
@@ -86,7 +86,7 @@
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-										3. Enim eiusmod high life accusamus terry richardson?
+										3. How long does it take for a service provider to respond to a notification?
 									</a>
 								</h4>
 							</div>
@@ -179,10 +179,9 @@
 					<!-- Contacts -->
 					<div class="headline"><h2>Contacts</h2></div>
 					<ul class="list-unstyled who margin-bottom-30">
-						<li><a href="#"><i class="fa fa-home"></i>5B Streat, City 50987 New Town US</a></li>
-						<li><a href="#"><i class="fa fa-envelope"></i>info@example.com</a></li>
-						<li><a href="#"><i class="fa fa-phone"></i>1(222) 5x86 x97x</a></li>
-						<li><a href="#"><i class="fa fa-globe"></i>http://www.example.com</a></li>
+						<li><a href="#"><i class="fa fa-home"></i>Rmit University Melbourne</a></li>
+						<li><a href="#"><i class="fa fa-envelope"></i>info@redirectdebit.com</a></li>
+						<li><a href="#"><i class="fa fa-globe"></i>http://www.redirectdebit.com</a></li>
 					</ul>
 					<!-- End Contacts -->
 
