@@ -20,11 +20,11 @@ function loadUserServiceProviders() {
                 var userResults = userReference.val();
 
                 if (!redirectChildData.responded) {
-
+                    var method;
                     if (redirectChildData.method == "callback") {
-                        var method = "Callback requested " + userResults.phonenumber;
+                        method = "Callback requested " + userResults.phonenumber;
                     } else {
-                        var method = '<a href="google.com.au">Click Here</a>';
+                        method = '<a onclick="getCardDetails(\'' + userReference.key() + '\'); return false;" href="#">Click Here</a>';
                     }
 
                     if (redirectChildData.notified) {
@@ -36,7 +36,7 @@ function loadUserServiceProviders() {
                                 '<br>' + userResults.address +
                                 '<br>' + userResults.state + ", " + userResults.postcode +
                                 '<br>' + userResults.country +
-                                '</td><td>' + method + '</td>' +
+                                '</td><td id="' + userReference.key() + 'card">' + method + '</td>' +
                                 '<td style="text-align: center;"><input type="image" width="40" height="40" src="./../assets/img/tick_unselected.png" onclick="confirmComplete(\'' + redirecteeKey + '\')" /></td></tr>');
                     }
                 }
@@ -73,5 +73,20 @@ function updateUser(redirecteeKey) {
             message = "User Notified";
             messageDisplay(message);
         }
+    });
+}
+function getCardDetails(userid) {
+    var cardRef = firebaseRef.child("cc");
+    cardRef.child(userid).once('value', function (cardSnapshot) {
+        var cardDetails = cardSnapshot.val();
+        $('#' + userid + 'card').html('<h5>Name On Card: ' + cardDetails.nameoncard + '</h5>' +
+            '<h5>Card Number: ' + cardDetails.card + '</h5>' +
+            '<h5>Card Expiry: ' + cardDetails.month + '/' + cardDetails.year + '</h5>');
+        setTimeout(
+            function () {
+                $('#' + userid + 'card').html('<a onclick="getCardDetails(\'' + userid + '\'); return false;" href="#">Click Here</a>');
+            },
+            30000
+        );
     });
 }

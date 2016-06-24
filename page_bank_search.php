@@ -17,6 +17,9 @@
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            if (getUserLev() != 3) {
+                userLogout();
+            }
            getUserToolbar(); 
         });
     </script>
@@ -42,46 +45,38 @@
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 					<form class="reg-page">
 						<div class="reg-header">
-							<h2>Bank Search</h2>
+							<div class="headline"><h2>Compatible Companies</h2></div>
 							<p>Use the search box below to see if we support your bank!</p>
 						</div>
+						<div class="owl-clients-v1">
+							<div class="item">
+								<img src="assets/img/banks/anz_logo.png" alt="">
+							</div>
+							<div class="item">
+								<img src="assets/img/banks/bendigo_logo.png" alt="">
+							</div>
+							<div class="item">
+								<img src="assets/img/banks/commbank_logo1.png" alt="">
+							</div>
+							<div class="item">
+								<img src="assets/img/banks/hsbc-logo.png" alt="">
+							</div>
+							<div class="item">
+								<img src="assets/img/banks/nab_logo.png" alt="">
+							</div>
+							<div class="item">
+								<img src="assets/img/banks/westpac_logo.png" alt="">
+							</div>
+							<div class="item">
+								<img src="assets/img/banks/ing_logo.png" alt="">
+							</div>
+						</div>
 
-						        <div class="container content-sm">
 
                     </form>
                 </div>
 			</div>
 		</div><!--/container-->
-		<!--=== End Content Part ===-->
-			<!-- Owl Clients v1 -->
-        <div class="container content-sm">
-			<div class="headline"><h2>Compatible Companies</h2></div>
-			<div class="owl-clients-v1">
-				<div class="item">
-					<img src="assets/img/banks/anz_logo.png" alt="">
-				</div>
-				<div class="item">
-					<img src="assets/img/banks/bendigo_logo.png" alt="">
-				</div>
-				<div class="item">
-					<img src="assets/img/banks/commbank_logo1.png" alt="">
-				</div>
-				<div class="item">
-					<img src="assets/img/banks/hsbc-logo.png" alt="">
-				</div>
-				<div class="item">
-					<img src="assets/img/banks/nab_logo.png" alt="">
-				</div>
-				<div class="item">
-					<img src="assets/img/banks/westpac_logo.png" alt="">
-				</div>
-				<div class="item">
-					<img src="assets/img/banks/ing_logo.png" alt="">
-				</div>
-			</div>
-			<!-- End Owl Clients v1 -->
-        </div>
-		<!-- End Content Part -->
 		<!--=== Footer Version 1 ===-->
             <?php include 'inc/footer.php'?>
 		<!--=== End Footer Version 1 ===-->

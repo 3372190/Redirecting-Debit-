@@ -5,8 +5,8 @@
 	transition-property: transform;
 
 	@include hacks();
-	
-	&:hover {	
+
+	&:hover {
 		transform: scale(1.1) rotate(4deg);
 	}
 }

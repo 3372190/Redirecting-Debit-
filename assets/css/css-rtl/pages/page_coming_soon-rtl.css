@@ -39,7 +39,7 @@ body {
 .coming-soon-plugin {
 	padding: 20px;
 	text-align: center;
-}  
+}
 
 .coming-soon h1,
 .coming-soon p {
@@ -68,7 +68,7 @@ body {
 }
 
 /* Small devices (tablets, 768px and less) */
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
 	.coming-soon h1 {
 		font-size: 40px;
 	}
@@ -99,9 +99,9 @@ body {
 
 /*Countdown
 ------------------------------------*/
-#defaultCountdown { 
+#defaultCountdown {
 	width: 100%;
-	margin: 10px 0; 
+	margin: 10px 0;
 	overflow: hidden;
 }
 
@@ -124,7 +124,7 @@ body {
 	font-weight: 200;
 	font-size: 60px !important;
 	line-height: 65px !important;
-  	font-family: 'Open Sans', sans-serif;	
+	font-family: 'Open Sans', sans-serif;
 }
 
 #defaultCountdown span.countdown-period {

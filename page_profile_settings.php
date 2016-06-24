@@ -256,10 +256,7 @@
 									<form class="sky-form" id="sky-form" action="#" method="post">
 										<!--Checkout-Form-->
 									<div class="row">
-                                       <center>
-                                           <h5 id="message" name="message" class="message"></h5>
-                                       </center>
-                                
+										<h5 id="message" class="message"></h5>
                                     </div>
 
 										<section>

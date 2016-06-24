@@ -17,6 +17,9 @@
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+			if (getUserLev() != 3) {
+				userLogout();
+			}
            getUserToolbar(); 
         });
         $("#about").attr("class", "active");

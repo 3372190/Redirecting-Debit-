@@ -31,7 +31,7 @@ Light Green: 	#79d5b3    rgba(121,213,179, 1);
  .pricing-table-v3 .sticker-right {
     top: 10px;
     left: -59px;
-    transform: rotate(45deg);   
+	 transform: rotate(45deg);
 	-o-transform: rotate(45deg);
 	-ms-transform: rotate(45deg);
 	-moz-transform: rotate(45deg);
@@ -41,7 +41,7 @@ Light Green: 	#79d5b3    rgba(121,213,179, 1);
  .pricing-table-v3 .sticker-left {
     top: 10px;
     right: -58px;
-    transform: rotate(-45deg);   
+	 transform: rotate(-45deg);
 	-o-transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg);
 	-moz-transform: rotate(-45deg);
@@ -350,12 +350,12 @@ Light Green: 	#79d5b3    rgba(121,213,179, 1);
 
 /* Devices (Tablet Mode, 768px and 991px) */
 @media (min-width: 767px) and (max-width: 991px) {
-	
+
 	.no-space-pricing [class^="col-"],
 	.no-space-pricing [class*=" col-"] {
 		padding: 5px;
 	}
-	
+
 	.pricing-table-v3 .pricing-v3-head h4 {
 		font-size: 17px;
 	}
@@ -369,7 +369,6 @@ Light Green: 	#79d5b3    rgba(121,213,179, 1);
 /* Medium Devices (Phone Mode, 768px and less) */
 @media (max-width: 767px) {
 	/*Pricing Page*/
-	
 	.no-space-pricing [class^="col-"],
 	.no-space-pricing [class*=" col-"] {
 		padding: 10px;
@@ -384,7 +383,7 @@ Light Green: 	#79d5b3    rgba(121,213,179, 1);
 		width: 104px;
 		border: none;
 		background: #585F69;
-	    transform: rotate(270deg);   
+		transform: rotate(270deg);
 		-o-transform: rotate(270deg);
 		-ms-transform: rotate(270deg);
 		-moz-transform: rotate(270deg);
@@ -418,6 +417,6 @@ Light Green: 	#79d5b3    rgba(121,213,179, 1);
 	.pricing-table-v3 .pricing-v3-content li i {
 		float: none;
 		display: block;
-		margin-top: 5px; 
+		margin-top: 5px;
 	}
 }

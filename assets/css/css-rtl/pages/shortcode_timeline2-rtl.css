@@ -4,7 +4,7 @@
 	padding: 0;
 	list-style: none;
 	position: relative;
-} 
+}
 
 /* The line */
 .timeline-v2 > li{
@@ -79,7 +79,7 @@
 }
 */
 
-.timeline-v2 > li .cbp_tmlabel h2 { 
+.timeline-v2 > li .cbp_tmlabel h2 {
 	margin-top: 0px;
 	font-size: 21px;
 	padding: 0 0 5px;
@@ -161,5 +161,5 @@
 		float: left;
 		position: relative;
 		margin: -55px 0px 0 5px;
-	}	
+	}
 }

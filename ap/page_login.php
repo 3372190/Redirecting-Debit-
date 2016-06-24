@@ -71,7 +71,7 @@
 						</div>
 
 						<div class="row">
-							<div class="col-md-6 checkbox">
+							<div class="col-md-6 checkbox" style="display: none">
 								<label><input type="checkbox" name="staySignedIn" id="staySignedIn"> Stay signed in</label>
 							</div>
 							<div class="col-md-6">

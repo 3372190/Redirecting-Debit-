@@ -62,7 +62,7 @@
 
 /*Results-number*/
 .s-results .results-number {
-	color: #999;	
+	color: #999;
 	display: block;
 	margin-bottom: 10px;
 	text-transform: uppercase;
@@ -171,14 +171,14 @@
 		margin-bottom: 30px;
 		padding-bottom: 10px;
 		border-bottom: 1px solid #eee;
-	}	
-	
+	}
+
 	.s-results .related-search hr {
 		margin: 10px 0;
 		visibility: hidden;
 	}
-}	
-	
+}
+
 @media (max-width: 500px) {
 	/*Inner-results*/
 	.s-results .inner-results img {

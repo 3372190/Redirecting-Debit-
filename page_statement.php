@@ -15,14 +15,15 @@
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
     <script type="text/javascript" src="inc/firebase/pagestatement.js"></script>
     <script type="text/javascript">
-     if(getUserLev() != 3){
-        userLogout();
-        window.location = "page_login.php"
-    }
-        
-        getUserId();
-        getProviderList();
+
     $(document).ready(function() {
+		if (getUserLev() != 3) {
+			userLogout();
+			window.location = "page_login.php"
+		}
+
+		getUserId();
+		getProviderList();
         getUserToolbar(); 
     });
     </script>
@@ -155,7 +156,8 @@
                                         </div>
                                     </div>
                                 <button type="button" id="providerBack" name="providerBack" class="btn-u btn-u-default">Back</button>
-								<button class="btn-u"  id="saveproviders" name="saveproviders" type="submit">Save And notify</button>
+									<button class="btn-u" id="saveproviders" name="saveproviders" type="submit">Save
+									</button>
 								</div>
 							</div>
 						</div>

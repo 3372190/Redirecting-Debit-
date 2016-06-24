@@ -15,6 +15,9 @@
     <script type="text/javascript" src="inc/firebase/userHandler.js"></script>
     <script type="text/javascript">
     if(isUserLoggedIn()){
+		if (getUserLev() != 3) {
+			userLogout();
+		}
         window.location = "page_profile.php"
     }
         $(document).ready(function() {

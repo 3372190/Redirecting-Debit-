@@ -114,7 +114,7 @@ a {
 
 	.no-js & b {
 		opacity: 0;
-		
+
 		&.is-visible {
 			opacity: 1;
 		}
@@ -129,7 +129,7 @@ xrotate-1
 -------------------------------- */
 
 .cd-headline.rotate-1 {
-	
+
 	.cd-words-wrapper {
 		@include perspective(300px);
 	}
@@ -201,7 +201,7 @@ xtype
 -------------------------------- */
 
 .cd-headline.type {
-	
+
 	.cd-words-wrapper {
 		vertical-align: top;
 		overflow: hidden;
@@ -219,7 +219,7 @@ xtype
 
 		&.waiting::after {
 			@include animation(cd-pulse 1s infinite);
-		} 
+		}
 
 		&.selected {
 			background-color: $color-1;

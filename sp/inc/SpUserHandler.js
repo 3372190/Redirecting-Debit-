@@ -38,7 +38,6 @@ function getUserToolbar(){
         }
         
     }else{
-        console.log("here");
         $("#loginFunction").html("<a href='page_login.php'>Login</a>");
     }
 
@@ -91,7 +90,8 @@ function loginFunction (){
         }
         
             if(flag){
-                document.getElementById("loginButton").innerHTML = "Logging in";
+                $('#message').html('<img id="loadingUserServiceProviders"' +
+                    'src="./../assets/img/loading.gif" width="75" height="75" alt="Loading..."/>');
                 userLogin(e, p);
             }else{
                 messageDisplay(message);
@@ -157,10 +157,10 @@ function registerServiceProviderFunction(){
         
         if(flag){
             userInfo = elements;
-            $("#loader").show(100);
-                //login and redirect
+            $('#message').html('<img id="loadingUserServiceProviders"' +
+                'src="./../assets/img/loading.gif" width="75" height="75" alt="Loading..."/>');
+            //login and redirect
             serviceProviderRegister(e, p);
-            document.getElementById("registerButton").innerHTML = "Loading...";
 
 
         }else if(!flag){
@@ -224,22 +224,27 @@ function userLogin(e,p){
                             messageDisplay(error);
                     }
                   }else{
-                      message = "Authenticated successfully. <br> Redirecting in 2 seconds";
-                      messageDisplay(message);
-                          
-                      
-                      var usersRef = firebaseRef.child("serviceprovider").child(authData.uid);
-                      usersRef.once("value", function(snap){
 
-                        //because the data doesnt exist in local storage and it is supported, add it to local storage
-                        var object = snap.val();
-                        localStorage.setItem('userDetails', JSON.stringify(object));
-                        console.log(object);
-                        setTimeout(function () {
-                            window.location.href = "index.php";
-                        }, 2000); //will call the function after 2 secs.
-                
-                      });
+                     var usersRef = firebaseRef.child("serviceprovider").child(authData.uid);
+                     usersRef.once("value", function (snap) {
+
+                         //check if the user account exists in user key, this is to avoid accounts logging in across multiple platforms
+                         if (snap.exists()) {
+                             var object = snap.val();
+                             localStorage.setItem('userDetails', JSON.stringify(object));
+                             message = "Authenticated successfully. <br> Redirecting in 2 seconds";
+                             messageDisplay(message);
+                             setTimeout(function () {
+                                 window.location.href = "index.php";
+                             }, 2000); //will call the function after 2 secs.
+                         } else {
+                             messageDisplay("You are not authorized here");
+                             localStorage.clear();
+                             firebaseRef.unauth();
+                         }
+
+
+                     });
 
                     return true;
                   }

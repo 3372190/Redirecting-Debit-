@@ -82,7 +82,7 @@
 
 .pricing-table-v7.service-block-u {
     background-color: #72c02c !important;
-} 
+}
 
 .pricing-table-v7.service-block-u .pricing-body i{
 	color: #72c02c;
@@ -170,7 +170,6 @@
 
 /* Devices (Large Screen Mode, 1200px more) */
 @media (min-width: 1200px) {
-	
 
 }
 
@@ -185,7 +184,6 @@
 
 /* Devices (Tablet Mode, 768px and 991px) */
 @media (min-width: 767px) and (max-width: 991px) {
-	
 
 }
 
